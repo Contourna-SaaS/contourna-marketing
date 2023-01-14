@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/styles/*": ["./public/styles*"]
+      "@/public/*": ["./public/*"]
     }
   },
   "exclude": ["node_modules"],
