@@ -13,7 +13,6 @@ export default function Navigation() {
     { name: 'How It Works', href: '#' },
     { name: 'Blog', href: 'posts' },
     { name: 'Contact', href: '#' },
-    { name: 'Get a quote', href: '#' },
   ];
   return (
     <div className="relative overflow-hidden">
@@ -56,14 +55,12 @@ export default function Navigation() {
               </div>
             </div>
             <div className="hidden md:flex md:items-center md:space-x-6">
-              <Link href="quote.contourna.com">
-                <a
-                  href="quote.contourna.com"
-                  className="inline-flex items-center rounded-md border border-transparent bg-c-yellow text-white px-4 py-2 text-base font-medium"
-                >
-                  Get a free quote
-                </a>
-              </Link>
+              <a
+                href="quote.contourna.com"
+                className="inline-flex items-center rounded-md border border-transparent bg-c-yellow text-white px-4 py-2 text-base font-medium"
+              >
+                Get a free quote
+              </a>
             </div>
           </nav>
         </div>
@@ -117,14 +114,12 @@ export default function Navigation() {
                   ))}
                 </div>
                 <div className="mt-6 px-5">
-                  <Link href="quote.contourna.com">
-                    <a
-                      href="quote.contourna.com"
-                      className="block w-full rounded-md bg-indigo-600 py-3 px-4 text-center font-medium text-black shadow hover:bg-indigo-700"
-                    >
-                      Get a free quote
-                    </a>
-                  </Link>
+                  <a
+                    href="quote.contourna.com"
+                    className="block w-full rounded-md bg-indigo-600 py-3 px-4 text-center font-medium text-black shadow hover:bg-indigo-700"
+                  >
+                    Get a free quote
+                  </a>
                 </div>
               </div>
             </div>
