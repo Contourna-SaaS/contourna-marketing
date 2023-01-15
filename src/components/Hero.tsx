@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
-import gif from '@/assets/hero-web.gif';
+import HeroSVG from '@/assets/app.svg';
 
 export default function Hero() {
   return (
@@ -46,6 +46,7 @@ export default function Hero() {
                   src="/images/hero-web.gif"
                   alt="my gif"
                 />
+                {/* <HeroSVG className="w-full" /> */}
               </div>
             </div>
           </div>

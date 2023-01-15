@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Navigation from './Navigation';
+import SocialFooter from './SocialFooter';
 
 type Props = {
   children: React.ReactNode;
@@ -20,7 +21,8 @@ export default function Layout({ children }: Props) {
       <nav>
         <Navigation />
       </nav>
-      <main>{children}</main>
+      <main className="pb-8">{children}</main>
+      <SocialFooter />
     </div>
   );
 }

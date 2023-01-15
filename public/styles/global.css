@@ -5,6 +5,11 @@
 * {
   font-family: 'Poppins', sans-serif;
 }
+.container {
+  padding: 0 1.5rem;
+  margin: 0 auto;
+  max-width: 80rem;
+}
 
 html,
 body {
@@ -48,4 +53,9 @@ a:hover {
 
 .hero-gif {
   width: 80%;
+}
+
+.quote-svg,
+.how-it-works {
+  max-width: 100%;
 }
