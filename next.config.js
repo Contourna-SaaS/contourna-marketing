@@ -15,10 +15,6 @@ module.exports = {
           test: /\.svg$/,
           use: '@svgr/webpack',
         },
-        {
-          test: /\.(png|jpg|gif|eot|ttf)$/,
-          loader: 'url-loader',
-        },
       ]
     );
     return config;
