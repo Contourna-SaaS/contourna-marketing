@@ -1,6 +1,5 @@
 import React from 'react';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
-import Image from 'next/image';
 import gif from '@/assets/hero-web.gif';
 
 export default function Hero() {
@@ -42,11 +41,9 @@ export default function Hero() {
             <div className="mt-12 -mb-16 sm:-mb-48 lg:relative lg:m-0">
               <div className="mx-auto max-w-md px-6 sm:max-w-2xl lg:max-w-none lg:px-0">
                 {/* Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ */}
-                <Image
+                <img
                   className="hero-gif"
                   src="/images/hero-web.gif"
-                  width={396}
-                  height={704}
                   alt="my gif"
                 />
               </div>
