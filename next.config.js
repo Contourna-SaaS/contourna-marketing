@@ -1,19 +1,26 @@
-module.exports = ({
-  pageExtensions: ["tsx"],
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+module.exports = {
+  pageExtensions: ['tsx'],
+  webpack: (
+    config,
+    { buildId, dev, isServer, defaultLoaders, webpack }
+  ) => {
     config.module.rules.push(
       ...[
         {
           test: /\.yml$/,
-          type: "json",
-          use: "yaml-loader",
+          type: 'json',
+          use: 'yaml-loader',
         },
         {
           test: /\.svg$/,
-          use: "@svgr/webpack",
+          use: '@svgr/webpack',
+        },
+        {
+          test: /\.(png|jpg|gif|eot|ttf)$/,
+          loader: 'url-loader',
         },
       ]
     );
     return config;
   },
-});
+};

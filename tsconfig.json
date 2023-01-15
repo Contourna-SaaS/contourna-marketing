@@ -15,7 +15,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/public/*": ["./public/*"]
+      "@/public/*": ["./public/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/components/*": ["./src/components/*"]
     }
   },
   "exclude": ["node_modules"],

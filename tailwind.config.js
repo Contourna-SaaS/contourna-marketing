@@ -1,11 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'c-yellow': '#fdb913',
+        'c-grey': '#494949',
+        'c-off-white': '#FCFAF7',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
