@@ -1,5 +1,5 @@
 backend:
-  name: contourna-marketing
+  name: git-gateway
   branch: main
 media_folder: public/images
 public_folder: /images
