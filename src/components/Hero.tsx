@@ -5,7 +5,7 @@ import HeroSVG from '@/assets/app.svg';
 export default function Hero() {
   return (
     <div className="relative overflow-hidden">
-      <div className="pt-10 sm:pt-16 lg:overflow-hidden lg:pt-8 lg:pb-14">
+      <div className="pt-10 pb-8 sm:pt-16 lg:overflow-hidden lg:pt-8 lg:pb-14">
         <div className="mx-auto max-w-7xl lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8">
             <div className="mx-auto max-w-md px-6 sm:max-w-2xl sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
