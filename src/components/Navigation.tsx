@@ -72,10 +72,10 @@ export default function Navigation() {
       >
         <Popover.Panel
           focus
-          className="absolute inset-x-0 top-0 z-10 origin-top transform p-2 transition md:hidden"
+          className="absolute inset-x-0 top-0 z-10 origin-top transform transition md:hidden"
         >
           <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
-            <div className="flex items-center justify-between px-5 pt-4">
+            <div className="flex items-center justify-between px-6 pt-6">
               <div>
                 <Logo width={60} />
               </div>
