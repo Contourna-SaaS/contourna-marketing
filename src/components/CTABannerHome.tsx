@@ -20,7 +20,7 @@ export default function CTABannerHome() {
                 satisfaction and improved quality.
               </p>
               <a
-                href="#"
+                href="https://quote.contourna.com"
                 className="mt-8 inline-flex items-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-c-yellow shadow hover:text-c-grey"
               >
                 Learn More
