@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import HowItWorksSVG from '@/assets/how-it-works.svg';
 import QuoteSVG from '@/assets/quote.svg';
 import TwoColumnLayout from '@/components/TwoColumnLayout';
+import CTABannerHome from '@/components/CTABannerHome';
 
 export default function Index() {
   return (
@@ -37,26 +38,7 @@ export default function Index() {
             href: '/how-it-works',
           }}
         />
-        <TwoColumnLayout
-          title="Get a free quote"
-          copy={
-            <p className="text-base leading-6 text-gray-800 lg:text-lg xl:text-xl">
-              <span className="block font-bold text-lg mb-2 lg:text-xl text-black">
-                Let us help you grow.
-              </span>
-              We take key quality management principles and mould them
-              to fit in the context of your organization. Let your
-              managers lead processes that result in customer
-              satisfaction and improved quality.
-            </p>
-          }
-          img={<QuoteSVG className="quote-svg" />}
-          contentSide="right"
-          cta={{
-            title: 'Get A Quote',
-            href: 'https://quote.contourna.com',
-          }}
-        />
+        <CTABannerHome />
       </div>
     </Layout>
   );
