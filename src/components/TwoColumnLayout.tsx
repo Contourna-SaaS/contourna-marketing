@@ -48,7 +48,7 @@ export default function TwoColumnLayout({
               <div className="mt-4">
                 <a
                   href={cta.href}
-                  className="inline-flex items-center rounded-md border border-transparent bg-c-yellow text-white px-4 py-2 text-base font-medium hover:opacity-75"
+                  className="inline-flex items-center rounded-md border border-transparent bg-c-yellow text-white px-4 py-2 text-base font-medium hover:bg-c-grey"
                 >
                   {cta.title}
                 </a>

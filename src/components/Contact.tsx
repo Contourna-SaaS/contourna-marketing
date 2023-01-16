@@ -4,10 +4,10 @@ export default function Contact() {
   return (
     <div className="relative">
       <div className="absolute inset-0">
-        <div className="absolute inset-y-0 left-0 w-1/2 bg-c-yellow" />
+        <div className="absolute inset-y-0 left-0 w-1/2 bg-c-grey" />
       </div>
       <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5">
-        <div className="bg-c-yellow py-16 px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+        <div className="bg-c-grey py-16 px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
           <div className="mx-auto max-w-lg">
             <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
               Get in touch
@@ -110,7 +110,7 @@ export default function Contact() {
               <div>
                 <button
                   type="submit"
-                  className="inline-flex justify-center rounded-md border border-transparent text-white bg-c-yellow py-3 px-6 text-base font-medium text-white shadow-sm hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-c-yellow focus:ring-offset-2"
+                  className="inline-flex justify-center rounded-md border border-transparent text-white bg-c-yellow py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-c-grey focus:outline-none focus:ring-2 focus:ring-c-yellow focus:ring-offset-2"
                 >
                   Submit
                 </button>

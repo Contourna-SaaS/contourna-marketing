@@ -53,7 +53,7 @@ export default function Navigation() {
           <div className="hidden md:flex md:items-center md:space-x-6">
             <a
               href="http://quote.contourna.com"
-              className="inline-flex items-center rounded-md border border-transparent bg-c-yellow text-white px-4 py-2 text-base font-medium hover:opacity-75"
+              className="inline-flex items-center rounded-md border border-transparent bg-c-yellow text-white px-4 py-2 text-base font-medium hover:bg-c-grey"
             >
               Get a free quote
             </a>
@@ -105,7 +105,7 @@ export default function Navigation() {
               <div className="mt-6 px-5">
                 <a
                   href="http://quote.contourna.com"
-                  className="block w-full rounded-md bg-c-yellow py-3 px-4 text-center font-medium text-white shadow hover:opacity-75"
+                  className="block w-full rounded-md bg-c-yellow py-3 px-4 text-center font-medium text-white shadow hover:bg-c-grey"
                 >
                   Get a free quote
                 </a>
