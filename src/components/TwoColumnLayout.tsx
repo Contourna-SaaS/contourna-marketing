@@ -55,7 +55,7 @@ export default function TwoColumnLayout({
               </div>
             )}
           </div>
-          <div className="md:w-1/3">{img}</div>
+          <div className="md:w-1/3 mt-10 md:mt-0">{img}</div>
         </div>
       </div>
     </section>

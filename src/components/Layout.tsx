@@ -18,7 +18,7 @@ export default function Layout({ children }: Props) {
         <link rel="apple-touch-icon" href="/icon.png" />
         <meta name="theme-color" content="#fff" />
       </Head>
-      <nav>
+      <nav className="bg-white sticky top-0 z-10">
         <Navigation />
       </nav>
       <main>{children}</main>
