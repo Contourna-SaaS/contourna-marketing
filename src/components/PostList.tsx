@@ -47,7 +47,6 @@ export default function PostList({ posts, tags, pagination }: Props) {
           margin: 0 auto;
           max-width: 1200px;
           width: 100%;
-          padding: 0 1.5rem;
         }
         ul {
           margin: 0;
