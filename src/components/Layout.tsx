@@ -21,7 +21,7 @@ export default function Layout({ children }: Props) {
       <nav>
         <Navigation />
       </nav>
-      <main className="pb-8">{children}</main>
+      <main>{children}</main>
       <SocialFooter />
     </div>
   );
