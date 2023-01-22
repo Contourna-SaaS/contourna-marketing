@@ -10,9 +10,9 @@ export default function Navigation() {
   const router = useRouter();
   const [active, setActive] = useState(false);
   const navigation = [
-    { name: 'How It Works', href: 'how-it-works' },
-    { name: 'Blog', href: 'posts' },
-    { name: 'Contact', href: 'contact' },
+    { name: 'How It Works', href: '/how-it-works' },
+    { name: 'Blog', href: '/posts' },
+    { name: 'Contact', href: '/contact' },
   ];
   return (
     <Popover as="header" className="relative">
