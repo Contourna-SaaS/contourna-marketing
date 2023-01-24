@@ -12,6 +12,7 @@ import { SocialList } from './SocialList';
 import TagButton from './TagButton';
 import { getAuthor } from '../lib/authors';
 import { getTag } from '../lib/tags';
+import Image from 'next/image';
 
 type Props = {
   title: string;
@@ -65,7 +66,7 @@ export default function PostLayout({
         <article>
           <header>
             {featureImage && (
-              <img src={featureImage} />
+              <Image src={featureImage} alt="blog-feature" width={1200} height={800} />
             )}
             <h1>{title}</h1>
             <div className={'metadata'}>
