@@ -21,6 +21,7 @@ type Props = {
   author: string;
   description?: string;
   children: React.ReactNode;
+  featureImage?:string;
 };
 export default function PostLayout({
   title,
@@ -30,6 +31,7 @@ export default function PostLayout({
   tags,
   description = '',
   children,
+  featureImage
 }: Props) {
   const keywords = tags.map((it) => getTag(it)?.name);
   const authorName = getAuthor(author)?.name;
@@ -62,6 +64,7 @@ export default function PostLayout({
       <div className={'container'}>
         <article>
           <header>
+            <img src={featureImage} />
             <h1>{title}</h1>
             <div className={'metadata'}>
               <div>
