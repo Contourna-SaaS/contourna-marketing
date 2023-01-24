@@ -64,7 +64,9 @@ export default function PostLayout({
       <div className={'container'}>
         <article>
           <header>
-            <img src={featureImage} />
+            {featureImage && (
+              <img src={featureImage} />
+            )}
             <h1>{title}</h1>
             <div className={'metadata'}>
               <div>

@@ -50,6 +50,7 @@ export default function Post({
       tags={tags}
       author={author}
       description={description}
+      featureImage={featureImage}
     >
       {content}
     </PostLayout>
