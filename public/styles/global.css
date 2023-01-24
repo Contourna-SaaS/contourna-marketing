@@ -5,6 +5,7 @@
 * {
   font-family: 'Poppins', sans-serif;
 }
+
 .container {
   padding: 0 1.5rem;
   margin: 0 auto;
@@ -21,6 +22,16 @@ body {
 
 #__next {
   height: 100%;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
 a {

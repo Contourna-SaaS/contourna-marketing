@@ -22,7 +22,7 @@ type Props = {
   author: string;
   description?: string;
   children: React.ReactNode;
-  featureImage?:string;
+  featureImage?: string;
 };
 export default function PostLayout({
   title,
@@ -63,12 +63,20 @@ export default function PostLayout({
         description={description}
       />
       <div className={'container'}>
-        <article>
+        <article className='mt-10 mb-10'>
           <header>
             {featureImage && (
               <Image src={featureImage} alt="blog-feature" width={1200} height={800} />
             )}
             <h1>{title}</h1>
+            <div className="flex mb-8">
+              {tags.map((tag, i) => (
+
+                <a key={`tag-${getTag(tag).slug}`} href={`/posts/tags/${getTag(tag).slug}`} className="text-xs text-white mr-2 p-2 bg-c-yellow rounded-xl hover:opacity-75">
+                  {getTag(tag).name}
+                </a>
+              ))}
+            </div>
             <div className={'metadata'}>
               <div>
                 <Date date={date} />
@@ -76,29 +84,18 @@ export default function PostLayout({
               <div>
                 <Author author={getAuthor(author)} />
               </div>
+
             </div>
           </header>
           <div className={styles.content}>{children}</div>
-          <ul className={'tag-list'}>
-            {tags.map((it, i) => (
-              <li key={i}>
-                <TagButton tag={getTag(it)} />
-              </li>
-            ))}
-          </ul>
+
         </article>
-        <footer>
-          <div className={'social-list'}>
-            <SocialList />
-          </div>
-          <Copyright />
-        </footer>
       </div>
       <style jsx>
         {`
           .container {
             display: block;
-            max-width: 36rem;
+            max-width: 50rem;
             width: 100%;
             margin: 0 auto;
             padding: 0 1.5rem;

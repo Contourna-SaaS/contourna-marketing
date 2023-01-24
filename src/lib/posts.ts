@@ -8,6 +8,7 @@ const postsDirectory = path.join(process.cwd(), "content/posts");
 export type PostContent = {
   readonly date: string;
   readonly title: string;
+  readonly feature_image: string;
   readonly slug: string;
   readonly tags?: string[];
   readonly fullPath: string;
@@ -40,6 +41,7 @@ export function fetchPostContent(): PostContent[] {
         tags: string[];
         slug: string;
         fullPath: string,
+        feature_image: string
       };
       matterData.fullPath = fullPath;
 
