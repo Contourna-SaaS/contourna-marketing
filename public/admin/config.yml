@@ -25,12 +25,6 @@ collections:
           - label: 'Site title'
             name: 'site_title'
             widget: 'string'
-          - label: 'Feature Image'
-            name: 'feature_image'
-            widget: 'image'
-            media_library:
-              config:
-              multiple: true
           - label: 'Site description'
             name: 'site_description'
             widget: 'string'
@@ -111,6 +105,12 @@ collections:
       - label: 'Title'
         name: 'title'
         widget: 'string'
+      - label: 'Feature Image'
+        name: 'feature_image'
+        widget: 'image'
+        media_library:
+          config:
+          multiple: true
       - label: 'Publish Date'
         name: 'date'
         widget: 'datetime'
