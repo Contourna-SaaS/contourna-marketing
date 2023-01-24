@@ -28,6 +28,9 @@ collections:
           - label: 'Feature Image'
             name: 'feature_image'
             widget: 'image'
+            media_library:
+              config:
+              multiple: true
           - label: 'Site description'
             name: 'site_description'
             widget: 'string'
