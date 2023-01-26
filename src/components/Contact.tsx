@@ -2,6 +2,8 @@ import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import * as Yup from 'yup';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { BsInstagram, BsTwitter } from "react-icons/bs"
+import { useState } from 'react';
+import { useReCaptcha } from 'next-recaptcha-v3';
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -27,10 +29,10 @@ interface Values {
 
 export default function Contact() {
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-  }
+  const [formError, setFormError] = useState(false);
+  const [formLabel, setFormLabel] = useState("Submit");
+  const [success, setSucess] = useState(false);
+  const { executeRecaptcha } = useReCaptcha();
 
   return (
 
@@ -188,14 +190,40 @@ export default function Contact() {
                   phone: '',
                   message: '',
                 }}
-                onSubmit={(
+                onSubmit={async (
                   values: Values,
                   { setSubmitting }: FormikHelpers<Values>
                 ) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 500);
+
+                  setFormLabel("Submitting");
+                  /* Then create a new FormData obj */
+                  let formData = new FormData();
+
+                  /* FormData requires name: id */
+                  formData.append("contactForm", "contact",);
+
+                  /* append input field values to formData */
+                  for (let value in values) {
+                    formData.append(value, values[value]);
+                  }
+                  const token = await executeRecaptcha("form-submit");
+                  formData.append('g-recaptcha-response', token)
+                  setSubmitting(true);
+                  await fetch("https://getform.io/f/1ac05ed9-2b56-4584-9a3b-e28abeb449b2", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                      "Accept": "application/json",
+                    },
+                  })
+                    .then(response => {
+                      console.log(response)
+                      setSubmitting(false);
+                      setSucess(true)
+                      setFormLabel("Submit");
+                    }
+                    )
+                    .catch(error => setFormError(true))
                 }}
               >
                 {({ errors, touched }) => (
@@ -291,9 +319,15 @@ export default function Contact() {
                           type="submit"
                           className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-c-yellow px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-c-grey focus:outline-none focus:ring-2 focus:ring-c-yellow focus:ring-offset-2 sm:w-auto"
                         >
-                          Submit
+                          {formLabel}
                         </button>
                       </div>
+                      {formError && (
+                        <span className='text-red-600 font-medium text-sm mt-1'>Error Submitting Form</span>
+                      )}
+                      {success && (
+                        <span className='text-c-yellow font-medium text-sm mt-1'>Thank you for your submission</span>
+                      )}
                     </>
                   </Form>
                 )}

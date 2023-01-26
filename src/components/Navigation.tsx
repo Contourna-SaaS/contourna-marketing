@@ -36,16 +36,14 @@ export default function Navigation() {
             </div>
             <div className="hidden space-x-8 md:ml-10 md:flex">
               {navigation.map((item) => (
-                <Link href={item.href} key={item.name}>
-                  <a
-                    className={
-                      router.pathname.startsWith(`/${item.href}`)
-                        ? 'active text-base font-medium text-black hover:text-gray-300'
-                        : 'text-base font-medium text-black hover:text-gray-300'
-                    }
-                  >
-                    {item.name}
-                  </a>
+                <Link href={item.href} key={item.name} className={
+                  router.pathname.startsWith(`/${item.href}`)
+                    ? 'active text-base font-medium text-black hover:text-gray-300'
+                    : 'text-base font-medium text-black hover:text-gray-300'
+                }>
+
+                  {item.name}
+
                 </Link>
               ))}
             </div>
@@ -89,16 +87,12 @@ export default function Navigation() {
             <div className="pt-5 pb-6">
               <div className="space-y-1 px-2">
                 {navigation.map((item) => (
-                  <Link href={item.href} key={item.name}>
-                    <a
-                      className={
-                        router.pathname.startsWith(`/${item.href}`)
-                          ? 'active block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50'
-                          : 'block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50'
-                      }
-                    >
-                      {item.name}
-                    </a>
+                  <Link href={item.href} key={item.name} className={
+                    router.pathname.startsWith(`/${item.href}`)
+                      ? 'active block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50'
+                      : 'block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50'
+                  }>
+                    {item.name}
                   </Link>
                 ))}
               </div>
