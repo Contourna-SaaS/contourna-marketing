@@ -32,7 +32,11 @@ export default function Index() {
               grow your business.
             </p>
           }
-          img={<HowItWorksSVG className="how-it-works" />}
+          img={<img
+            className="hero-gif"
+            src="/images/hero-web.gif"
+            alt="my gif"
+          />}
           cta={{
             title: 'Learn More',
             href: '/how-it-works',

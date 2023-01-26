@@ -8,6 +8,12 @@ export default function Hero() {
       <div className="pt-10 pb-8 sm:pt-16 lg:overflow-hidden lg:pt-8 lg:pb-14">
         <div className="mx-auto max-w-7xl lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8">
+            <div className="mt-12 -mb-16 sm:-mb-48 lg:relative lg:m-0">
+              <div className="mx-auto max-w-md px-6 sm:max-w-2xl lg:max-w-none lg:px-0">
+                {/* Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ */}
+                <HeroSVG className="w-full" />
+              </div>
+            </div>
             <div className="mx-auto max-w-md px-6 sm:max-w-2xl sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
               <div className="lg:py-24">
                 {/* <div className="hidden sm:mb-5 sm:flex sm:justify-center lg:justify-start">
@@ -36,17 +42,6 @@ export default function Hero() {
                   employee onboarding, enhanced customer satisfaction
                   and more employee involvement.
                 </p>
-              </div>
-            </div>
-            <div className="mt-12 -mb-16 sm:-mb-48 lg:relative lg:m-0">
-              <div className="mx-auto max-w-md px-6 sm:max-w-2xl lg:max-w-none lg:px-0">
-                {/* Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ */}
-                <img
-                  className="hero-gif"
-                  src="/images/hero-web.gif"
-                  alt="my gif"
-                />
-                {/* <HeroSVG className="w-full" /> */}
               </div>
             </div>
           </div>
