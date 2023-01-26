@@ -1,7 +1,7 @@
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import * as Yup from 'yup';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
-import { BsInstagram, BsTwitter } from "react-icons/bs"
+import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs"
 import { useState } from 'react';
 import { useReCaptcha } from 'next-recaptcha-v3';
 
@@ -172,6 +172,12 @@ export default function Contact() {
                   <a className="text-white hover:opacity-75" href="#">
                     <span className="sr-only">Twitter</span>
                     <BsTwitter size={20} />
+                  </a>
+                </li>
+                <li>
+                  <a className="text-white hover:opacity-75" href="#">
+                    <span className="sr-only">FaceBook</span>
+                    <BsFacebook size={20} />
                   </a>
                 </li>
               </ul>
