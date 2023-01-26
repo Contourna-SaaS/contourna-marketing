@@ -17,7 +17,7 @@ export default function FeatureList({ title, subtitle, copy, features, inverse =
   return (
     <div className={inverse ? "bg-c-yellow" : "bg-white"}>
       <div className="container">
-        <div className="mx-auto py-18 px-6 sm:py-24 lg:grid lg:grid-cols-3 lg:gap-x-12 lg:px-8 lg:py-30">
+        <div className="mx-auto py-16 px-6 sm:py-24 lg:grid lg:grid-cols-3 lg:gap-x-12 lg:px-8 lg:py-30">
           <div>
             <h2 className={`text-lg font-semibold leading-8 tracking-tight ${inverse ? "text-white" : "text-c-yellow"} `}>{title}</h2>
             {subtitle && (
