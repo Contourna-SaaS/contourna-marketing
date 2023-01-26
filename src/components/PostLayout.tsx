@@ -72,7 +72,7 @@ export default function PostLayout({
             <div className="flex mb-8">
               {tags.map((tag, i) => (
 
-                <a key={`tag-${getTag(tag).slug}`} href={`/posts/tags/${getTag(tag).slug}`} className="text-xs text-white mr-2 p-2 bg-c-yellow rounded-xl hover:opacity-75">
+                <a key={`tag-${getTag(tag).slug}`} href={`/posts/tags/${getTag(tag).slug}`} className="text-xs text-c-yellow mr-2 p-2 bg-black rounded-xl hover:opacity-75">
                   {getTag(tag).name}
                 </a>
               ))}
