@@ -48,6 +48,7 @@ ul li {
   list-style: none;
   position: relative;
   padding: 3px 0 2px 25px;
+  margin-top: 0.3rem;
   font-size: 1.1rem;
 }
 
