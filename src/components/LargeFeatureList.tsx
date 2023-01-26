@@ -23,7 +23,7 @@ export default function LargeFeatureList({ title, subtitle, features }: FeatureL
           <p className="mt-6 max-w-3xl text-lg leading-8 text-white">
             {subtitle}
           </p>
-          <div className="mt-20 grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
+          <div className="mt-12 md:mt-20 grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
             {features.map((feature) => (
               <div key={feature.name}>
                 <div>
