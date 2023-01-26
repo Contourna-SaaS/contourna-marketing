@@ -43,7 +43,7 @@ export default function TwoColumnLayout({
             <h2 className="text-2xl mb-4 font-bold tracking-tight text-black sm:text-3xl lg:mt-6 xl:text-4xl">
               {title}
             </h2>
-            {typeof copy === 'string' ? <p>{copy}</p> : copy}
+            {typeof copy === 'string' ? <p className="copy">{copy}</p> : copy}
             {cta && (
               <div className="mt-4">
                 <a

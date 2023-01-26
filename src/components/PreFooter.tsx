@@ -36,7 +36,7 @@ export default function PreFooter({ title, subtitle, copy, firstCTATitle, firstC
           >
             {firstCTATitle}
           </a>
-          <a href={secondCTALink} className="text-base font-semibold leading-7 text-gray-900 flex items-center hover:opacity-75">
+          <a href={secondCTALink} className="text-base font-semibold leading-7 text-white flex items-center hover:opacity-75">
             {secondCTATitle}
             <BiChevronRight size={30} />
           </a>

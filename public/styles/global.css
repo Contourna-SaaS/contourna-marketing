@@ -40,11 +40,11 @@ a {
   transition: color 0.3s ease;
 }
 
-ul {
+.copy ul {
   margin: 0.8rem 0;
 }
 
-ul li {
+.copy ul li {
   list-style: none;
   position: relative;
   padding: 3px 0 2px 25px;
@@ -52,14 +52,14 @@ ul li {
   font-size: 1.1rem;
 }
 
-ul li::before {
+.copy ul li::before {
   content: '-';
   position: absolute;
   top: 0px;
   left: 0;
 }
 
-ul li span {
+.copy ul li span {
   font-weight: bold;
   display: block;
 }

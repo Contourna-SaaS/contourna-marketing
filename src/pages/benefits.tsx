@@ -44,7 +44,7 @@ export default function HowItWorks() {
       <TwoColumnLayout
         title="Human Resources"
         copy={
-          <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl ">
+          <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl copy">
             With our employee onboarding approach, you'll save time and better meet employee needs, and improve retention.
             <ul>
               <li>
@@ -83,7 +83,7 @@ export default function HowItWorks() {
         contentSide='right'
         title="Customer Satisfaction"
         copy={
-          <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl ">
+          <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl copy">
             Our approach to quality management aims to retain the customer to support the business. Take customer satisfaction to the next level by determining what is truly important. By tailoring your business to meet customer needs, we increase your resources and minimize minutia.
             <ul>
               <li>
@@ -107,7 +107,7 @@ export default function HowItWorks() {
       <TwoColumnLayout
         title="Employee Involvement"
         copy={
-          <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl ">
+          <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl copy">
             Our approach focuses on attaining company goals by keeping the employees aligned with the company's values through improving ownership. As a result, you will have more time to grow your business in other areas.
             <ul>
               <li>
