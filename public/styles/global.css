@@ -40,6 +40,29 @@ a {
   transition: color 0.3s ease;
 }
 
+ul {
+  margin: 0.8rem 0;
+}
+
+ul li {
+  list-style: none;
+  position: relative;
+  padding: 3px 0 2px 25px;
+  font-size: 1.1rem;
+}
+
+ul li::before {
+  content: '-';
+  position: absolute;
+  top: 0px;
+  left: 0;
+}
+
+ul li span {
+  font-weight: bold;
+  display: block;
+}
+
 .youtube-container {
   position: relative;
   width: 100%;

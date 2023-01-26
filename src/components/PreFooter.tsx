@@ -32,11 +32,11 @@ export default function PreFooter({ title, subtitle, copy, firstCTATitle, firstC
         <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
           <a
             href={firstCTALink}
-            className="rounded-md bg-c-off-white text-c-yellow px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+            className="rounded-md bg-c-off-white text-c-yellow px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
           >
             {firstCTATitle}
           </a>
-          <a href={secondCTALink} className="text-base font-semibold leading-7 text-gray-900 flex items-center">
+          <a href={secondCTALink} className="text-base font-semibold leading-7 text-gray-900 flex items-center hover:opacity-75">
             {secondCTATitle}
             <BiChevronRight size={30} />
           </a>
