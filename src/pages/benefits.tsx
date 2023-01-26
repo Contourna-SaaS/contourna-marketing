@@ -48,21 +48,15 @@ export default function HowItWorks() {
             With our employee onboarding approach, you'll save time and better meet employee needs, and improve retention.
             <ul>
               <li>
-                Make your hiring process easier.
-              </li>
-              <li>
+                <span>Make your hiring process easier.</span>
                 Contourna allows your recruitment process to be simplified by using online forms, surveys, interview questions, and document automation to manage job applications, interview feedback, contracts, and more.
               </li>
               <li>
-                Streamline employee onboarding.
-              </li>
-              <li>
+                <span>Streamline employee onboarding.</span>
                 Expedite the employee onboarding process by sending all generated employee forms and documents.
               </li>
               <li>
-                Simplify training plans
-              </li>
-              <li>
+                <span>Simplify training plans</span>
                 Create a consistent, manageable, and automated training process and measure employee engagement with surveys and quizzes.
               </li>
             </ul>
