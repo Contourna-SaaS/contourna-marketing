@@ -22,7 +22,7 @@ export default function TwoColumnLayout({
 }: TwoColumnLayoutProps) {
   return (
     <section
-      className="how-it-works pt-6 pb-10 lg:pt-8 xl:pt-10 lg:pb-12 xl:pb-16"
+      className="how-it-works pt-6 pb-10 lg:pt-8 xl:pt-12 lg:pb-12 xl:pb-16"
       id="works"
     >
       <div className="container">
