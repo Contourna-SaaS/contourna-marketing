@@ -200,7 +200,7 @@ export default function Contact() {
                   let formData = new FormData();
 
                   /* FormData requires name: id */
-                  formData.append("contactForm", "contact",);
+                  formData.append("Contourna Forms", "contact-forms",);
 
                   /* append input field values to formData */
                   for (let value in values) {
