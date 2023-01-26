@@ -44,7 +44,7 @@ export default function HowItWorks() {
   const featuresTwo = [
     {
       name: 'Employee Onboarding',
-      description: 'Provide trainging documents targeted towards improving your products.',
+      description: 'Provide training documents targeted towards improving your products.',
       icon: <IoMdPeople size={24} />,
     },
     {
