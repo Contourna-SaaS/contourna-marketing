@@ -25,7 +25,7 @@ export default function PreFooter({ title, subtitle, copy, firstCTATitle, firstC
               </>
             )}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-100">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white">
             {copy}
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function PreFooter({ title, subtitle, copy, firstCTATitle, firstC
               </>
             )}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-100">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white">
             {copy}
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
