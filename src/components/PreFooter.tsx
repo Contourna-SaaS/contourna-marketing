@@ -12,11 +12,11 @@ interface PreFooterProps {
 
 export default function PreFooter({ title, subtitle, copy, firstCTATitle, firstCTALink, secondCTATitle, secondCTALink }: PreFooterProps) {
   return (
-    <div className="bg-c-yellow">
+    <div className="bg-c-grey">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between lg:px-8">
 
         <div>
-          <h2 className="text-4xl font-bold tracking-tight text-black">
+          <h2 className="text-4xl font-bold tracking-tight text-white">
             {title}
             <br />
             {subtitle && (
@@ -25,18 +25,18 @@ export default function PreFooter({ title, subtitle, copy, firstCTATitle, firstC
               </>
             )}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-black">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white">
             {copy}
           </p>
         </div>
         <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
           <a
             href={firstCTALink}
-            className="rounded-md bg-black text-c-yellow px-3.5 py-1.5 text-base font-semibold leading-7 text-black shadow-sm hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+            className="rounded-md bg-c-yellow px-3.5 py-1.5 text-base font-semibold leading-7 text-c-grey shadow-sm hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
           >
             {firstCTATitle}
           </a>
-          <a href={secondCTALink} className="text-base font-semibold leading-7 text-black flex items-center hover:opacity-75">
+          <a href={secondCTALink} className="text-base font-semibold leading-7 text-white flex items-center hover:opacity-75">
             {secondCTATitle}
             <BiChevronRight size={30} />
           </a>

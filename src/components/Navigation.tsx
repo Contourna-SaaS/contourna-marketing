@@ -52,7 +52,7 @@ export default function Navigation() {
           <div className="hidden md:flex md:items-center md:space-x-6">
             <a
               href="http://quote.contourna.com"
-              className="inline-flex items-center font-bold rounded-md border border-transparent bg-black text-c-yellow px-4 py-2 text-base hover:bg-c-grey"
+              className="inline-flex items-center font-bold rounded-md border border-transparent bg-c-yellow text-white px-4 py-2 text-base hover:bg-c-grey"
             >
               Get a free quote
             </a>
