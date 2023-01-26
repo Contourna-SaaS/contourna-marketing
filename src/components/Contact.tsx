@@ -206,7 +206,7 @@ export default function Contact() {
                   for (let value in values) {
                     formData.append(value, values[value]);
                   }
-                  const token = await executeRecaptcha("form-submit");
+                  const token = await executeRecaptcha("contactSubmit");
                   formData.append('g-recaptcha-response', token)
                   setSubmitting(true);
                   await fetch("https://getform.io/f/1ac05ed9-2b56-4584-9a3b-e28abeb449b2", {
