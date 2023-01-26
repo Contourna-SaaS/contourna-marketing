@@ -37,10 +37,10 @@ export default function Index() {
             src="/images/hero-web.gif"
             alt="my gif"
           />}
-          cta={{
-            title: 'Learn More',
-            href: '/how-it-works',
-          }}
+        // cta={{
+        //   title: 'Learn More',
+        //   href: '/how-it-works',
+        // }}
         />
         <CTABannerHome />
       </div>

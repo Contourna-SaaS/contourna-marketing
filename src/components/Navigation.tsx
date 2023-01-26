@@ -10,8 +10,9 @@ export default function Navigation() {
   const router = useRouter();
   const [active, setActive] = useState(false);
   const navigation = [
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'Blog', href: '/posts' },
+    { name: 'Services', href: '/services' },
+    { name: 'Benefits', href: '/benefits' },
+    { name: 'Resources', href: '/posts' },
     { name: 'Contact', href: '/contact' },
   ];
   return (
