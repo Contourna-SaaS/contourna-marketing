@@ -140,8 +140,8 @@ export default function Contact() {
                   </defs>
                 </svg>
               </div>
-              <h3 className="text-xl font-medium text-white">Contact information</h3>
-              <p className="mt-6 max-w-3xl text-base text-white">
+              <h3 className="text-xl font-medium text-black">Contact information</h3>
+              <p className="mt-6 max-w-3xl text-base text-black">
                 Connect with one of our experts.
 
               </p>
@@ -149,33 +149,33 @@ export default function Contact() {
                 <dt>
                   <span className="sr-only">Phone number</span>
                 </dt>
-                <dd className="flex text-base text-white">
-                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-white" aria-hidden="true" />
+                <dd className="flex text-base text-black">
+                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-black" aria-hidden="true" />
                   <span className="ml-3">+1 778-244-4118</span>
                 </dd>
                 <dt>
                   <span className="sr-only">Email</span>
                 </dt>
-                <dd className="flex text-base text-white">
-                  <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-white" aria-hidden="true" />
+                <dd className="flex text-base text-black">
+                  <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-black" aria-hidden="true" />
                   <span className="ml-3">info@contourna.com</span>
                 </dd>
               </dl>
               <ul role="list" className="mt-8 flex space-x-12">
                 <li>
-                  <a className="text-white hover:opacity-75" href="#">
+                  <a className="text-black hover:opacity-75" href="#">
                     <span className="sr-only">Instagram</span>
                     <BsInstagram size={20} />
                   </a>
                 </li>
                 <li>
-                  <a className="text-white hover:opacity-75" href="#">
+                  <a className="text-black hover:opacity-75" href="#">
                     <span className="sr-only">Twitter</span>
                     <BsTwitter size={20} />
                   </a>
                 </li>
                 <li>
-                  <a className="text-white hover:opacity-75" href="#">
+                  <a className="text-black hover:opacity-75" href="#">
                     <span className="sr-only">FaceBook</span>
                     <BsFacebook size={20} />
                   </a>
@@ -323,7 +323,7 @@ export default function Contact() {
                       <div className="sm:col-span-2 sm:flex sm:justify-end">
                         <button
                           type="submit"
-                          className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-c-yellow px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-c-grey focus:outline-none focus:ring-2 focus:ring-c-yellow focus:ring-offset-2 sm:w-auto"
+                          className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-bold text-c-yellow shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-c-yellow focus:ring-offset-2 sm:w-auto"
                         >
                           {formLabel}
                         </button>
