@@ -1,37 +1,42 @@
-## Features
+# Getting Started with Contourna Frontend
 
-- **Tagging**: organizes content by tags
-- **Author**: displays author names who write a post
-- **Pagination**: limits the number of posts per page
-- **CMS**: built with CMS to allow editors modifying content with the quickest way
-- **SEO optimized**: built-in metadata like JSON-LD
-- **Shortcode**: extends content writing with React component like WordPress shortcodes
+## Available Scripts
+In the project directory, you can run:
 
-## Dependencies
+### `npm run dev`
+Run the app in development mode
+### `npm run start`
+Runs the app in production mode
+### `npm run build`
+Builds a production version of the app
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [Next.js](https://nextjs.org/)
-- [Netlify](https://www.netlify.com/)
-- [MDX](https://mdxjs.com/)
+## Tech in this app
 
-### Organizing content by categories
 
-The category metadata that associates with content have the same relationship with the authors' one.
-Then reference these implementations for adding new metadata:
+### [Next.js](https://nextjs.org/)
+Next JS makes making [React](https://reactjs.org/) apps alot easier! It is a framework built ontop of react that offers:
 
-- [public/admin/config.yml](/public/admin/config.yml#L51): author metadata definition for Netlify CMS
-- [src/lib/authors.tsx](/src/lib/authors.ts): fetches metadata and defines utility functions for components
-- [meta/authors.yml](/src/meta/authors.yml): author content managed by Netlify CMS
-- [src/components/PostLayout.tsx](/src/components/PostLayout.tsx): displays author content for each page
+- Powerful routing and layouts
+- Static Site Generation
+- Server Side Rendering
+- Optimized Images
+- MiddleWare
 
-You understood they have four steps to add the category metadata on your project after you read the above source codes:
+### [TypeScript](https://www.typescriptlang.org/)
+TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 
-1. Define the category metadata on the above Netlify config file
-2. Create an empty file named with `categories.yml` under [meta](/src/meta/) directory
-3. Create a new module for fetching category metadata
-4. Display the category metadata on [src/components/PostLayout.tsx](/src/components/PostLayout.tsx#L75) or other components you want
+### [Tailwind CSS](https://tailwindcss.com/)
+Tailwind is a popular utility-first CSS framework
 
-It is all you have to do. After that, you can access Netlify CMS and create new categories at any time.
+### [Tailwind UI](https://tailwindui.com/)
+This project also utlitizes some awesome components built by the Tailwind Team
+
+### [Netlify CMS](https://www.netlifycms.org/)
+Use Netlify CMS with any static site generator for a faster and more flexible web project.
+
+### [Markdown](https://www.markdownguide.org/)
+Markdown is a lightweight markup language for creating formatted text using a plain-text editor. This README is created in markdown ;)
+
 
 ### Locale settings for Netlify CMS
 
@@ -51,5 +56,3 @@ as following instructions:
 - [Unicons](https://github.com/Iconscout/unicons)
 
 ## License
-
-MIT
