@@ -1,4 +1,4 @@
-# Getting Started with Contourna Frontend
+# Getting Started with Contourna Marketing
 
 ## Available Scripts
 In the project directory, you can run:
