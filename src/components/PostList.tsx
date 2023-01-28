@@ -65,7 +65,7 @@ export default function PostList({ posts, tags, pagination }: Props) {
                   <div className="flex-1">
                     <div className="flex mb-4">
                       {tags.map((tag, i) => (
-                        <a key={`tag-${tag.slug}`} href={`/posts/tags/${tag.slug}`} className="text-xs text-c-yellow mr-2 p-2 bg-black rounded-xl hover:opacity-75">
+                        <a key={`tag-${tag.slug}`} href={`/posts/tags/${tag.slug}`} className="text-xs text-white font-semibold mr-2 p-2 bg-c-yellow rounded-xl hover:bg-c-grey">
                           {tag.name}
                         </a>
                       ))}

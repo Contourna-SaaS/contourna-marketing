@@ -323,7 +323,7 @@ export default function Contact() {
                       <div className="sm:col-span-2 sm:flex sm:justify-end">
                         <button
                           type="submit"
-                          className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-c-yellow px-6 py-3 text-base font-bold text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-c-yellow focus:ring-offset-2 sm:w-auto"
+                          className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-c-yellow px-6 py-3 text-base font-bold text-white shadow-sm hover:bg-c-grey focus:outline-none focus:ring-2 focus:ring-c-yellow focus:ring-offset-2 sm:w-auto"
                         >
                           {formLabel}
                         </button>
