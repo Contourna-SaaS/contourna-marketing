@@ -23,9 +23,9 @@ export default function PostList({ posts, tags, pagination }: Props) {
       </div>
       <div className="relative mx-auto max-w-7xl">
         <div className="text-left">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"> Building Business</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Business Resources</h2>
           <p className="mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-            Continue growing your Bussiness reading our resources and insights.
+            Learn how how to improve your business by reading our resources and insights.
           </p>
         </div>
         <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
