@@ -54,5 +54,3 @@ as following instructions:
 - [Next.js Starter Template for TypeScript](https://github.com/vercel/next-learn-starter/tree/master/typescript-final)
 - [Building Blog with NextJS and Netlify CMS](https://dev.to/mefaba/building-blog-with-nextjs-and-netlify-cms-fom)
 - [Unicons](https://github.com/Iconscout/unicons)
-
-## License
