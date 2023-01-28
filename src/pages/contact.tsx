@@ -9,7 +9,7 @@ import Contact from '@/components/Contact';
 export default function HowItWorks() {
   return (
     <Layout>
-      <BasicMeta url={'/'} />
+      <BasicMeta url={'/contact'} title="Contact" />
       <OpenGraphMeta url={'/'} />
       <TwitterCardMeta url={'/'} />
       <Contact />

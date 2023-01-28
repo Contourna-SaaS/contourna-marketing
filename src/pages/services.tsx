@@ -75,8 +75,9 @@ export default function HowItWorks() {
   ]
 
   return (
+
     <Layout>
-      <BasicMeta url={'/'} />
+      <BasicMeta url={'/services'} title="Services" />
       <OpenGraphMeta url={'/'} />
       <TwitterCardMeta url={'/'} />
       <SimpleHeader title="Contourna Services" copy="Our specialty is rooted in the principles of Quality Management. That is because it is more than just setting expectations and policies. It is how you lead your managers, customers, employees, and suppliers while continually improving through risk assessment. It evolves with your business and promotes ownership among your employees, making it easier to manage your business." />

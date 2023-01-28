@@ -36,7 +36,7 @@ export default function HowItWorks() {
 
   return (
     <Layout>
-      <BasicMeta url={'/'} />
+      <BasicMeta url={'/benefits'} title="Benefits" />
       <OpenGraphMeta url={'/'} />
       <TwitterCardMeta url={'/'} />
       <SimpleHeader title="Why Businesses Choose Contourna" copy="As a small business owner or manager, you have to do it all. With our services, we can help make your life easier." />
