@@ -26,11 +26,12 @@ export default function Index() {
               You contact us to complete an audit, and we provide a report with our findings. Before conducting our testing and interviews, we research and prepare a program tailored specifically for your business. With our findings and observations, we draft a report to be reviewed and discussed, giving you the following steps to grow your business.
             </p>
           }
-          img={<img
-            className="hero-gif"
-            src="/images/hero-web.gif"
-            alt="my gif"
-          />}
+          img={
+            <video autoPlay loop muted playsInline>
+              <source src="/images/hero-web.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          }
           cta={{
             title: "Learn More",
             href: "/services",

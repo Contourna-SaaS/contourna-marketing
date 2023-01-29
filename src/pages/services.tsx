@@ -102,11 +102,12 @@ export default function HowItWorks() {
             Our services are rooted in the principles of Quality Management. Quality Management is more than just setting expectations and policies; it is how you lead your managers, customers, employees, and suppliers while continually improving through risk assessment. Quality Management evolves with your business and promotes ownership among your employees, making it easier to manage your business.
           </p>
         }
-        img={<img
-          className="hero-gif"
-          src="/images/hero-web.gif"
-          alt="my gif"
-        />}
+        img={
+          <video autoPlay loop muted playsInline>
+            <source src="/images/hero-web.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        }
       />
       <PreFooter
         title="Make your business"
