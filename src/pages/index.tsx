@@ -23,13 +23,7 @@ export default function Index() {
               <span className="block font-bold text-lg mb-2 lg:text-xl text-black">
                 Our process is easy.
               </span>
-              You contact us to complete an audit and we provide a
-              report with our findings. Prior to conducting our
-              testing and interviews, we research and prepare a
-              program tailored specifically for your business. With
-              our findings and observations we draft a report to be
-              reviewed and discussed, giving you the next steps to
-              grow your business.
+              You contact us to complete an audit, and we provide a report with our findings. Before conducting our testing and interviews, we research and prepare a program tailored specifically for your business. With our findings and observations, we draft a report to be reviewed and discussed, giving you the following steps to grow your business.
             </p>
           }
           img={<img
@@ -37,6 +31,10 @@ export default function Index() {
             src="/images/hero-web.gif"
             alt="my gif"
           />}
+          cta={{
+            title: "Learn More",
+            href: "/services",
+          }}
         />
         <CTABannerHome />
       </div>

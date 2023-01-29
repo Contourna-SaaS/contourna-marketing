@@ -39,19 +39,19 @@ export default function HowItWorks() {
       <BasicMeta url={'/benefits'} title="Benefits" />
       <OpenGraphMeta url={'/'} />
       <TwitterCardMeta url={'/'} />
-      <SimpleHeader title="Why Businesses Choose Contourna" copy="As a small business owner or manager, you have to do it all. With our services, we can help make your life easier." />
+      <SimpleHeader title="Why Businesses Choose Contourna" copy="You have to do everything as a small business owner or manager. With our services, we can help make your life easier." />
 
       <TwoColumnLayout
         title="Human Resources"
         copy={
           <div className="copy">
             <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl">
-              With our employee onboarding approach, you'll save time and better meet employee needs, and improve retention.
+              With our employee onboarding approach, you'll save time, better meet employee needs, and improve retention.
             </p>
             <ul>
               <li>
-                <span>Make your hiring process easier.</span>
-                Contourna allows your recruitment process to be simplified by using online forms, surveys, interview questions, and document automation to manage job applications, interview feedback, contracts, and more.
+                <span>Make your hiring process more manageable.</span>
+                Contourna simplifies your recruitment process by using online forms, surveys, interview questions, and document automation to manage job applications, interview feedback, contracts, and more.
               </li>
               <li>
                 <span>Streamline employee onboarding.</span>
@@ -82,7 +82,7 @@ export default function HowItWorks() {
         copy={
           <div className="copy">
             <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl">
-              Our approach to quality management aims to retain the customer to support the business. Take customer satisfaction to the next level by determining what is truly important. By tailoring your business to meet customer needs, we increase your resources and minimize minutia.
+              Our approach to quality management aims to retain the customer and support the business. Take customer satisfaction to the next level by determining what is truly important. By tailoring your business to meet customer needs, we increase your resources and minimize minutia.
             </p>
             <ul>
               <li>
@@ -95,7 +95,7 @@ export default function HowItWorks() {
               </li>
               <li>
                 <span>Prioritize Customer Retention</span>
-                Creating a simplified way to consistently manage customer feedback will identify ways to encourage more customers to conduct business with you - again and again.
+                Prioritize Customer Retention. Creating a simplified way to manage customer feedback consistently will identify ways to encourage more customers to conduct business with you - again and again.
               </li>
             </ul>
           </div>
@@ -109,7 +109,7 @@ export default function HowItWorks() {
         copy={
           <div className="copy">
             <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl">
-              Our approach focuses on attaining company goals by keeping the employees aligned with the company's values through improving ownership. As a result, you will have more time to grow your business in other areas.
+              Our approach focuses on attaining company goals by keeping the employees aligned with the company's values through improving individual ownership. As a result, you will have more time to grow your business in other areas.
             </p>
             <ul>
               <li>

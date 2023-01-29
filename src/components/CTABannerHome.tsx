@@ -14,10 +14,7 @@ export default function CTABannerHome() {
                 </span>
               </h2>
               <p className="mt-4 text-lg leading-6 text-c-grey">
-                We take key quality management principles and mould
-                them to fit in the context of your organization. Let
-                your managers lead processes that result in customer
-                satisfaction and improved quality.
+                We take fundamental quality management principles and mould them to fit your organization and business goals. Gain the tools to let your managers lead processes that result in customer satisfaction and improved quality.
               </p>
               <a
                 href="https://quote.contourna.com"

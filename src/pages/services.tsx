@@ -44,22 +44,22 @@ export default function HowItWorks() {
   const featuresTwo = [
     {
       name: 'Employee Onboarding',
-      description: 'Provide training documents targeted towards improving your products.',
+      description: 'Provide training documents targeted towards teaching new employees.',
       icon: <IoMdPeople size={24} />,
     },
     {
       name: 'Data Research',
-      description: 'Applying data to look for improvement.',
+      description: 'Applying data to look for improvements for your business.',
       icon: <GiArchiveResearch size={24} />,
     },
     {
       name: 'Learning Material',
-      description: 'ongoing learning and training material for employees',
+      description: 'Crafting ongoing learning and training material for employees',
       icon: <MdCastForEducation size={24} />,
     },
     {
       name: 'Policy Creation',
-      description: 'Organization expectations and company policies.',
+      description: 'Clarifying organization expectations and company policies.',
       icon: <MdOutlinePolicy size={24} />,
     },
     {
@@ -89,7 +89,7 @@ export default function HowItWorks() {
       <FeatureList
         title="Tailored Audits"
         subtitle='For Your Industry'
-        copy="We offer tailored audits and Improvement Plans for the following industries:"
+        copy="We offer tailored audits and improvement plans for the following industries:"
         features={features}
       />
       <TwoColumnLayout
@@ -99,13 +99,7 @@ export default function HowItWorks() {
             <span className="block font-bold text-lg mb-2 lg:text-xl text-black">
               Our process is easy.
             </span>
-            You contact us to complete an audit and we provide a
-            report with our findings. Prior to conducting our
-            testing and interviews, we research and prepare a
-            program tailored specifically for your business. With
-            our findings and observations we draft a report to be
-            reviewed and discussed, giving you the next steps to
-            grow your business.
+            Our services are rooted in the principles of Quality Management. Quality Management is more than just setting expectations and policies; it is how you lead your managers, customers, employees, and suppliers while continually improving through risk assessment. Quality Management evolves with your business and promotes ownership among your employees, making it easier to manage your business.
           </p>
         }
         img={<img
