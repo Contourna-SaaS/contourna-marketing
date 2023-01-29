@@ -27,7 +27,7 @@ export default function CTABannerHome() {
           <div className="aspect-w-5 aspect-h-3 -mt-6 md:aspect-w-2 md:aspect-h-1">
             <img
               className="translate-x-6 translate-y-6 transform rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
-              src="images/get-a-quote-demo.png"
+              src="images/get-a-quote-demo-blur.png"
               alt="Get a quote screenshot"
             />
           </div>
