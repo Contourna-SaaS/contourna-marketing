@@ -6,7 +6,7 @@ export default function CTABannerHome() {
           <div className="px-6 pt-10 pb-12 sm:px-16 sm:pt-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20 flex">
             <div className="lg:self-center">
               <h2 className="text-3xl font-bold tracking-tight text-c-grey sm:text-4xl">
-                <span className="block">
+                <span className="block text-2xl">
                   Ready to grow your business?
                 </span>
                 <span className="block mt-2">
@@ -25,8 +25,11 @@ export default function CTABannerHome() {
             </div>
           </div>
           <div className="aspect-w-5 aspect-h-3 -mt-6 md:aspect-w-2 md:aspect-h-1">
+            <div>
+
+            </div>
             <img
-              className="translate-x-6 translate-y-6 transform rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20 w-1/2"
+              className="translate-x-6 translate-y-6 transform rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
               src="images/get-a-quote-demo-blur.png"
               alt="Get a quote screenshot"
             />
