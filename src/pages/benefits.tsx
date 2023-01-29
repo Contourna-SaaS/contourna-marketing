@@ -44,8 +44,8 @@ export default function HowItWorks() {
       <TwoColumnLayout
         title="Human Resources"
         copy={
-          <>
-            <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl copy">
+          <div className="copy">
+            <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl">
               With our employee onboarding approach, you'll save time and better meet employee needs, and improve retention.
             </p>
             <ul>
@@ -62,7 +62,7 @@ export default function HowItWorks() {
                 Create a consistent, manageable, and automated training process and measure employee engagement with surveys and quizzes.
               </li>
             </ul>
-          </>
+          </div>
 
         }
         img={<KnowledgeSharing />}
@@ -80,8 +80,8 @@ export default function HowItWorks() {
         contentSide='right'
         title="Customer Satisfaction"
         copy={
-          <>
-            <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl copy">
+          <div className="copy">
+            <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl">
               Our approach to quality management aims to retain the customer to support the business. Take customer satisfaction to the next level by determining what is truly important. By tailoring your business to meet customer needs, we increase your resources and minimize minutia.
             </p>
             <ul>
@@ -98,7 +98,7 @@ export default function HowItWorks() {
                 Creating a simplified way to consistently manage customer feedback will identify ways to encourage more customers to conduct business with you - again and again.
               </li>
             </ul>
-          </>
+          </div>
 
         }
         img={<CoffeeShop />}
@@ -107,8 +107,8 @@ export default function HowItWorks() {
       <TwoColumnLayout
         title="Employee Involvement"
         copy={
-          <>
-            <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl copy">
+          <div className="copy">
+            <p className="text-base leading-6 sm:text-md text-gray-800 lg:text-lg xl:text-xl">
               Our approach focuses on attaining company goals by keeping the employees aligned with the company's values through improving ownership. As a result, you will have more time to grow your business in other areas.
             </p>
             <ul>
@@ -125,7 +125,7 @@ export default function HowItWorks() {
                 Employees will commit more to the organization through thoughtful training programs and skill-building.
               </li>
             </ul>
-          </>
+          </div>
         }
         img={<Collaboration />}
       />
