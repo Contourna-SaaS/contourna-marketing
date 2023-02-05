@@ -3,10 +3,10 @@ import BasicMeta from '../components/meta/BasicMeta';
 import OpenGraphMeta from '../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../components/meta/TwitterCardMeta';
 import Hero from '@/components/Hero';
-import HowItWorksSVG from '@/assets/how-it-works.svg';
-import QuoteSVG from '@/assets/quote.svg';
 import TwoColumnLayout from '@/components/TwoColumnLayout';
 import CTABannerHome from '@/components/CTABannerHome';
+import Lottie from "lottie-react";
+import contournaLottie from "@/assets/contourna-animation.json";
 
 export default function Index() {
   return (
@@ -27,10 +27,7 @@ export default function Index() {
             </p>
           }
           img={
-            <video autoPlay loop muted playsInline>
-              <source src="/images/hero-web.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <Lottie animationData={contournaLottie} loop={true} />
           }
           cta={{
             title: "Learn More",

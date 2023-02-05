@@ -3,7 +3,6 @@ import BasicMeta from '../components/meta/BasicMeta';
 import OpenGraphMeta from '../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../components/meta/TwitterCardMeta';
 import TwoColumnLayout from '@/components/TwoColumnLayout';
-import HowItWorksSVG from '@/assets/how-it-works.svg';
 import FeatureList from '@/components/FeatureList';
 import SimpleHeader from '@/components/SimpleHeader';
 import { IoMdPeople } from "react-icons/io"
@@ -13,6 +12,8 @@ import { MdOutlinePolicy } from "react-icons/md"
 import { RiGovernmentLine } from "react-icons/ri"
 import LargeFeatureList from '@/components/LargeFeatureList';
 import PreFooter from '@/components/PreFooter';
+import Lottie from 'lottie-react';
+import contournaLottie from "@/assets/contourna-animation.json";
 
 
 export default function HowItWorks() {
@@ -103,10 +104,7 @@ export default function HowItWorks() {
           </p>
         }
         img={
-          <video autoPlay loop muted playsInline>
-            <source src="/images/hero-web.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <Lottie animationData={contournaLottie} loop={true} />
         }
       />
       <PreFooter
