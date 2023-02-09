@@ -21,7 +21,7 @@ export type Props = {
   author: string;
   description?: string;
   source: MdxRemote.Source;
-  featureImage?:string;
+  featureImage?: string;
 };
 
 const components = { InstagramEmbed, YouTube, TwitterTweetEmbed };
@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       dateString: data.date,
       slug: data.slug,
       description: "",
-      tags: data.tags,
+      tags: data.tags ? data.tags : null,
       author: data.author,
       source: mdxSource,
       featureImage: data.feature_image ? data.feature_image : null
