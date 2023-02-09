@@ -40,6 +40,10 @@ a {
   transition: color 0.3s ease;
 }
 
+a:visited {
+  text-decoration: none;
+}
+
 .copy ul {
   margin: 0.8rem 0;
 }
