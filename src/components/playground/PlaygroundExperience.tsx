@@ -11,6 +11,7 @@ import {
   Sparkles,
   Wrench,
 } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
@@ -46,6 +47,14 @@ const developmentBypassEnabled =
   process.env.NODE_ENV === "development" &&
   process.env.NEXT_PUBLIC_PLAYGROUND_BYPASS_TURNSTILE === "true";
 
+const PLAYGROUND_STEPS = ["choose", "customize", "review"] as const;
+
+type PlaygroundStep = (typeof PLAYGROUND_STEPS)[number];
+
+function getPlaygroundStep(value: string | null): PlaygroundStep {
+  return PLAYGROUND_STEPS.includes(value as PlaygroundStep) ? (value as PlaygroundStep) : "choose";
+}
+
 export function isPlaygroundFormValid(form: PlaygroundForm): boolean {
   const documentType = getPlaygroundDocumentType(form.documentType);
   if (!documentType) return false;
@@ -56,12 +65,10 @@ export function isPlaygroundFormValid(form: PlaygroundForm): boolean {
     .every((question) => form.answers[question.id]?.trim());
 }
 
-interface PlaygroundExperienceProps {
-  embedded?: boolean;
-}
-
-export function PlaygroundExperience({ embedded = false }: PlaygroundExperienceProps) {
-  const [step, setStep] = useState(0);
+export function PlaygroundExperience() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [form, setForm] = useState<PlaygroundForm>(EMPTY_PLAYGROUND_FORM);
   const [draft, setDraft] = useState<StoredPlaygroundDraft | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
@@ -71,6 +78,25 @@ export function PlaygroundExperience({ embedded = false }: PlaygroundExperienceP
   const turnstileRef = useRef<TurnstileInstance>(null);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const documentType = getPlaygroundDocumentType(form.documentType);
+  // Steps that need a chosen document type fall back to "choose".
+  const requestedStep = getPlaygroundStep(searchParams.get("step"));
+  const currentStep = documentType ? requestedStep : "choose";
+  const step = PLAYGROUND_STEPS.indexOf(currentStep);
+
+  const navigateToStep = useCallback(
+    (nextStep: PlaygroundStep, method: "push" | "replace" = "push") => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("step", nextStep);
+      router[method](`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [pathname, router, searchParams],
+  );
+
+  useEffect(() => {
+    if (requestedStep !== currentStep || !searchParams.has("step")) {
+      navigateToStep(currentStep, "replace");
+    }
+  }, [currentStep, navigateToStep, requestedStep, searchParams]);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -102,11 +128,11 @@ export function PlaygroundExperience({ embedded = false }: PlaygroundExperienceP
   };
 
   const reset = () => {
-    setStep(0);
     setForm(EMPTY_PLAYGROUND_FORM);
     setError(null);
     setTurnstileToken(null);
     persistDraft(null);
+    navigateToStep("choose", "replace");
   };
 
   const handleGenerate = async () => {
@@ -155,7 +181,7 @@ export function PlaygroundExperience({ embedded = false }: PlaygroundExperienceP
     (step === 0 && Boolean(form.documentType)) || (step === 1 && isPlaygroundFormValid(form));
 
   return (
-    <div className={cn("relative", embedded && "max-w-full")}>
+    <div className="relative">
       {isGenerating ? (
         <div className="absolute inset-0 z-20 flex min-h-96 items-center justify-center bg-white/95">
           <div className="text-center" role="status">
@@ -190,7 +216,7 @@ export function PlaygroundExperience({ embedded = false }: PlaygroundExperienceP
                     onClick={() => selectDocumentType(item.type)}
                     className={cn(
                       "min-h-[180px] rounded-lg border bg-white p-5 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow",
-                      isSelected ? "border-c-yellow shadow-md" : "border-c-brown/15 hover:border-c-green",
+                      isSelected ? "border-c-yellow shadow-md" : "border-c-brown/15 hover:border-c-yellow",
                     )}
                   >
                     <span className={cn(
@@ -264,7 +290,7 @@ export function PlaygroundExperience({ embedded = false }: PlaygroundExperienceP
             </div>
             <div className="mt-6 min-h-[66px]">
               {developmentBypassEnabled ? (
-                <p className="text-sm font-medium text-c-green">Development verification bypass is active.</p>
+                <p className="text-sm font-medium text-c-brown">Development verification bypass is active.</p>
               ) : siteKey ? (
                 <Turnstile
                   ref={turnstileRef}
@@ -290,12 +316,12 @@ export function PlaygroundExperience({ embedded = false }: PlaygroundExperienceP
         </button>
         <div className="flex gap-2">
           {step > 0 ? (
-            <button type="button" onClick={() => setStep((current) => current - 1)} className="inline-flex h-11 items-center gap-2 rounded-lg border border-c-brown/15 bg-white px-5 text-sm font-semibold text-c-brown hover:border-c-green hover:text-c-green">
+            <button type="button" onClick={() => navigateToStep(PLAYGROUND_STEPS[step - 1])} className="inline-flex h-11 items-center gap-2 rounded-lg border border-c-brown/15 bg-white px-5 text-sm font-semibold text-c-brown hover:border-c-yellow hover:text-c-yellow">
               <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back
             </button>
           ) : null}
           {step < 2 ? (
-            <button type="button" disabled={!canContinue} onClick={() => setStep((current) => current + 1)} className={primaryButtonClass}>
+            <button type="button" disabled={!canContinue} onClick={() => navigateToStep(PLAYGROUND_STEPS[step + 1])} className={primaryButtonClass}>
               Continue <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </button>
           ) : (

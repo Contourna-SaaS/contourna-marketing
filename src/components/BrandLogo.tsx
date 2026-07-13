@@ -13,7 +13,7 @@ export function BrandLogo({ variant = "dark" }: BrandLogoProps) {
         alt=""
         width={32}
         height={32}
-        priority
+        preload
       />
       <span
         className={`text-lg font-semibold ${variant === "light" ? "text-white" : "text-c-brown"}`}

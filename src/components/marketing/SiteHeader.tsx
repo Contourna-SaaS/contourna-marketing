@@ -7,9 +7,9 @@ import { useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 
 const navigation = [
-  { href: "#features", label: "Features" },
-  { href: "#playground", label: "Playground" },
-  { href: "#how-it-works", label: "How it works" },
+  { href: "/#features", label: "Features" },
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/playground", label: "Playground" },
 ];
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://app.contourna.com";
@@ -26,7 +26,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-c-brown transition-colors hover:text-c-green"
+              className="text-sm font-medium text-c-brown transition-colors hover:text-c-yellow"
             >
               {item.label}
             </Link>
@@ -35,13 +35,13 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <a
             href={`${appUrl.replace(/\/$/, "")}/login`}
-            className="px-3 py-2 text-sm font-medium text-c-brown hover:text-c-green"
+            className="px-3 py-2 text-sm font-medium text-c-brown hover:text-c-yellow"
           >
             Log in
           </a>
           <a
             href={`${appUrl.replace(/\/$/, "")}/signup`}
-            className="inline-flex h-10 items-center justify-center rounded-lg bg-c-yellow px-5 text-sm font-semibold text-white transition-colors hover:bg-c-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2"
+            className="inline-flex h-10 items-center justify-center rounded-full bg-c-yellow px-5 text-sm font-semibold text-white transition-colors hover:bg-c-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2"
           >
             Start free trial
           </a>
@@ -71,7 +71,7 @@ export function SiteHeader() {
             ))}
             <a
               href={`${appUrl.replace(/\/$/, "")}/signup`}
-              className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-c-yellow px-5 font-semibold text-white"
+              className="mt-3 inline-flex h-11 items-center justify-center rounded-full bg-c-yellow px-5 font-semibold text-white"
             >
               Start free trial
             </a>
