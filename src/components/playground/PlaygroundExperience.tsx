@@ -41,7 +41,7 @@ const typeIcons = {
 const fieldClass =
   "mt-2 w-full rounded-lg border border-c-brown/15 bg-c-off-white px-3.5 py-2.5 text-sm text-c-ink outline-none placeholder:text-c-grey-light/70 focus:border-c-yellow focus:bg-white focus:ring-2 focus:ring-c-yellow/25";
 const primaryButtonClass =
-  "inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-c-yellow px-5 text-sm font-semibold text-c-brown transition-colors hover:bg-c-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow disabled:cursor-not-allowed disabled:opacity-40";
+  "inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-c-yellow px-5 text-sm font-semibold text-white transition-colors hover:bg-c-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow disabled:cursor-not-allowed disabled:opacity-40";
 const developmentBypassEnabled =
   process.env.NODE_ENV === "development" &&
   process.env.NEXT_PUBLIC_PLAYGROUND_BYPASS_TURNSTILE === "true";

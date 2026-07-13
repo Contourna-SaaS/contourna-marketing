@@ -80,7 +80,7 @@ const valueCards = [
 ] as const;
 
 const primaryLinkClass =
-  "inline-flex h-12 items-center justify-center rounded-lg bg-c-yellow px-7 text-base font-semibold text-c-brown transition-colors hover:bg-c-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2";
+  "inline-flex h-12 items-center justify-center rounded-lg bg-c-yellow px-7 text-base font-semibold text-white transition-colors hover:bg-c-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2";
 
 function Hero() {
   return (

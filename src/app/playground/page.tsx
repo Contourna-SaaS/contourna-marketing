@@ -21,7 +21,7 @@ export default function PlaygroundPage() {
           <BrandLogo />
           <div className="flex items-center gap-3">
             <Link href="/" className="hidden px-3 py-2 text-sm font-medium text-c-brown hover:text-c-green sm:inline-flex">Exit playground</Link>
-            <a href={`${appUrl.replace(/\/$/, "")}/signup`} className="inline-flex h-10 items-center rounded-lg bg-c-yellow px-4 text-sm font-semibold text-c-brown hover:bg-c-brown hover:text-white">Start free trial</a>
+            <a href={`${appUrl.replace(/\/$/, "")}/signup`} className="inline-flex h-10 items-center rounded-lg bg-c-yellow px-4 text-sm font-semibold text-white hover:bg-c-brown">Start free trial</a>
           </div>
         </div>
       </header>

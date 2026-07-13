@@ -41,7 +41,7 @@ export function SiteHeader() {
           </a>
           <a
             href={`${appUrl.replace(/\/$/, "")}/signup`}
-            className="inline-flex h-10 items-center justify-center rounded-lg bg-c-yellow px-5 text-sm font-semibold text-c-brown transition-colors hover:bg-c-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2"
+            className="inline-flex h-10 items-center justify-center rounded-lg bg-c-yellow px-5 text-sm font-semibold text-white transition-colors hover:bg-c-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2"
           >
             Start free trial
           </a>
@@ -71,7 +71,7 @@ export function SiteHeader() {
             ))}
             <a
               href={`${appUrl.replace(/\/$/, "")}/signup`}
-              className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-c-yellow px-5 font-semibold text-c-brown"
+              className="mt-3 inline-flex h-11 items-center justify-center rounded-lg bg-c-yellow px-5 font-semibold text-white"
             >
               Start free trial
             </a>

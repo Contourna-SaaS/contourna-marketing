@@ -64,7 +64,7 @@ export function DocumentEditor({
           </button>
           <a
             href={`${appUrl.replace(/\/$/, "")}/signup`}
-            className="inline-flex h-10 items-center rounded-lg bg-c-yellow px-4 text-sm font-semibold text-c-brown hover:bg-c-brown hover:text-white"
+            className="inline-flex h-10 items-center rounded-lg bg-c-yellow px-4 text-sm font-semibold text-white hover:bg-c-brown"
           >
             Start free trial
           </a>
