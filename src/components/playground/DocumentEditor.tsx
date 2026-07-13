@@ -47,7 +47,7 @@ export function DocumentEditor({
     <div className="overflow-hidden border border-c-brown/15 bg-white">
       <div className="flex flex-col gap-4 border-b border-c-brown/10 bg-c-yellow-light px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase text-c-green">
+          <p className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase text-c-brown">
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Your AI-generated draft
           </p>
           <p className="mt-1 text-sm text-c-grey-light">
@@ -58,7 +58,7 @@ export function DocumentEditor({
           <button
             type="button"
             onClick={onStartOver}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-c-brown/15 bg-white px-4 text-sm font-semibold text-c-brown hover:border-c-green hover:text-c-green"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-c-brown/15 bg-white px-4 text-sm font-semibold text-c-brown hover:border-c-yellow hover:text-c-yellow"
           >
             <RotateCcw className="h-4 w-4" aria-hidden="true" /> Start over
           </button>

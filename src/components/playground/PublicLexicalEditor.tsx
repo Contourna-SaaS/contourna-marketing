@@ -34,7 +34,7 @@ const editorTheme = {
   },
   paragraph: "my-3 leading-7 text-c-brown/90",
   quote: "my-5 border-l-4 border-c-yellow bg-c-yellow-light px-5 py-3 italic text-c-brown/80",
-  link: "text-c-green underline underline-offset-2",
+  link: "font-medium text-c-yellow underline underline-offset-2",
   list: {
     ul: "my-3 list-disc pl-6",
     ol: "my-3 list-decimal pl-6",

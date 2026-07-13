@@ -7,7 +7,6 @@
   --c-yellow-light: #fffae0;
   --c-grey-light: #787979;
   --c-red: #c93c32;
-  --c-green: #287a62;
   --c-ink: #161616;
   --c-line: #e8e3d5;
 }
@@ -19,7 +18,6 @@
   --color-c-yellow-light: var(--c-yellow-light);
   --color-c-grey-light: var(--c-grey-light);
   --color-c-red: var(--c-red);
-  --color-c-green: var(--c-green);
   --color-c-ink: var(--c-ink);
   --color-c-line: var(--c-line);
   --font-sans: var(--font-poppins), sans-serif;
@@ -65,4 +63,28 @@ select {
 
 .animate-document-pulse {
   animation: document-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+.bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(55, 48, 18, 0.1) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
