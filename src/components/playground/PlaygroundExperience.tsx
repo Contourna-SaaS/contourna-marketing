@@ -182,7 +182,7 @@ export function PlaygroundExperience() {
 
   return (
     <div className="relative">
-      {isGenerating ? <PlaygroundGeneratingView documentTitle={form.name} /> : null}
+      {isGenerating ? <PlaygroundGeneratingView /> : null}
 
       <PlaygroundStepper currentStep={step} />
 
