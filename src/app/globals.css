@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --c-yellow: #fdb913;
+  --c-brown: #373012;
+  --c-off-white: #faf7ef;
+  --c-yellow-light: #fffae0;
+  --c-grey-light: #787979;
+  --c-red: #c93c32;
+  --c-green: #287a62;
+  --c-ink: #161616;
+  --c-line: #e8e3d5;
+}
+
+@theme inline {
+  --color-c-yellow: var(--c-yellow);
+  --color-c-brown: var(--c-brown);
+  --color-c-off-white: var(--c-off-white);
+  --color-c-yellow-light: var(--c-yellow-light);
+  --color-c-grey-light: var(--c-grey-light);
+  --color-c-red: var(--c-red);
+  --color-c-green: var(--c-green);
+  --color-c-ink: var(--c-ink);
+  --color-c-line: var(--c-line);
+  --font-sans: var(--font-poppins), sans-serif;
+}
+
+* {
+  border-color: var(--c-line);
+}
+
+html {
+  background: var(--c-off-white);
+}
+
+body {
+  min-width: 320px;
+  background: var(--c-off-white);
+  color: var(--c-brown);
+  font-family: var(--font-poppins), sans-serif;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  letter-spacing: 0;
+}
+
+::selection {
+  background: var(--c-yellow);
+  color: var(--c-brown);
+}
+
+@keyframes document-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-document-pulse {
+  animation: document-pulse 1.5s ease-in-out infinite;
+}

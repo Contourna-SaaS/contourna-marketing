@@ -1,0 +1,8 @@
+[setup]
+script = "npm ci"
+
+[run]
+script = "npm run dev -- --port $CONDUCTOR_PORT"
+
+[test]
+script = "npm test"
