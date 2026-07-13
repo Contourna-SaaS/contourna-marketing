@@ -5,7 +5,6 @@ import {
   ArrowLeft,
   ArrowRight,
   ClipboardList,
-  Loader2,
   RotateCcw,
   Shield,
   Sparkles,
@@ -31,6 +30,7 @@ import type {
 import { cn } from "@/lib/cn";
 
 import { DocumentEditor } from "./DocumentEditor";
+import { PlaygroundGeneratingView } from "./PlaygroundGeneratingView";
 import { PlaygroundStepper } from "./PlaygroundStepper";
 
 const typeIcons = {
@@ -182,15 +182,7 @@ export function PlaygroundExperience() {
 
   return (
     <div className="relative">
-      {isGenerating ? (
-        <div className="absolute inset-0 z-20 flex min-h-96 items-center justify-center bg-white/95">
-          <div className="text-center" role="status">
-            <Loader2 className="mx-auto h-8 w-8 animate-spin text-c-yellow" aria-hidden="true" />
-            <p className="mt-4 font-semibold text-c-brown">Creating {form.name || "your document"}...</p>
-            <p className="mt-1 text-sm text-c-grey-light">Structuring your draft and applying the details you provided.</p>
-          </div>
-        </div>
-      ) : null}
+      {isGenerating ? <PlaygroundGeneratingView documentTitle={form.name} /> : null}
 
       <PlaygroundStepper currentStep={step} />
 
