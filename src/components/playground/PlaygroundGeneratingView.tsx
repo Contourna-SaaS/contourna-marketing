@@ -1,22 +1,19 @@
 "use client";
 
-import { FileText } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { AIGeneratingView } from "./AIGeneratingView";
 
 const GENERATION_STEPS = [
-  "Reviewing your details",
-  "Planning the document structure",
-  "Writing your first draft",
-  "Refining the content and formatting",
+  "Preparing AI generation",
+  "Analyzing company context",
+  "Checking related documents",
+  "Generating document sections",
+  "Saving document",
 ];
 
-interface PlaygroundGeneratingViewProps {
-  documentTitle: string;
-}
-
-export function PlaygroundGeneratingView({ documentTitle }: PlaygroundGeneratingViewProps) {
+export function PlaygroundGeneratingView() {
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
@@ -31,11 +28,10 @@ export function PlaygroundGeneratingView({ documentTitle }: PlaygroundGenerating
     <div role="status" aria-live="polite" className="fixed inset-0 z-50 overflow-y-auto bg-c-off-white">
       <AIGeneratingView
         title="Creating your document with AI"
-        prompt={documentTitle}
         steps={GENERATION_STEPS}
         currentStep={currentStep}
         showProgressPercent={false}
-        icon={FileText}
+        icon={Sparkles}
       />
     </div>
   );
