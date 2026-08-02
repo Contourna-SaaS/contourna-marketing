@@ -23,9 +23,10 @@
     "clsx": "^2.1.1",
     "lexical": "^0.47.0",
     "lucide-react": "^1.24.0",
-    "next": "16.2.10",
+    "next": "16.2.12",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "sharp": "0.35.3",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
@@ -35,11 +36,20 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.10",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.2.12",
     "jsdom": "^29.1.1",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "overrides": {
+    "sharp": "$sharp",
+    "next": {
+      "postcss": "8.5.25"
+    }
   }
 }
