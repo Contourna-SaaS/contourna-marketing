@@ -9,6 +9,9 @@
   --c-red: #c93c32;
   --c-ink: #161616;
   --c-line: #e8e3d5;
+  /* Readable amber for small text on light backgrounds — --c-yellow is a fill
+     colour and drops under 2:1 contrast at label sizes. */
+  --c-amber: #8a5f05;
 }
 
 @theme inline {
@@ -20,7 +23,13 @@
   --color-c-red: var(--c-red);
   --color-c-ink: var(--c-ink);
   --color-c-line: var(--c-line);
+  --color-c-amber: var(--c-amber);
   --font-sans: var(--font-poppins), sans-serif;
+
+  /* One shadow scale for every raised surface on the site: cards lift with
+     --shadow-card, product screenshots float with --shadow-panel. */
+  --shadow-card: 0 18px 40px -28px rgba(55, 48, 18, 0.45);
+  --shadow-panel: 0 40px 90px -45px rgba(55, 48, 18, 0.55);
 }
 
 * {
@@ -86,5 +95,16 @@ select {
 
 .bg-dot-grid {
   background-image: radial-gradient(circle, rgba(55, 48, 18, 0.1) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Fades the dot grid out toward the bottom so the hero blends into the next
+   section instead of ending on a hard edge. */
+.bg-dot-grid-fade {
+  mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 100%);
+}
+
+.bg-dot-grid-light {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
   background-size: 22px 22px;
 }
