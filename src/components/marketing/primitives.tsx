@@ -144,7 +144,7 @@ export function Screenshot({
       width={width}
       height={height}
       sizes={sizes}
-      quality={90}
+      quality={82}
       preload={preload}
       className={cn(
         "h-auto w-full",

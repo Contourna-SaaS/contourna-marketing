@@ -134,6 +134,13 @@ export const importModes = [
 
 export const reviewCadences = ["Monthly", "Quarterly", "Semi-annual", "Annual"] as const;
 
+/** The three outcomes a reviewer can record, per DocumentReviewDisposition. */
+export const reviewDispositions = [
+  { title: "Approve without changes", detail: "The revision is current and suitable as written." },
+  { title: "Approve with changes", detail: "Approve now and send non-blocking findings to the owner." },
+  { title: "Request revision", detail: "Return required findings and wait for a revised version." },
+] as const;
+
 export const reviewReasons = [
   "Process change",
   "Audit finding",

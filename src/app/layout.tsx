@@ -13,7 +13,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://contourna.com"),
   title: {
-    default: "Contourna | Business manuals, done automatically",
+    // Brand first, then what the product is. The hero keeps the tagline; a
+    // browser tab and a search result want the category instead.
+    default: "Contourna | AI document control for policies and procedures",
     template: "%s | Contourna",
   },
   description:
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
   icons: { icon: "/images/contourna-mark.svg" },
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Contourna | Business manuals, done automatically",
+    title: "Contourna | AI document control for policies and procedures",
     description:
       "Draft policies and procedures with AI, keep them under review and approval, and prove they are followed with forms and records.",
     url: "https://contourna.com",
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contourna | Business manuals, done automatically",
+    title: "Contourna | AI document control for policies and procedures",
     description:
       "AI-assisted document control for policies, procedures, work instructions, and quality records.",
   },

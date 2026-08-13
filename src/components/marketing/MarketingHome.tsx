@@ -2,6 +2,7 @@ import {
   ArrowRight,
   CalendarClock,
   CheckCircle2,
+  ClipboardCheck,
   ChevronDown,
   FileUp,
   Layers,
@@ -30,6 +31,7 @@ import {
   pillars,
   plans,
   reviewCadences,
+  reviewDispositions,
   reviewReasons,
   scheduleCadences,
   spcCapabilities,
@@ -121,10 +123,10 @@ function Hero() {
           <Image
             src="/images/dashboard-home.png"
             alt="Contourna dashboard showing open review counts, quick actions for a new manual, document, or form, and a Needs your attention task list of overdue reviews"
-            width={3000}
-            height={1844}
+            width={2400}
+            height={1475}
             className="relative h-auto w-full rounded-2xl"
-            quality={90}
+            quality={82}
             preload
             sizes="(max-width: 1024px) 100vw, 58vw"
           />
@@ -304,8 +306,8 @@ function ManualStructure() {
         <Screenshot
           src="/images/manual-spotlight-clean.png"
           alt="Contourna manual contents view for an Events and Catering manual, showing the cover image, document and form counts, the four tiers Policy, Procedures, Work Instructions, and Forms and Proofs, and a Create Manual panel offering to generate the policy with AI or link an existing one"
-          width={2684}
-          height={1250}
+          width={2400}
+          height={1118}
           sizes="(max-width: 1280px) 100vw, 1152px"
           // Shadow via filter, not a box: the capture is L-shaped, with the
           // Create Manual card overhanging the window it belongs to.
@@ -438,7 +440,7 @@ function EditorHighlights() {
 function ReviewCycles() {
   return (
     <Section className="bg-c-off-white">
-      <div className="grid items-start gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
         <div>
           <Eyebrow>Review cycles</Eyebrow>
           <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
@@ -446,8 +448,9 @@ function ReviewCycles() {
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-8 text-c-grey-light">
             Set a cadence per document and Contourna queues the next review for
-            you. Nothing quietly ages out, and nobody has to keep a spreadsheet of
-            what is due.
+            you. The reviewer opens the revision under review, records findings
+            against the section they affect, and closes the cycle with a
+            disposition.
           </p>
           <ul className="mt-7 space-y-4">
             {[
@@ -463,50 +466,76 @@ function ReviewCycles() {
             ))}
           </ul>
         </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div className="rounded-3xl border border-c-brown/10 bg-c-off-white p-7">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
-              <CalendarClock className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <h3 className="mt-5 text-lg font-semibold text-c-ink">Review cadence</h3>
-            <p className="mt-2 text-sm leading-6 text-c-grey-light">Pick one per document.</p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {reviewCadences.map((cadence) => (
-                <li
-                  key={cadence}
-                  className="rounded-full border border-c-brown/15 bg-white px-3 py-1 text-xs font-semibold text-c-brown"
-                >
-                  {cadence}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-3xl bg-c-brown p-7 text-white">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow text-c-brown">
-              <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <h3 className="mt-5 text-lg font-semibold">Reason on the record</h3>
-            <p className="mt-2 text-sm leading-6 text-white/70">
-              Every revision states why it happened.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-white/80">
-              {reviewReasons.map((reason) => (
-                <li key={reason} className="flex gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-c-yellow" aria-hidden="true" />
-                  {reason}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-3xl border border-c-brown/10 bg-c-off-white p-7 sm:col-span-2">
-            <h3 className="text-lg font-semibold text-c-ink">Anyone can raise it. Reviewers decide.</h3>
-            <p className="mt-2 text-[15px] leading-7 text-c-grey-light">
-              A worker who spots a step that no longer matches reality flags the
-              section from the document itself. It lands in the review queue as a
-              suggestion with the section attached — not as a message someone has
-              to remember to act on.
-            </p>
-          </div>
+        <Screenshot
+          src="/images/review-workspace.png"
+          alt="Contourna controlled review workspace for a work instruction, showing the revision under review, reviewer, owner and due date, alongside a panel to choose a disposition and record findings"
+          width={2400}
+          height={1556}
+          sizes="(max-width: 1024px) 100vw, 55vw"
+          // Filter, not a box: the disposition panel overhangs the window below
+          // and to the right, so the capture is L-shaped.
+          className="drop-shadow-[0_30px_60px_rgba(55,48,18,0.22)]"
+          bare
+        />
+      </div>
+
+      <div className="mt-14 grid gap-5 lg:grid-cols-3">
+        <div className="rounded-3xl bg-c-brown p-7 text-white">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow text-c-brown">
+            <ClipboardCheck className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <h3 className="mt-5 text-lg font-semibold">Three ways to close a review</h3>
+          <ul className="mt-4 space-y-3">
+            {reviewDispositions.map((disposition) => (
+              <li key={disposition.title} className="text-sm leading-6">
+                <span className="font-semibold text-c-yellow">{disposition.title}</span>
+                <span className="block text-white/65">{disposition.detail}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-3xl border border-c-brown/10 bg-white p-7">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
+            <CalendarClock className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <h3 className="mt-5 text-lg font-semibold text-c-ink">Review cadence</h3>
+          <p className="mt-2 text-sm leading-6 text-c-grey-light">Pick one per document.</p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {reviewCadences.map((cadence) => (
+              <li
+                key={cadence}
+                className="rounded-full border border-c-brown/15 bg-c-off-white px-3 py-1 text-xs font-semibold text-c-brown"
+              >
+                {cadence}
+              </li>
+            ))}
+          </ul>
+          <h3 className="mt-6 text-lg font-semibold text-c-ink">Reason on the record</h3>
+          <p className="mt-2 text-sm leading-6 text-c-grey-light">
+            Every revision states why it happened.
+          </p>
+          <ul className="mt-3 space-y-2 text-sm text-c-brown/80">
+            {reviewReasons.map((reason) => (
+              <li key={reason} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-c-yellow" aria-hidden="true" />
+                {reason}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-3xl border border-c-brown/10 bg-white p-7">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
+            <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <h3 className="mt-5 text-lg font-semibold text-c-ink">Anyone can raise it. Reviewers decide.</h3>
+          <p className="mt-2 text-[15px] leading-7 text-c-grey-light">
+            A worker who spots a step that no longer matches reality flags the
+            section from the document itself. It lands in the review queue as a
+            suggestion with the section attached — not as a message someone has to
+            remember to act on.
+          </p>
         </div>
       </div>
     </Section>
