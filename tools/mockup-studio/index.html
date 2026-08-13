@@ -1,0 +1,1424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contourna Mockup Studio</title>
+<style>
+  :root {
+    --c-yellow: #fdb913;
+    --c-brown: #373012;
+    --c-off-white: #faf7ef;
+    --c-yellow-light: #fffae0;
+    --c-grey-light: #787979;
+    --c-red: #c93c32;
+    --c-ink: #161616;
+    --c-line: #e8e3d5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--c-brown);
+    background: #f2eee4;
+  }
+  .app { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+  aside {
+    overflow-y: auto;
+    padding: 14px 14px 60px;
+    background: #fff;
+    border-right: 1px solid var(--c-line);
+  }
+  main {
+    overflow: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    background:
+      radial-gradient(circle, rgba(55, 48, 18, 0.08) 1px, transparent 1px) 0 0 / 22px 22px,
+      #f2eee4;
+  }
+  h1 { font-size: 15px; margin: 0 0 12px; }
+  h1 small { font-weight: 400; color: var(--c-grey-light); }
+  fieldset { border: 1px solid var(--c-line); border-radius: 10px; margin: 0 0 10px; padding: 8px 10px 10px; }
+  legend { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--c-grey-light); padding: 0 4px; }
+  label { display: block; margin: 7px 0 0; font-size: 11px; font-weight: 600; color: #5c5433; }
+  select, input[type="text"], input[type="number"] {
+    width: 100%; padding: 5px 7px; margin-top: 2px;
+    border: 1px solid var(--c-line); border-radius: 7px; background: #fff;
+    font: inherit; color: inherit;
+  }
+  input[type="range"] { width: 100%; margin-top: 2px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .chk { display: flex; align-items: center; gap: 6px; margin-top: 7px; font-size: 12px; font-weight: 600; }
+  .chk input { margin: 0; }
+  .drop {
+    margin-top: 6px; padding: 12px 8px; text-align: center; cursor: pointer;
+    border: 1.5px dashed #cfc7ae; border-radius: 9px; background: var(--c-off-white);
+    font-size: 11px; color: var(--c-grey-light);
+  }
+  .drop.has { border-style: solid; border-color: var(--c-yellow); color: var(--c-brown); background: var(--c-yellow-light); }
+  .drop.over { border-color: var(--c-yellow); background: var(--c-yellow-light); }
+  .drop.active { box-shadow: 0 0 0 2px rgba(253, 185, 19, .5); }
+  button {
+    font: inherit; font-weight: 600; cursor: pointer; padding: 7px 10px;
+    border: 1px solid var(--c-brown); border-radius: 999px; background: var(--c-yellow); color: var(--c-brown);
+  }
+  button.ghost { background: #fff; border-color: rgba(55, 48, 18, .25); }
+  button:hover { border-color: var(--c-brown); }
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .presets button { padding: 5px 9px; font-size: 11px; }
+  .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .bar .meta { color: var(--c-grey-light); font-size: 11px; }
+  .bar .warn { color: var(--c-red); font-size: 11px; font-weight: 600; }
+  canvas {
+    max-width: min(100%, 1100px); height: auto; border-radius: 6px;
+    background:
+      linear-gradient(45deg, #e4dfd2 25%, transparent 25%, transparent 75%, #e4dfd2 75%) 0 0 / 16px 16px,
+      linear-gradient(45deg, #e4dfd2 25%, transparent 25%, transparent 75%, #e4dfd2 75%) 8px 8px / 16px 16px,
+      #fff;
+    box-shadow: 0 18px 40px -24px rgba(55, 48, 18, .5);
+  }
+  .hint { font-size: 11px; color: var(--c-grey-light); margin: 6px 0 0; }
+  code { background: var(--c-off-white); padding: 1px 4px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside id="controls">
+    <h1>Mockup Studio <small>Contourna</small></h1>
+
+    <fieldset>
+      <legend>Presets</legend>
+      <div class="presets">
+        <button class="ghost" data-preset="hero">Hero</button>
+        <button class="ghost" data-preset="feature">Feature</button>
+        <button class="ghost" data-preset="duo">Web + phone</button>
+        <button class="ghost" data-preset="mobile">Mobile only</button>
+        <button class="ghost" data-preset="square">Square card</button>
+      </div>
+      <p class="hint">Presets set canvas, frames and illustrations. Tweak after.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Screen A (primary)</legend>
+      <div class="drop active" id="dropA" data-slot="A">Drop / click / paste screenshot</div>
+      <div class="presets" id="samplesA"></div>
+      <div class="row">
+        <div>
+          <label>Frame</label>
+          <select data-k="frameA">
+            <option value="browser">Browser (light)</option>
+            <option value="browser-dark">Browser (dark)</option>
+            <option value="card">Plain card</option>
+            <option value="laptop">Laptop</option>
+            <option value="tablet">Tablet</option>
+            <option value="phone">Phone</option>
+          </select>
+        </div>
+        <div>
+          <label>Crop</label>
+          <select data-k="aspectA">
+            <option value="auto">Auto (no crop)</option>
+            <option value="1.6">16:10</option>
+            <option value="1.7778">16:9</option>
+            <option value="1.3333">4:3</option>
+            <option value="1">1:1</option>
+          </select>
+        </div>
+      </div>
+      <label>Image fit</label>
+      <select data-k="fitA">
+        <option value="cover">Cover — fill frame, crop edges</option>
+        <option value="contain">Contain — whole shot, white margin</option>
+      </select>
+      <label>URL bar text</label>
+      <input type="text" data-k="url" />
+      <label>Tilt <span class="v" data-v="tiltA"></span></label>
+      <input type="range" data-k="tiltA" min="-12" max="12" step="0.5" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Screen B (secondary)</legend>
+      <div class="chk"><input type="checkbox" data-k="showB" id="showB" /><label for="showB" style="margin:0">Show second screen</label></div>
+      <div class="drop" id="dropB" data-slot="B">Drop / click / paste screenshot</div>
+      <div class="presets" id="samplesB"></div>
+      <div class="row">
+        <div>
+          <label>Frame</label>
+          <select data-k="frameB">
+            <option value="phone">Phone</option>
+            <option value="browser">Browser (light)</option>
+            <option value="browser-dark">Browser (dark)</option>
+            <option value="card">Plain card</option>
+            <option value="tablet">Tablet</option>
+          </select>
+        </div>
+        <div>
+          <label>Position</label>
+          <select data-k="layoutB">
+            <option value="br">Overlap bottom-right</option>
+            <option value="bl">Overlap bottom-left</option>
+            <option value="side">Side by side</option>
+            <option value="behind">Behind, offset</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Crop</label>
+          <select data-k="aspectB">
+            <option value="auto">Auto (no crop)</option>
+            <option value="0.462">19.5:9 phone</option>
+            <option value="0.5625">16:9 phone</option>
+            <option value="1.6">16:10</option>
+          </select>
+        </div>
+        <div>
+          <label>Size <span class="v" data-v="sizeB"></span></label>
+          <input type="range" data-k="sizeB" min="0.35" max="1.3" step="0.01" />
+        </div>
+      </div>
+      <label>Image fit</label>
+      <select data-k="fitB">
+        <option value="cover">Cover — fill frame, crop edges</option>
+        <option value="contain">Contain — whole shot, white margin</option>
+      </select>
+      <label>Tilt <span class="v" data-v="tiltB"></span></label>
+      <input type="range" data-k="tiltB" min="-12" max="12" step="0.5" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Canvas</legend>
+      <div class="row">
+        <div>
+          <label>Aspect</label>
+          <select data-k="aspect">
+            <option value="1.6">16:10</option>
+            <option value="1.7778">16:9</option>
+            <option value="1.3333">4:3</option>
+            <option value="1">1:1</option>
+            <option value="0.8">4:5</option>
+            <option value="fit">Fit content</option>
+          </select>
+        </div>
+        <div>
+          <label>Background</label>
+          <select data-k="bg">
+            <option value="none">Transparent</option>
+            <option value="cream">Cream</option>
+            <option value="cream-mesh">Cream + glow</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+            <option value="yellow-grad">Yellow gradient</option>
+            <option value="yellow-light">Pale yellow</option>
+            <option value="brown">Brown</option>
+            <option value="brown-grad">Brown gradient</option>
+          </select>
+        </div>
+      </div>
+      <label>Padding <span class="v" data-v="pad"></span></label>
+      <input type="range" data-k="pad" min="0" max="180" step="2" />
+      <label>Corner radius <span class="v" data-v="radius"></span></label>
+      <input type="range" data-k="radius" min="0" max="40" step="1" />
+      <label>Shadow <span class="v" data-v="shadow"></span></label>
+      <input type="range" data-k="shadow" min="0" max="1" step="0.05" />
+      <div class="chk"><input type="checkbox" data-k="island" id="island" /><label for="island" style="margin:0">Draw phone notch (off if screenshot has a status bar)</label></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Scene</legend>
+      <label>Backdrop</label>
+      <select data-k="scene" id="sceneSelect"></select>
+      <label>Strength <span class="v" data-v="accent"></span></label>
+      <input type="range" data-k="accent" min="0" max="1" step="0.05" />
+      <div class="presets" id="sceneCycle">
+        <button class="ghost" data-scene-step="-1">◀ prev</button>
+        <button class="ghost" data-scene-step="1">next ▶</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Floating labels</legend>
+      <label>Label 1 text</label>
+      <input type="text" data-k="badge1" placeholder="e.g. Approved" />
+      <div class="row">
+        <div>
+          <label>Anchor</label>
+          <select data-k="badge1at">
+            <option value="tl">Top left</option>
+            <option value="tr">Top right</option>
+            <option value="bl">Bottom left</option>
+            <option value="br">Bottom right</option>
+          </select>
+        </div>
+        <div>
+          <label>Dot colour</label>
+          <select data-k="badge1c">
+            <option value="#fdb913">Yellow</option>
+            <option value="#2f8f5b">Green</option>
+            <option value="#c93c32">Red</option>
+            <option value="#373012">Brown</option>
+          </select>
+        </div>
+      </div>
+      <label>Label 2 text</label>
+      <input type="text" data-k="badge2" placeholder="e.g. Needs review" />
+      <div class="row">
+        <div>
+          <label>Anchor</label>
+          <select data-k="badge2at">
+            <option value="br">Bottom right</option>
+            <option value="tr">Top right</option>
+            <option value="bl">Bottom left</option>
+            <option value="tl">Top left</option>
+          </select>
+        </div>
+        <div>
+          <label>Dot colour</label>
+          <select data-k="badge2c">
+            <option value="#c93c32">Red</option>
+            <option value="#fdb913">Yellow</option>
+            <option value="#2f8f5b">Green</option>
+            <option value="#373012">Brown</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Export</legend>
+      <div class="row">
+        <div>
+          <label>Width (px)</label>
+          <input type="number" data-k="outW" min="600" max="4000" step="20" />
+        </div>
+        <div>
+          <label>File name</label>
+          <input type="text" data-k="filename" />
+        </div>
+      </div>
+      <div class="presets">
+        <button id="save">Download PNG</button>
+        <button class="ghost" id="copy">Copy</button>
+      </div>
+      <p class="hint">Save into <code>public/images/</code>, then reference it in <code>MarketingHome.tsx</code>.</p>
+    </fieldset>
+  </aside>
+
+  <main>
+    <div class="bar">
+      <span class="meta" id="meta"></span>
+      <span class="warn" id="warn"></span>
+    </div>
+    <canvas id="cv"></canvas>
+    <p class="hint">Paste (⌘V) drops a screenshot into the highlighted slot. Drag files onto a slot too.</p>
+  </main>
+</div>
+
+<script>
+"use strict";
+
+const C = {
+  yellow: "#fdb913",
+  brown: "#373012",
+  cream: "#faf7ef",
+  paleYellow: "#fffae0",
+  grey: "#787979",
+  red: "#c93c32",
+  ink: "#161616",
+  line: "#e8e3d5",
+};
+
+const S = {
+  frameA: "browser", aspectA: "auto", fitA: "cover", tiltA: 0, url: "app.contourna.com/dashboard",
+  showB: false, frameB: "phone", layoutB: "br", aspectB: "auto", fitB: "cover", sizeB: 0.78, tiltB: 0,
+  aspect: "1.6", bg: "cream-mesh", pad: 90, radius: 16, shadow: 0.55,
+  scene: "contour", accent: 0.8, island: true,
+  badge1: "", badge1at: "tl", badge1c: "#fdb913",
+  badge2: "", badge2at: "br", badge2c: "#c93c32",
+  outW: 2000, filename: "mock",
+};
+
+const PRESETS = {
+  hero: { aspect: "1.6", bg: "cream", pad: 96, frameA: "browser", aspectA: "auto", tiltA: 0,
+          showB: false, scene: "contour", accent: 0.8, shadow: 0.6, outW: 2400 },
+  feature: { aspect: "1.3333", bg: "yellow-light", pad: 84, frameA: "browser", aspectA: "auto", tiltA: 0,
+             showB: false, scene: "halftone", accent: 0.75, shadow: 0.5, outW: 1800 },
+  duo: { aspect: "1.6", bg: "cream", pad: 84, frameA: "browser", aspectA: "auto", tiltA: 0,
+         showB: true, frameB: "phone", layoutB: "br", aspectB: "auto", sizeB: 0.82, tiltB: 0,
+         scene: "spotlight", accent: 0.7, shadow: 0.55, outW: 2400 },
+  mobile: { aspect: "1", bg: "cream", pad: 80, frameA: "phone", aspectA: "auto", tiltA: 0,
+            showB: false, scene: "block", accent: 0.85, shadow: 0.6, outW: 1600 },
+  square: { aspect: "1", bg: "white", pad: 74, frameA: "browser", aspectA: "auto", tiltA: 0,
+            showB: false, scene: "blueprint", accent: 0.7, shadow: 0.5, outW: 1600 },
+};
+
+const SAMPLES = ["dashboard.png", "documents.png", "manual.png", "review-workflow.png"];
+
+const imgs = { A: null, B: null };
+let activeSlot = "A";
+
+const cv = document.getElementById("cv");
+const ctx = cv.getContext("2d");
+const controls = document.getElementById("controls");
+
+/* ---------- helpers ---------- */
+
+function rr(x, y, w, h, r) {
+  const rad = Math.max(0, Math.min(r, w / 2, h / 2));
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(x, y, w, h, rad);
+  else {
+    ctx.moveTo(x + rad, y);
+    ctx.arcTo(x + w, y, x + w, y + h, rad);
+    ctx.arcTo(x + w, y + h, x, y + h, rad);
+    ctx.arcTo(x, y + h, x, y, rad);
+    ctx.arcTo(x, y, x + w, y, rad);
+    ctx.closePath();
+  }
+}
+
+function noShadow() {
+  ctx.shadowColor = "transparent";
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
+}
+
+function setShadow(w, mult) {
+  const k = S.shadow * (mult || 1);
+  if (k <= 0) return noShadow();
+  ctx.shadowColor = `rgba(55,48,18,${0.42 * k})`;
+  ctx.shadowBlur = w * 0.11 * k;
+  ctx.shadowOffsetY = w * 0.045 * k;
+}
+
+// draw an image into a box — cover (crop to fill) or contain (letterbox)
+function drawCover(img, x, y, w, h, slot) {
+  const mode = slot ? (slot === "A" ? S.fitA : S.fitB) : "cover";
+  if (!img) {
+    ctx.fillStyle = "#eae5d8";
+    ctx.fillRect(x, y, w, h);
+    ctx.fillStyle = "#a89f83";
+    ctx.font = `600 ${Math.max(11, w * 0.028)}px -apple-system, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("screenshot", x + w / 2, y + h / 2);
+    return;
+  }
+  const s =
+    mode === "contain"
+      ? Math.min(w / img.naturalWidth, h / img.naturalHeight)
+      : Math.max(w / img.naturalWidth, h / img.naturalHeight);
+  const dw = img.naturalWidth * s;
+  const dh = img.naturalHeight * s;
+  if (mode === "contain") {
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(x, y, w, h);
+  }
+  ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+}
+
+const PHONE_RATIO = 19.5 / 9;
+
+// content aspect (h/w) for a slot after crop setting
+function contentRatio(slot) {
+  const crop = slot === "A" ? S.aspectA : S.aspectB;
+  const frame = slot === "A" ? S.frameA : S.frameB;
+  if (crop !== "auto") return 1 / parseFloat(crop);
+  const img = imgs[slot];
+  if (!img) return frame === "phone" ? PHONE_RATIO : 1 / 1.6;
+  const r = img.naturalHeight / img.naturalWidth;
+  // a phone frame stays portrait: a landscape shot on "auto" would render a squat slab
+  if (frame === "phone" && r < 1.3) return PHONE_RATIO;
+  return r;
+}
+
+// slot is holding a landscape shot inside a portrait phone frame
+function phoneMismatch(slot) {
+  const frame = slot === "A" ? S.frameA : S.frameB;
+  const img = imgs[slot];
+  if (frame !== "phone" || !img) return false;
+  if (slot === "B" && !S.showB) return false;
+  return img.naturalHeight / img.naturalWidth < 1.3;
+}
+
+/* ---------- device frames ---------- */
+// measure(frame, slot, w) -> {h}   draw(frame, slot, x, y, w)
+
+function measure(frame, slot, w) {
+  const r = contentRatio(slot);
+  switch (frame) {
+    case "browser":
+    case "browser-dark": {
+      const chrome = Math.max(20, w * 0.036);
+      return { h: chrome + w * r };
+    }
+    case "card":
+      return { h: w * r };
+    case "laptop": {
+      const bez = w * 0.022;
+      const screenW = w - bez * 2;
+      return { h: bez * 2 + screenW * r + w * 0.035 };
+    }
+    case "tablet": {
+      const bez = w * 0.028;
+      return { h: bez * 2 + (w - bez * 2) * r };
+    }
+    case "phone": {
+      const bez = w * 0.035;
+      return { h: bez * 2 + (w - bez * 2) * r };
+    }
+  }
+  return { h: w * r };
+}
+
+function drawFrame(frame, slot, x, y, w) {
+  const img = imgs[slot];
+  const r = contentRatio(slot);
+  const rad = S.radius;
+
+  if (frame === "browser" || frame === "browser-dark") {
+    const dark = frame === "browser-dark";
+    const chrome = Math.max(20, w * 0.036);
+    const imgH = w * r;
+    const total = chrome + imgH;
+    const R = Math.max(rad, w * 0.012);
+
+    setShadow(w);
+    ctx.fillStyle = dark ? "#241f0c" : "#ffffff";
+    rr(x, y, w, total, R);
+    ctx.fill();
+    noShadow();
+
+    // chrome band
+    ctx.save();
+    rr(x, y, w, total, R);
+    ctx.clip();
+    ctx.fillStyle = dark ? "#2e2810" : "#f4f0e6";
+    ctx.fillRect(x, y, w, chrome);
+    ctx.fillStyle = dark ? "rgba(250,247,239,.12)" : "rgba(55,48,18,.10)";
+    ctx.fillRect(x, y + chrome - Math.max(1, w * 0.0008), w, Math.max(1, w * 0.0008));
+
+    const dotR = chrome * 0.13;
+    const cy = y + chrome / 2;
+    [C.red, C.yellow, "#7fa05c"].forEach((col, i) => {
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.arc(x + chrome * 0.55 + i * dotR * 3.1, cy, dotR, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // url pill
+    const pillH = chrome * 0.56;
+    const pillW = Math.min(w * 0.46, w - chrome * 3);
+    const pillX = x + (w - pillW) / 2;
+    ctx.fillStyle = dark ? "rgba(250,247,239,.10)" : "#ffffff";
+    rr(pillX, cy - pillH / 2, pillW, pillH, pillH / 2);
+    ctx.fill();
+    ctx.strokeStyle = dark ? "rgba(250,247,239,.10)" : "rgba(55,48,18,.10)";
+    ctx.lineWidth = Math.max(1, w * 0.0007);
+    ctx.stroke();
+    if (S.url) {
+      ctx.fillStyle = dark ? "rgba(250,247,239,.7)" : "rgba(55,48,18,.6)";
+      ctx.font = `500 ${pillH * 0.5}px -apple-system, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(S.url, pillX + pillW / 2, cy + pillH * 0.03);
+    }
+
+    // screenshot
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x, y + chrome, w, imgH);
+    ctx.clip();
+    drawCover(img, x, y + chrome, w, imgH, slot);
+    ctx.restore();
+    ctx.restore();
+
+    ctx.strokeStyle = "rgba(55,48,18,.12)";
+    ctx.lineWidth = Math.max(1, w * 0.0008);
+    rr(x, y, w, total, R);
+    ctx.stroke();
+    return total;
+  }
+
+  if (frame === "card") {
+    const h = w * r;
+    const R = Math.max(rad, w * 0.012);
+    setShadow(w);
+    ctx.fillStyle = "#fff";
+    rr(x, y, w, h, R);
+    ctx.fill();
+    noShadow();
+    ctx.save();
+    rr(x, y, w, h, R);
+    ctx.clip();
+    drawCover(img, x, y, w, h, slot);
+    ctx.restore();
+    ctx.strokeStyle = "rgba(55,48,18,.12)";
+    ctx.lineWidth = Math.max(1, w * 0.0008);
+    rr(x, y, w, h, R);
+    ctx.stroke();
+    return h;
+  }
+
+  if (frame === "laptop") {
+    const bez = w * 0.022;
+    const screenW = w - bez * 2;
+    const screenH = screenW * r;
+    const bodyH = screenH + bez * 2;
+    const baseH = w * 0.035;
+
+    setShadow(w);
+    ctx.fillStyle = "#20200f";
+    rr(x, y, w, bodyH, w * 0.014);
+    ctx.fill();
+    noShadow();
+
+    ctx.save();
+    rr(x + bez, y + bez, screenW, screenH, w * 0.004);
+    ctx.clip();
+    drawCover(img, x + bez, y + bez, screenW, screenH, slot);
+    ctx.restore();
+
+    // base
+    const baseW = w * 1.1;
+    const bx = x + (w - baseW) / 2;
+    const by = y + bodyH;
+    ctx.fillStyle = "#3a3520";
+    rr(bx, by, baseW, baseH, baseH * 0.45);
+    ctx.fill();
+    ctx.fillStyle = "rgba(250,247,239,.22)";
+    rr(bx + baseW * 0.42, by + baseH * 0.18, baseW * 0.16, baseH * 0.24, baseH * 0.12);
+    ctx.fill();
+    return bodyH + baseH;
+  }
+
+  if (frame === "tablet" || frame === "phone") {
+    const phone = frame === "phone";
+    const bez = w * (phone ? 0.035 : 0.028);
+    const screenW = w - bez * 2;
+    const screenH = screenW * r;
+    const total = screenH + bez * 2;
+    const outR = w * (phone ? 0.14 : 0.06);
+    const inR = outR - bez * 0.75;
+
+    setShadow(w, 1.1);
+    ctx.fillStyle = "#25210e";
+    rr(x, y, w, total, outR);
+    ctx.fill();
+    noShadow();
+
+    // metal edge highlight
+    ctx.strokeStyle = "rgba(250,247,239,.18)";
+    ctx.lineWidth = Math.max(1, w * 0.004);
+    rr(x + bez * 0.32, y + bez * 0.32, w - bez * 0.64, total - bez * 0.64, outR - bez * 0.3);
+    ctx.stroke();
+
+    ctx.save();
+    rr(x + bez, y + bez, screenW, screenH, inR);
+    ctx.clip();
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(x + bez, y + bez, screenW, screenH);
+    drawCover(img, x + bez, y + bez, screenW, screenH, slot);
+    ctx.restore();
+
+    if (phone && S.island && screenH > screenW * 1.2) {
+      // dynamic island — sized off the short edge, and never on a landscape screen
+      const iw = Math.min(screenW * 0.3, screenH * 0.13);
+      const ih = iw * 0.25;
+      ctx.fillStyle = "#1b1809";
+      rr(x + w / 2 - iw / 2, y + bez + ih * 0.55, iw, ih, ih / 2);
+      ctx.fill();
+    }
+    return total;
+  }
+  return 0;
+}
+
+function drawTilted(frame, slot, x, y, w, tilt) {
+  const m = measure(frame, slot, w);
+  if (!tilt) { drawFrame(frame, slot, x, y, w); return m.h; }
+  ctx.save();
+  ctx.translate(x + w / 2, y + m.h / 2);
+  ctx.rotate((tilt * Math.PI) / 180);
+  ctx.translate(-(x + w / 2), -(y + m.h / 2));
+  drawFrame(frame, slot, x, y, w);
+  ctx.restore();
+  return m.h;
+}
+
+/* ---------- backgrounds + illustrations ---------- */
+
+function isDarkBg() {
+  return S.bg === "brown" || S.bg === "brown-grad";
+}
+
+function drawBg(W, H) {
+  switch (S.bg) {
+    case "none": return;
+    case "cream": ctx.fillStyle = C.cream; break;
+    case "white": ctx.fillStyle = "#fff"; break;
+    case "yellow": ctx.fillStyle = C.yellow; break;
+    case "yellow-light": ctx.fillStyle = C.paleYellow; break;
+    case "brown": ctx.fillStyle = C.brown; break;
+    case "cream-mesh": ctx.fillStyle = C.cream; break;
+    case "yellow-grad": {
+      const g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, C.yellow);
+      g.addColorStop(1, C.paleYellow);
+      ctx.fillStyle = g;
+      break;
+    }
+    case "brown-grad": {
+      const g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, C.brown);
+      g.addColorStop(1, C.ink);
+      ctx.fillStyle = g;
+      break;
+    }
+  }
+  ctx.fillRect(0, 0, W, H);
+
+  if (S.bg === "cream-mesh") {
+    blob(W * 0.14, H * 0.16, W * 0.3, "rgba(253,185,19,.35)");
+    blob(W * 0.9, H * 0.85, W * 0.34, "rgba(253,185,19,.22)");
+    blob(W * 0.82, H * 0.1, W * 0.22, "rgba(201,60,50,.10)");
+  }
+}
+
+function blob(cx, cy, r, color) {
+  const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+  g.addColorStop(0, color);
+  g.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function inkColor(a) {
+  return isDarkBg() ? `rgba(250,247,239,${a})` : `rgba(55,48,18,${a})`;
+}
+
+function yellowA(a) {
+  return `rgba(253,185,19,${a})`;
+}
+
+/* ---------- scenes ----------
+   One composed backdrop per scene instead of a pile of toggles. Kept deliberately
+   flat and geometric: the marketing sections already draw their own dot grid and
+   blurred yellow circles, so repeating those inside the image only muddies it. */
+
+const SCENES = {
+  none: "None",
+  contour: "Contour lines",
+  halftone: "Halftone fade",
+  blueprint: "Blueprint grid",
+  block: "Colour blocks",
+  ribbon: "Diagonal ribbon",
+  stack: "Stacked windows",
+  papers: "Floating documents",
+  spotlight: "Spotlight",
+  rings: "Concentric rings",
+  hatch: "Diagonal hatch",
+  bars: "Rhythm bars",
+  checks: "Approval checks",
+  wedge: "Duotone wedge",
+  outline: "Offset outline",
+};
+
+// closed, slightly irregular loops — topographic contours, after the product name
+function contourField(cx, cy, rings, base, step, seed, a, squash) {
+  for (let i = 0; i < rings; i++) {
+    const R = base + i * step;
+    ctx.beginPath();
+    for (let k = 0; k <= 140; k++) {
+      const th = (k / 140) * Math.PI * 2;
+      const r =
+        R *
+        (1 +
+          0.13 * Math.sin(th * 3 + seed) +
+          0.075 * Math.cos(th * 2 - seed * 1.7) +
+          0.04 * Math.sin(th * 5 + seed * 0.6));
+      const x = cx + Math.cos(th) * r;
+      const y = cy + Math.sin(th) * r * squash;
+      k ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.closePath();
+    const hot = i === 2 || i === 6;
+    ctx.strokeStyle = hot ? yellowA(0.75 * a) : inkColor(0.13 * a);
+    ctx.lineWidth = Math.max(1.2, W_LINE * (hot ? 1.7 : 1));
+    ctx.stroke();
+  }
+}
+
+let W_LINE = 2; // set per render from canvas width
+
+function docGlyph(x, y, w, rot, a) {
+  const h = w * 1.28;
+  ctx.save();
+  ctx.translate(x + w / 2, y + h / 2);
+  ctx.rotate((rot * Math.PI) / 180);
+  ctx.translate(-(x + w / 2), -(y + h / 2));
+
+  ctx.shadowColor = `rgba(55,48,18,${0.18 * a})`;
+  ctx.shadowBlur = w * 0.3;
+  ctx.shadowOffsetY = w * 0.1;
+  ctx.fillStyle = `rgba(255,255,255,${0.95 * a})`;
+  rr(x, y, w, h, w * 0.1);
+  ctx.fill();
+  noShadow();
+
+  ctx.strokeStyle = inkColor(0.12 * a);
+  ctx.lineWidth = Math.max(1, W_LINE * 0.6);
+  rr(x, y, w, h, w * 0.1);
+  ctx.stroke();
+
+  // yellow tag block + text lines
+  ctx.fillStyle = yellowA(0.9 * a);
+  rr(x + w * 0.14, y + h * 0.12, w * 0.34, h * 0.075, h * 0.037);
+  ctx.fill();
+  ctx.fillStyle = inkColor(0.22 * a);
+  for (let i = 0; i < 4; i++) {
+    const lw = i === 3 ? w * 0.4 : w * 0.72;
+    rr(x + w * 0.14, y + h * 0.3 + i * h * 0.13, lw, h * 0.045, h * 0.022);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function checkGlyph(cx, cy, r, filled, a) {
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  if (filled) {
+    ctx.fillStyle = yellowA(0.95 * a);
+    ctx.fill();
+  } else {
+    ctx.strokeStyle = inkColor(0.22 * a);
+    ctx.lineWidth = Math.max(1.5, r * 0.11);
+    ctx.stroke();
+  }
+  ctx.strokeStyle = filled ? `rgba(55,48,18,${0.85 * a})` : inkColor(0.22 * a);
+  ctx.lineWidth = Math.max(1.5, r * 0.16);
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(cx - r * 0.38, cy + r * 0.02);
+  ctx.lineTo(cx - r * 0.08, cy + r * 0.32);
+  ctx.lineTo(cx + r * 0.42, cy - r * 0.3);
+  ctx.stroke();
+}
+
+// parallel 45° lines inside an arbitrary clip path
+function hatchBand(clipPath, W, H, step, lw, color) {
+  ctx.save();
+  clipPath();
+  ctx.clip();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lw;
+  for (let x = -H; x < W + H; x += step) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x + H, H);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawScene(W, H, items) {
+  const a = S.accent;
+  if (S.scene === "none" || a <= 0) return;
+  W_LINE = Math.max(1.4, W * 0.0018);
+  const pad = S.pad * (W / 1600);
+  const main = items[0];
+  const mainH = main ? measure(main.frame, main.slot, main.w).h : 0;
+
+  switch (S.scene) {
+    case "contour":
+      contourField(-W * 0.04, H * 1.02, 9, W * 0.07, W * 0.056, 0.7, a, 0.86);
+      contourField(W * 1.05, -H * 0.06, 6, W * 0.05, W * 0.05, 2.3, a * 0.85, 1.1);
+      break;
+
+    case "halftone": {
+      const step = W * 0.021;
+      const maxD = Math.hypot(W, H) * 0.85;
+      for (let x = step; x < W; x += step) {
+        for (let y = step; y < H; y += step) {
+          const t = 1 - Math.min(1, Math.hypot(x, y - H) / maxD); // densest bottom-left
+          if (t <= 0.02) continue;
+          ctx.fillStyle = t > 0.7 ? yellowA(0.55 * t * a) : inkColor(0.3 * t * a);
+          ctx.beginPath();
+          ctx.arc(x, y, Math.max(0.5, W * 0.0028 * t), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      break;
+    }
+
+    case "blueprint": {
+      const step = W * 0.042;
+      ctx.strokeStyle = inkColor(0.08 * a);
+      ctx.lineWidth = Math.max(1, W_LINE * 0.5);
+      for (let x = step; x < W; x += step) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let y = step; y < H; y += step) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+      ctx.strokeStyle = inkColor(0.2 * a);
+      ctx.lineWidth = Math.max(1, W_LINE * 0.8);
+      const c = step * 0.22;
+      for (let x = step * 3; x < W; x += step * 3) {
+        for (let y = step * 3; y < H; y += step * 3) {
+          ctx.beginPath();
+          ctx.moveTo(x - c, y); ctx.lineTo(x + c, y);
+          ctx.moveTo(x, y - c); ctx.lineTo(x, y + c);
+          ctx.stroke();
+        }
+      }
+      ctx.strokeStyle = yellowA(0.85 * a);
+      ctx.lineWidth = Math.max(2, W_LINE * 1.6);
+      ctx.beginPath();
+      ctx.moveTo(0, H - pad * 0.45); ctx.lineTo(W * 0.34, H - pad * 0.45);
+      ctx.stroke();
+      break;
+    }
+
+    case "block": {
+      ctx.fillStyle = yellowA(0.9 * a);
+      ctx.beginPath();
+      ctx.moveTo(0, H);
+      ctx.arc(0, H, W * 0.3, -Math.PI / 2, 0);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.strokeStyle = inkColor(0.22 * a);
+      ctx.lineWidth = Math.max(2, W_LINE * 1.4);
+      ctx.beginPath();
+      ctx.arc(W * 0.93, H * 0.16, W * 0.13, 0, Math.PI * 2);
+      ctx.stroke();
+      break;
+    }
+
+    case "ribbon": {
+      ctx.save();
+      ctx.translate(W / 2, H * 0.55);
+      ctx.rotate((-11 * Math.PI) / 180);
+      ctx.fillStyle = yellowA(0.92 * a);
+      ctx.fillRect(-W, -H * 0.14, W * 2, H * 0.28);
+      ctx.fillStyle = inkColor(0.14 * a);
+      ctx.fillRect(-W, H * 0.14, W * 2, H * 0.018);
+      ctx.restore();
+      break;
+    }
+
+    case "stack": {
+      if (!main) break;
+      for (let i = 2; i >= 1; i--) {
+        const k = 1 - i * 0.055;
+        const w = main.w * k;
+        const h = mainH * k;
+        const x = main.x + (main.w - w) / 2;
+        const y = main.y - i * mainH * 0.075;
+        ctx.shadowColor = `rgba(55,48,18,${0.12 * a})`;
+        ctx.shadowBlur = w * 0.05;
+        ctx.fillStyle = `rgba(255,255,255,${(0.75 - i * 0.2) * a + 0.1})`;
+        rr(x, y, w, h, Math.max(S.radius, w * 0.012));
+        ctx.fill();
+        noShadow();
+        ctx.strokeStyle = inkColor(0.1 * a);
+        ctx.lineWidth = Math.max(1, W_LINE * 0.6);
+        rr(x, y, w, h, Math.max(S.radius, w * 0.012));
+        ctx.stroke();
+      }
+      break;
+    }
+
+    case "papers": {
+      const g = W * 0.075;
+      docGlyph(pad * 0.12, H * 0.12, g, -9, a);
+      docGlyph(W - pad * 0.12 - g * 0.9, H * 0.58, g * 0.9, 8, a * 0.9);
+      docGlyph(W * 0.11, H - pad * 0.55 - g * 0.75 * 1.28, g * 0.75, 5, a * 0.75);
+      break;
+    }
+
+    case "spotlight": {
+      blob(W / 2, H * 0.42, W * 0.55, yellowA(0.28 * a));
+      if (main) {
+        const cx = main.x + main.w / 2;
+        const cy = main.y + mainH + W * 0.012;
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(1, 0.12);
+        blob(0, 0, main.w * 0.55, `rgba(55,48,18,${0.55 * a})`);
+        ctx.restore();
+      }
+      break;
+    }
+
+    case "rings": {
+      // thick concentric quarter rings off the bottom-left corner
+      for (let i = 0; i < 5; i++) {
+        const r = W * (0.17 + i * 0.1);
+        const hot = i % 2 === 0;
+        ctx.strokeStyle = hot ? yellowA(0.5 * a) : inkColor(0.09 * a);
+        ctx.lineWidth = W * (hot ? 0.012 : 0.005);
+        ctx.beginPath();
+        ctx.arc(-W * 0.06, H * 1.06, r, -Math.PI / 2, 0);
+        ctx.stroke();
+      }
+      break;
+    }
+
+    case "hatch": {
+      hatchBand(
+        () => {
+          ctx.beginPath();
+          ctx.moveTo(W, 0);
+          ctx.lineTo(W, H * 0.62);
+          ctx.lineTo(W * 0.55, 0);
+          ctx.closePath();
+        },
+        W, H, W * 0.019, Math.max(2, W * 0.004), yellowA(0.75 * a)
+      );
+      hatchBand(
+        () => {
+          ctx.beginPath();
+          ctx.moveTo(0, H);
+          ctx.lineTo(W * 0.34, H);
+          ctx.lineTo(0, H * 0.55);
+          ctx.closePath();
+        },
+        W, H, W * 0.019, Math.max(1.5, W * 0.003), inkColor(0.16 * a)
+      );
+      break;
+    }
+
+    case "bars": {
+      // rhythm bars along the bottom edge, tallest under the middle of the frame
+      const bw = W * 0.013;
+      const gap = W * 0.013;
+      const end = W * 0.36;
+      let i = 0;
+      for (let x = pad * 0.35; x < end; x += bw + gap, i++) {
+        const t = 0.35 + 0.65 * Math.abs(Math.sin(i * 0.42));
+        const h = H * 0.1 * t;
+        ctx.fillStyle = i % 4 === 0 ? inkColor(0.16 * a) : yellowA(0.8 * a);
+        rr(x, H - pad * 0.28 - h, bw, h, bw / 2);
+        ctx.fill();
+      }
+      break;
+    }
+
+    case "checks": {
+      const r = W * 0.021;
+      // inset by the glyph radius as well as the padding, else they clip on the canvas edge
+      const lx = Math.max(r * 1.6, pad * 0.5);
+      const rx = W - lx;
+      checkGlyph(lx, H * 0.24, r * 1.3, true, a);
+      checkGlyph(lx * 1.35, H * 0.37, r, false, a);
+      checkGlyph(rx, H * 0.66, r * 1.15, true, a * 0.9);
+      checkGlyph(rx - lx * 0.35, H * 0.79, r * 0.85, false, a * 0.9);
+      checkGlyph(W * 0.5, H - Math.max(r * 1.6, pad * 0.4), r, false, a * 0.8);
+      break;
+    }
+
+    case "wedge": {
+      ctx.fillStyle = yellowA(0.9 * a);
+      ctx.beginPath();
+      ctx.moveTo(0, H * 0.28);
+      ctx.lineTo(W, H * 0.82);
+      ctx.lineTo(W, H);
+      ctx.lineTo(0, H);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = inkColor(0.18 * a);
+      ctx.lineWidth = Math.max(1.5, W * 0.0022);
+      ctx.beginPath();
+      ctx.moveTo(0, H * 0.22);
+      ctx.lineTo(W, H * 0.76);
+      ctx.stroke();
+      break;
+    }
+
+    case "outline": {
+      const o = pad * 0.42;
+      ctx.strokeStyle = inkColor(0.25 * a);
+      ctx.lineWidth = Math.max(2, W * 0.0028);
+      rr(o, o, W - o * 2, H - o * 2, W * 0.014);
+      ctx.stroke();
+      ctx.fillStyle = yellowA(0.95 * a);
+      const c = W * 0.055;
+      ctx.fillRect(o - c * 0.5, o - c * 0.5, c, c * 0.28);
+      ctx.fillRect(o - c * 0.5, o - c * 0.5, c * 0.28, c);
+      ctx.fillRect(W - o - c * 0.5, H - o + c * 0.22, c, c * 0.28);
+      ctx.fillRect(W - o + c * 0.22, H - o - c * 0.5, c * 0.28, c);
+      break;
+    }
+  }
+}
+
+function drawFrontIllustrations(W, H) {
+  badge(S.badge1, S.badge1at, S.badge1c, W, H);
+  badge(S.badge2, S.badge2at, S.badge2c, W, H);
+}
+
+function badge(text, at, color, W, H) {
+  if (!text) return;
+  const fs = W * 0.019;
+  ctx.font = `600 ${fs}px -apple-system, sans-serif`;
+  const tw = ctx.measureText(text).width;
+  const padX = fs * 0.9;
+  const dot = fs * 0.4;
+  const w = tw + padX * 2 + dot * 2 + fs * 0.5;
+  const h = fs * 2.4;
+  const off = W * 0.03;
+  const x = at === "tl" || at === "bl" ? off : W - w - off;
+  const y = at === "tl" || at === "tr" ? off : H - h - off;
+
+  ctx.shadowColor = "rgba(55,48,18,.28)";
+  ctx.shadowBlur = W * 0.02;
+  ctx.shadowOffsetY = W * 0.006;
+  ctx.fillStyle = "#fff";
+  rr(x, y, w, h, h / 2);
+  ctx.fill();
+  noShadow();
+
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(x + padX + dot, y + h / 2, dot, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = C.brown;
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+  ctx.fillText(text, x + padX + dot * 2 + fs * 0.5, y + h / 2 + fs * 0.04);
+}
+
+/* ---------- layout + render ---------- */
+
+function layout(W, H) {
+  const pad = S.pad * (W / 1600);
+  const innerW = W - pad * 2;
+  const innerH = H - pad * 2;
+
+  if (!S.showB) {
+    let w = innerW;
+    let h = measure(S.frameA, "A", w).h;
+    if (h > innerH) { w *= innerH / h; h = measure(S.frameA, "A", w).h; }
+    return { items: [{ frame: S.frameA, slot: "A", x: pad + (innerW - w) / 2, y: pad + (innerH - h) / 2, w, tilt: S.tiltA }], h };
+  }
+
+  if (S.layoutB === "side") {
+    const gap = pad * 0.55;
+    // solve widths so both fit height
+    let bH = innerH * 0.92 * S.sizeB;
+    let bW = solveWidth(S.frameB, "B", bH);
+    let aW = innerW - gap - bW;
+    let aH = measure(S.frameA, "A", aW).h;
+    if (aH > innerH) { aW *= innerH / aH; aH = measure(S.frameA, "A", aW).h; }
+    const totalW = aW + gap + bW;
+    const x0 = pad + (innerW - totalW) / 2;
+    const baseY = pad + innerH;
+    return {
+      items: [
+        { frame: S.frameA, slot: "A", x: x0, y: pad + (innerH - aH) / 2, w: aW, tilt: S.tiltA },
+        { frame: S.frameB, slot: "B", x: x0 + aW + gap, y: baseY - bH - (innerH - bH) * 0.05, w: bW, tilt: S.tiltB },
+      ],
+    };
+  }
+
+  if (S.layoutB === "behind") {
+    let bW = innerW * 0.6 * S.sizeB;
+    let aW = innerW * 0.82;
+    let aH = measure(S.frameA, "A", aW).h;
+    const bH = measure(S.frameB, "B", bW).h;
+    const stackH = Math.max(aH + innerH * 0.08, bH);
+    if (stackH > innerH) {
+      const k = innerH / stackH;
+      aW *= k; bW *= k; aH = measure(S.frameA, "A", aW).h;
+    }
+    const bH2 = measure(S.frameB, "B", bW).h;
+    return {
+      items: [
+        { frame: S.frameB, slot: "B", x: pad + innerW - bW, y: pad, w: bW, tilt: S.tiltB },
+        { frame: S.frameA, slot: "A", x: pad, y: pad + innerH - aH, w: aW, tilt: S.tiltA },
+      ],
+      _unused: bH2,
+    };
+  }
+
+  // overlap br / bl
+  const right = S.layoutB === "br";
+  let aW = innerW * 0.86;
+  let aH = measure(S.frameA, "A", aW).h;
+  if (aH > innerH * 0.94) { aW *= (innerH * 0.94) / aH; aH = measure(S.frameA, "A", aW).h; }
+  let bH = aH * S.sizeB;
+  let bW = solveWidth(S.frameB, "B", bH);
+  if (bW > innerW * 0.4) { bW = innerW * 0.4; bH = measure(S.frameB, "B", bW).h; }
+
+  const aX = right ? pad : pad + innerW - aW;
+  const aY = pad + (innerH - aH) / 2 - innerH * 0.03;
+  const bX = right ? pad + innerW - bW : pad;
+  const bY = aY + aH - bH * 0.72;
+
+  return {
+    items: [
+      { frame: S.frameA, slot: "A", x: aX, y: aY, w: aW, tilt: S.tiltA },
+      { frame: S.frameB, slot: "B", x: bX, y: bY, w: bW, tilt: S.tiltB },
+    ],
+  };
+}
+
+// bounding box of the placed items, accounting for tilt rotation
+function itemsBBox(items) {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  items.forEach((it) => {
+    const h = measure(it.frame, it.slot, it.w).h;
+    const t = ((it.tilt || 0) * Math.PI) / 180;
+    const c = Math.abs(Math.cos(t));
+    const s = Math.abs(Math.sin(t));
+    const bw = it.w * c + h * s;
+    const bh = it.w * s + h * c;
+    const cx = it.x + it.w / 2;
+    const cy = it.y + h / 2;
+    x0 = Math.min(x0, cx - bw / 2);
+    x1 = Math.max(x1, cx + bw / 2);
+    y0 = Math.min(y0, cy - bh / 2);
+    y1 = Math.max(y1, cy + bh / 2);
+  });
+  return { x0, y0, x1, y1, w: x1 - x0, h: y1 - y0 };
+}
+
+// scale + recentre items so the tilted bounding box always fits inside the padding box
+function fitItems(items, W, H, pad) {
+  const availW = Math.max(1, W - pad * 2);
+  const availH = Math.max(1, H - pad * 2);
+  let b = itemsBBox(items);
+  const k = Math.min(1, availW / b.w, availH / b.h);
+  if (k < 1) {
+    const cx = W / 2, cy = H / 2;
+    items.forEach((it) => {
+      it.x = cx + (it.x - cx) * k;
+      it.y = cy + (it.y - cy) * k;
+      it.w *= k;
+    });
+    b = itemsBBox(items);
+  }
+  const dx = pad + (availW - b.w) / 2 - b.x0;
+  const dy = pad + (availH - b.h) / 2 - b.y0;
+  items.forEach((it) => { it.x += dx; it.y += dy; });
+  return items;
+}
+
+function solveWidth(frame, slot, targetH) {
+  // measure is linear in w, so one probe is enough
+  const probe = 1000;
+  const h = measure(frame, slot, probe).h;
+  return (targetH / h) * probe;
+}
+
+function contentHeight(W) {
+  const pad = S.pad * (W / 1600);
+  return itemsBBox(layout(W, 10000).items).h + pad * 2;
+}
+
+function render() {
+  const W = Math.round(S.outW);
+  let H;
+  if (S.aspect === "fit") {
+    // rough two-pass: layout against a tall canvas, then tighten
+    H = Math.round(contentHeight(W));
+  } else {
+    H = Math.round(W / parseFloat(S.aspect));
+  }
+  cv.width = W;
+  cv.height = H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
+
+  // devices are placed first so scenes can key off their real geometry
+  const items = fitItems(layout(W, H).items, W, H, S.pad * (W / 1600));
+
+  drawBg(W, H);
+  drawScene(W, H, items);
+  items.forEach((it) => drawTilted(it.frame, it.slot, it.x, it.y, it.w, it.tilt));
+
+  drawFrontIllustrations(W, H);
+
+  document.getElementById("meta").textContent = `${W} × ${H} px`;
+  const bad = ["A", "B"].filter(phoneMismatch);
+  document.getElementById("warn").textContent = bad.length
+    ? `Screen ${bad.join(" + ")}: landscape shot in a phone frame — sides get cropped hard. Use a portrait device screenshot, or switch that frame to Browser/Tablet.`
+    : "";
+}
+
+/* ---------- wiring ---------- */
+
+function syncInputs() {
+  controls.querySelectorAll("[data-k]").forEach((el) => {
+    const k = el.dataset.k;
+    if (el.type === "checkbox") el.checked = !!S[k];
+    else el.value = S[k];
+  });
+  controls.querySelectorAll("[data-v]").forEach((el) => {
+    const v = S[el.dataset.v];
+    el.textContent = typeof v === "number" ? v : "";
+  });
+}
+
+controls.addEventListener("input", (e) => {
+  const el = e.target.closest("[data-k]");
+  if (!el) return;
+  const k = el.dataset.k;
+  if (el.type === "checkbox") S[k] = el.checked;
+  else if (el.type === "range" || el.type === "number") S[k] = parseFloat(el.value);
+  else S[k] = el.value;
+  syncInputs();
+  render();
+});
+
+const sceneSelect = document.getElementById("sceneSelect");
+Object.entries(SCENES).forEach(([k, label]) => {
+  const o = document.createElement("option");
+  o.value = k;
+  o.textContent = label;
+  sceneSelect.appendChild(o);
+});
+
+controls.addEventListener("click", (e) => {
+  const p = e.target.closest("[data-preset]");
+  if (p) {
+    Object.assign(S, PRESETS[p.dataset.preset]);
+    syncInputs();
+    render();
+    return;
+  }
+  const step = e.target.closest("[data-scene-step]");
+  if (step) {
+    const keys = Object.keys(SCENES);
+    const i = keys.indexOf(S.scene);
+    S.scene = keys[(i + parseInt(step.dataset.sceneStep, 10) + keys.length) % keys.length];
+    syncInputs();
+    render();
+  }
+});
+
+/* file loading */
+
+function loadFile(file, slot) {
+  if (!file || !file.type.startsWith("image/")) return;
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    imgs[slot] = img;
+    const zone = document.getElementById("drop" + slot);
+    zone.classList.add("has");
+    zone.textContent = `${file.name || "pasted"} — ${img.naturalWidth}×${img.naturalHeight}`;
+    if (slot === "B") { S.showB = true; syncInputs(); }
+    render();
+  };
+  img.src = url;
+}
+
+function loadUrl(src, slot) {
+  const img = new Image();
+  img.onload = () => {
+    imgs[slot] = img;
+    const zone = document.getElementById("drop" + slot);
+    zone.classList.add("has");
+    zone.textContent = `${src.split("/").pop()} — ${img.naturalWidth}×${img.naturalHeight}`;
+    if (slot === "B") { S.showB = true; syncInputs(); }
+    render();
+  };
+  img.onerror = () => alert("Could not load " + src + " — serve this page from the repo root (see README).");
+  img.src = src;
+}
+
+["A", "B"].forEach((slot) => {
+  const zone = document.getElementById("drop" + slot);
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "image/*";
+  input.style.display = "none";
+  document.body.appendChild(input);
+  input.addEventListener("change", () => loadFile(input.files[0], slot));
+
+  zone.addEventListener("click", () => { setActive(slot); input.click(); });
+  zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("over"); });
+  zone.addEventListener("dragleave", () => zone.classList.remove("over"));
+  zone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    zone.classList.remove("over");
+    setActive(slot);
+    loadFile(e.dataTransfer.files[0], slot);
+  });
+
+  // quick-load existing site images
+  const bank = document.getElementById("samples" + slot);
+  SAMPLES.forEach((name) => {
+    const b = document.createElement("button");
+    b.className = "ghost";
+    b.textContent = name.replace(".png", "");
+    b.addEventListener("click", () => loadUrl("/public/images/" + name, slot));
+    bank.appendChild(b);
+  });
+});
+
+function setActive(slot) {
+  activeSlot = slot;
+  ["A", "B"].forEach((s) =>
+    document.getElementById("drop" + s).classList.toggle("active", s === slot)
+  );
+}
+
+window.addEventListener("paste", (e) => {
+  const item = [...(e.clipboardData?.items || [])].find((i) => i.type.startsWith("image/"));
+  if (item) loadFile(item.getAsFile(), activeSlot);
+});
+
+/* export */
+
+document.getElementById("save").addEventListener("click", () => {
+  cv.toBlob((blob) => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = (S.filename || "mock") + ".png";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }, "image/png");
+});
+
+document.getElementById("copy").addEventListener("click", async () => {
+  try {
+    const blob = await new Promise((res) => cv.toBlob(res, "image/png"));
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+    alert("Copied PNG to clipboard.");
+  } catch (err) {
+    alert("Clipboard write failed: " + err.message);
+  }
+});
+
+// ?a=dashboard.png&b=…&preset=duo — preload from /public/images for quick iteration
+const q = new URLSearchParams(location.search);
+if (q.get("preset") && PRESETS[q.get("preset")]) Object.assign(S, PRESETS[q.get("preset")]);
+if (q.get("scene") && SCENES[q.get("scene")]) S.scene = q.get("scene");
+if (q.get("bg")) S.bg = q.get("bg");
+if (q.get("bare")) {
+  // canvas-only view: collapse the sidebar column too, else the canvas keeps its narrow track
+  document.querySelector("aside").style.display = "none";
+  document.querySelector(".app").style.gridTemplateColumns = "1fr";
+}
+if (q.get("a")) loadUrl("/public/images/" + q.get("a"), "A");
+if (q.get("b")) loadUrl("/public/images/" + q.get("b"), "B");
+
+syncInputs();
+render();
+</script>
+</body>
+</html>
