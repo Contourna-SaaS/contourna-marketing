@@ -24,14 +24,15 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 16,
-              background: "#fdb913",
-            }}
-          />
+          {/* Inline copy of public/images/contourna-mark.svg — ImageResponse cannot load local files */}
+          <svg width={56} height={56} viewBox="0 0 48 48">
+            <rect fill="#fdb913" width="48" height="48" rx="9" />
+            <path
+              fill="#414042"
+              d="M35.3,24A15.08,15.08,0,1,0,20.23,39.08h7.53V31.53H20.23A7.53,7.53,0,1,1,27.76,24Z"
+            />
+            <rect fill="#a8a8a8" x="35.32" y="31.53" width="7.53" height="7.54" />
+          </svg>
           <div style={{ fontSize: 30, letterSpacing: 6, color: "#faf7ef" }}>CONTOURNA</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>

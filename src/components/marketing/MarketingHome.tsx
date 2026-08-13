@@ -480,16 +480,16 @@ function ReviewCycles() {
       </div>
 
       <div className="mt-14 grid gap-5 lg:grid-cols-3">
-        <div className="rounded-3xl bg-c-brown p-7 text-white">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow text-c-brown">
+        <div className="rounded-3xl border border-c-brown/10 bg-white p-7">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
             <ClipboardCheck className="h-5 w-5" aria-hidden="true" />
           </span>
-          <h3 className="mt-5 text-lg font-semibold">Three ways to close a review</h3>
+          <h3 className="mt-5 text-lg font-semibold text-c-ink">Three ways to close a review</h3>
           <ul className="mt-4 space-y-3">
             {reviewDispositions.map((disposition) => (
               <li key={disposition.title} className="text-sm leading-6">
-                <span className="font-semibold text-c-yellow">{disposition.title}</span>
-                <span className="block text-white/65">{disposition.detail}</span>
+                <span className="font-semibold text-c-brown">{disposition.title}</span>
+                <span className="block text-c-grey-light">{disposition.detail}</span>
               </li>
             ))}
           </ul>
