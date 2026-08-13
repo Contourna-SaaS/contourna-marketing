@@ -9,9 +9,6 @@
   --c-red: #c93c32;
   --c-ink: #161616;
   --c-line: #e8e3d5;
-  /* Readable amber for small text on light backgrounds — --c-yellow is a fill
-     colour and drops under 2:1 contrast at label sizes. */
-  --c-amber: #8a5f05;
 }
 
 @theme inline {
@@ -23,7 +20,6 @@
   --color-c-red: var(--c-red);
   --color-c-ink: var(--c-ink);
   --color-c-line: var(--c-line);
-  --color-c-amber: var(--c-amber);
   --font-sans: var(--font-poppins), sans-serif;
 
   /* One shadow scale for every raised surface on the site: cards lift with
@@ -102,6 +98,12 @@ select {
    section instead of ending on a hard edge. */
 .bg-dot-grid-fade {
   mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 100%);
+}
+
+/* Neutral top-light for brown bands. A yellow-tinted glow here mixes with the
+   brown into a muddy gold-red, so the highlight is plain white at low alpha. */
+.bg-brown-glow {
+  background-image: radial-gradient(120% 90% at 50% -20%, rgba(255, 255, 255, 0.08), transparent 60%);
 }
 
 .bg-dot-grid-light {
