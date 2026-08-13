@@ -17,16 +17,22 @@ export const metadata: Metadata = {
     template: "%s | Contourna",
   },
   description:
-    "Create, review, approve, and share business policies, procedures, and work instructions with AI-assisted document control.",
+    "AI-assisted document control for policies, procedures, work instructions, and training. Draft with AI, route through review and approval, then prove it with forms and records.",
   icons: { icon: "/images/contourna-mark.svg" },
   alternates: { canonical: "/" },
   openGraph: {
     title: "Contourna | Business manuals, done automatically",
     description:
-      "Standardize processes, onboard faster, and keep your team aligned with AI-assisted business manuals.",
+      "Draft policies and procedures with AI, keep them under review and approval, and prove they are followed with forms and records.",
     url: "https://contourna.com",
     siteName: "Contourna",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contourna | Business manuals, done automatically",
+    description:
+      "AI-assisted document control for policies, procedures, work instructions, and quality records.",
   },
 };
 

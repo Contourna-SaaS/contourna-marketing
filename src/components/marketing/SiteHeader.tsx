@@ -9,6 +9,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 const navigation = [
   { href: "/#features", label: "Features" },
   { href: "/#how-it-works", label: "How it works" },
+  { href: "/#pricing", label: "Pricing" },
   { href: "/playground", label: "Playground" },
 ];
 
@@ -26,7 +27,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-c-brown transition-colors hover:bg-c-yellow-light hover:text-c-amber"
+              className="rounded-full px-4 py-2 text-sm font-medium text-c-brown transition-colors hover:bg-c-yellow-light hover:text-c-brown"
             >
               {item.label}
             </Link>
@@ -35,7 +36,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <a
             href={`${appUrl.replace(/\/$/, "")}/login`}
-            className="rounded-full px-4 py-2 text-sm font-medium text-c-brown transition-colors hover:bg-c-yellow-light hover:text-c-amber"
+            className="rounded-full px-4 py-2 text-sm font-medium text-c-brown transition-colors hover:bg-c-yellow-light hover:text-c-brown"
           >
             Log in
           </a>
