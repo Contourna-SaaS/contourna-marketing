@@ -18,15 +18,15 @@ export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-c-yellow bg-c-off-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-c-brown/10 bg-c-off-white/80 backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-8">
         <BrandLogo />
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-c-brown transition-colors hover:text-c-yellow"
+              className="rounded-full px-4 py-2 text-sm font-medium text-c-brown transition-colors hover:bg-c-yellow-light hover:text-c-amber"
             >
               {item.label}
             </Link>
@@ -35,7 +35,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           <a
             href={`${appUrl.replace(/\/$/, "")}/login`}
-            className="px-3 py-2 text-sm font-medium text-c-brown hover:text-c-yellow"
+            className="rounded-full px-4 py-2 text-sm font-medium text-c-brown transition-colors hover:bg-c-yellow-light hover:text-c-amber"
           >
             Log in
           </a>
@@ -57,7 +57,7 @@ export function SiteHeader() {
         </button>
       </div>
       {isOpen ? (
-        <div className="border-t bg-c-off-white px-5 py-5 md:hidden">
+        <div className="border-t border-c-brown/10 bg-c-off-white px-5 py-5 md:hidden">
           <nav aria-label="Mobile" className="mx-auto flex max-w-7xl flex-col gap-1">
             {navigation.map((item) => (
               <Link
