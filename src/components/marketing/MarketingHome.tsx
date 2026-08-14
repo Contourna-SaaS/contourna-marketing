@@ -1003,10 +1003,10 @@ export function MarketingHome() {
             "Reviewers see what changed and why before publishing.",
             "Section navigation keeps long work instructions manageable.",
           ]}
-          image="/images/editor-review.png"
-          imageAlt="Contourna document editor showing a work instruction with a section outline and a task panel containing an out-of-date suggestion"
-          imageWidth={1800}
-          imageHeight={1350}
+          image="/images/suggestion.png"
+          imageAlt="Contourna document view of a maple latte recipe work instruction with a Suggestions panel open, where a reader files a Missing suggestion against the Tools section and can mark it as required before submitting"
+          imageWidth={3000}
+          imageHeight={2220}
           reverse
         />
         <ReviewCycles />
