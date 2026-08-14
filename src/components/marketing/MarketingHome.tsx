@@ -605,8 +605,8 @@ function FormsBand() {
         <Screenshot
           src="/images/form-builder-mock.png"
           alt="Contourna form builder generating a production stock adjustment request form, with a field properties panel and a Form Generated confirmation"
-          width={3000}
-          height={1836}
+          width={4000}
+          height={2448}
           sizes="100vw"
           bare
         />
