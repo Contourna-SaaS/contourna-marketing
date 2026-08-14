@@ -123,8 +123,8 @@ function Hero() {
           <Image
             src="/images/dashboard-home.png"
             alt="Contourna dashboard showing open review counts, quick actions for a new manual, document, or form, and a Needs your attention task list of overdue reviews"
-            width={2400}
-            height={1475}
+            width={3000}
+            height={1763}
             className="relative h-auto w-full rounded-2xl"
             quality={82}
             preload
@@ -603,10 +603,10 @@ function FormsBand() {
           </a>
         </div>
         <Screenshot
-          src="/images/form-builder-mock-dark.png"
-          alt="Contourna form builder generating an inventory adjustment request form, with a field properties panel and a Form Generated confirmation"
-          width={1800}
-          height={1350}
+          src="/images/form-builder-mock.png"
+          alt="Contourna form builder generating a production stock adjustment request form, with a field properties panel and a Form Generated confirmation"
+          width={3000}
+          height={1836}
           sizes="(max-width: 1024px) 100vw, 55vw"
           bare
         />
