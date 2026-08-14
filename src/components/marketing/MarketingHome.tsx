@@ -618,7 +618,7 @@ function FormsBand() {
 function QualityData() {
   return (
     <Section className="bg-c-off-white">
-      <div className="grid items-center gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-14">
+      <div className="grid gap-12">
         <div>
           <Eyebrow>Quality data</Eyebrow>
           <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
@@ -654,7 +654,7 @@ function QualityData() {
           alt="Contourna process control view: tracked measurements across forms, calculated mean, upper and lower control limits, an out-of-control counter, and a roast duration control chart with the out-of-limit point marked in red"
           width={1800}
           height={1045}
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          sizes="100vw"
           bare
         />
       </div>
