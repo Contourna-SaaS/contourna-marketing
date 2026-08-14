@@ -443,10 +443,10 @@ function ReviewCycles() {
       <div className="grid gap-12">
         <div>
           <Eyebrow>Review cycles</Eyebrow>
-          <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
+          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
             Documents come back for review on their own.
           </h2>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-c-grey-light">
+          <p className="mt-5 text-lg leading-8 text-c-grey-light">
             Set a cadence per document and Contourna queues the next review for
             you. The reviewer opens the revision under review, records findings
             against the section they affect, and closes the cycle with a
@@ -550,10 +550,10 @@ function FormsBand() {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 sm:px-8">
         <div>
           <Eyebrow tone="dark">Forms &amp; records</Eyebrow>
-          <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-[2.75rem]">
+          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-[2.75rem]">
             Describe the record you need. Get a form ready to publish.
           </h2>
-          <p className="mt-5 max-w-lg text-lg leading-8 text-white/70">
+          <p className="mt-5 text-lg leading-8 text-white/70">
             Contourna builds the fields, sections, and tracked quality metrics for
             you. Adjust anything, publish it, then assign it on a schedule so the
             work leaves evidence behind.
@@ -621,10 +621,10 @@ function QualityData() {
       <div className="grid gap-12">
         <div>
           <Eyebrow>Quality data</Eyebrow>
-          <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
+          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
             Records are not the point. Knowing is the point.
           </h2>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-c-grey-light">
+          <p className="mt-5 text-lg leading-8 text-c-grey-light">
             Mark a form field as a quality metric and every submission feeds a
             control chart. Contourna calculates the limits, checks the standard
             SPC rule sets, and tells you in plain language what the pattern means.
