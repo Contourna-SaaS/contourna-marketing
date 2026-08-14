@@ -440,7 +440,7 @@ function EditorHighlights() {
 function ReviewCycles() {
   return (
     <Section className="bg-c-off-white">
-      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+      <div className="grid gap-12">
         <div>
           <Eyebrow>Review cycles</Eyebrow>
           <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
@@ -471,7 +471,7 @@ function ReviewCycles() {
           alt="Contourna controlled review workspace for a work instruction, showing the revision under review, reviewer, owner and due date, alongside a panel to choose a disposition and record findings"
           width={2400}
           height={1556}
-          sizes="(max-width: 1024px) 100vw, 55vw"
+          sizes="100vw"
           // Filter, not a box: the disposition panel overhangs the window below
           // and to the right, so the capture is L-shaped.
           className="drop-shadow-[0_30px_60px_rgba(55,48,18,0.22)]"
@@ -547,10 +547,10 @@ function FormsBand() {
     <section className="relative overflow-hidden bg-c-brown py-20 sm:py-28">
       <div className="bg-dot-grid-light absolute inset-0" aria-hidden="true" />
       <div className="bg-brown-glow absolute inset-0" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-5 sm:px-8">
         <div>
           <Eyebrow tone="dark">Forms &amp; records</Eyebrow>
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-[2.75rem]">
+          <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-[2.75rem]">
             Describe the record you need. Get a form ready to publish.
           </h2>
           <p className="mt-5 max-w-lg text-lg leading-8 text-white/70">
@@ -607,7 +607,7 @@ function FormsBand() {
           alt="Contourna form builder generating a production stock adjustment request form, with a field properties panel and a Form Generated confirmation"
           width={3000}
           height={1836}
-          sizes="(max-width: 1024px) 100vw, 55vw"
+          sizes="100vw"
           bare
         />
       </div>
