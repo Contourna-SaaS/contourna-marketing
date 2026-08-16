@@ -28,7 +28,7 @@ export const PLAYGROUND_DOCUMENT_TYPES: PlaygroundDocumentTypeOption[] = [
   {
     type: "Policy",
     title: "Policy",
-    description: "Set organization-wide expectations, principles, and decision-making guidelines.",
+    description: "Set clear expectations and principles for everyone in your organization.",
     questions: [
       {
         id: "scope",
@@ -64,7 +64,7 @@ export const PLAYGROUND_DOCUMENT_TYPES: PlaygroundDocumentTypeOption[] = [
   {
     type: "Procedure",
     title: "Procedure",
-    description: "Define a repeatable process with clear steps, timing, and responsibilities.",
+    description: "Lay out a repeatable process with clear steps and responsibilities.",
     questions: [
       {
         id: "process",
@@ -100,7 +100,7 @@ export const PLAYGROUND_DOCUMENT_TYPES: PlaygroundDocumentTypeOption[] = [
   {
     type: "WorkInstruction",
     title: "Work Instruction",
-    description: "Document the exact steps, tools, and safety requirements for a specific task.",
+    description: "Show someone exactly how to complete a task safely and correctly.",
     questions: [
       {
         id: "task",

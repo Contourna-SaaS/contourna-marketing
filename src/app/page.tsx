@@ -16,7 +16,7 @@ const structuredData = {
       operatingSystem: "Web",
       url: "https://contourna.com",
       description:
-        "AI-assisted document control for policies, procedures, work instructions, and training, with forms and records to prove the process is followed.",
+        "Write policies, procedures, and work instructions faster, keep them current, and collect the records that show the work was done.",
       offers: plans.map((plan) => ({
         "@type": "Offer",
         name: plan.name,

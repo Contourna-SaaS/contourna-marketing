@@ -15,26 +15,26 @@ export const metadata: Metadata = {
   title: {
     // Brand first, then what the product is. The hero keeps the tagline; a
     // browser tab and a search result want the category instead.
-    default: "Contourna | AI document control for policies and procedures",
+    default: "Contourna | AI document control software",
     template: "%s | Contourna",
   },
   description:
-    "AI-assisted document control for policies, procedures, work instructions, and training. Draft with AI, route through review and approval, then prove it with forms and records.",
+    "Write policies, procedures, and work instructions faster. Keep every document current and collect the records that show the work was done.",
   icons: { icon: "/images/contourna-mark.svg" },
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Contourna | AI document control for policies and procedures",
+    title: "Contourna | AI document control software",
     description:
-      "Draft policies and procedures with AI, keep them under review and approval, and prove they are followed with forms and records.",
+      "Write policies and procedures faster, keep them current, and collect the records that show your team followed them.",
     url: "https://contourna.com",
     siteName: "Contourna",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contourna | AI document control for policies and procedures",
+    title: "Contourna | AI document control software",
     description:
-      "AI-assisted document control for policies, procedures, work instructions, and quality records.",
+      "Write better business manuals, keep them current, and collect the records that show the work was done.",
   },
 };
 
