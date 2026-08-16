@@ -31,9 +31,9 @@ import {
 export const pillars = [
   {
     icon: Bot,
-    title: "Author with AI",
+    title: "Get to a first draft faster",
     description:
-      "Generate policies, procedures, work instructions, and training documents from a short brief — or rewrite a passage you highlight, with the surrounding context included.",
+      "Give Contourna a short brief and get a structured policy, procedure, work instruction, or training document. You can also highlight any passage and ask for a rewrite that fits the rest of the document.",
     tags: ["Guided drafting", "Inline rewrites", "Dictation"],
     className: "bg-c-brown",
     iconClassName: "bg-c-yellow text-c-brown",
@@ -42,9 +42,9 @@ export const pillars = [
   },
   {
     icon: ClipboardCheck,
-    title: "Keep it controlled",
+    title: "Keep every document current",
     description:
-      "Draft, in review, published. Revision history, scheduled review cycles, and a recorded reason for every change your quality program has to defend.",
+      "Move work from draft to review to published, with a clear owner and approval trail. Scheduled reviews and a reason for every revision give you the history an auditor will ask for.",
     tags: ["Approvals", "Version history", "Review cycles"],
     className: "bg-c-yellow",
     iconClassName: "bg-c-brown text-c-yellow",
@@ -53,9 +53,9 @@ export const pillars = [
   },
   {
     icon: LineChart,
-    title: "Prove it works",
+    title: "Show the work was done",
     description:
-      "Publish the forms that go with a procedure, collect records against it on a schedule, and watch the quality metrics you track for signs of drift.",
+      "Add forms to a procedure, assign them on a schedule, and keep every submission with the document it supports. Track key measurements so you can catch process drift early.",
     tags: ["Form schedules", "Linked records", "SPC charts"],
     className: "bg-c-yellow-light",
     iconClassName: "bg-c-yellow text-c-brown",
@@ -87,25 +87,25 @@ export const manualTiers = [
     level: "Level 1",
     title: "Policy",
     role: "Why",
-    description: "Defines what will be done — stated once, sets the direction.",
+    description: "Sets the direction and explains what your organization expects.",
   },
   {
     level: "Level 2",
     title: "Procedures",
     role: "Who · When · Where",
-    description: "Assigns responsibilities, timing, and locations for carrying out the policy.",
+    description: "Makes responsibilities, timing, and locations clear.",
   },
   {
     level: "Level 3",
     title: "Work instructions",
     role: "How",
-    description: "Step-by-step guidance for completing specific tasks and activities.",
+    description: "Shows people exactly how to complete a specific task.",
   },
   {
     level: "Level 4",
     title: "Forms & proofs",
     role: "Evidence",
-    description: "Forms and templates that capture proof of compliance and activity.",
+    description: "Captures the records that show the work was completed.",
   },
 ] as const;
 
@@ -122,11 +122,11 @@ export const importModes = [
   {
     title: "Convert to editable",
     description:
-      "Creates a Contourna document you can edit. Formatting may shift, and an AI rewrite is optional.",
+      "Turn the file into a Contourna document you can update. Choose whether you want AI to clean up the writing too.",
   },
   {
     title: "Upload original",
-    description: "Keeps the file exactly as uploaded, for when the original layout matters most.",
+    description: "Keep the original file and its layout exactly as they are.",
   },
 ] as const;
 
@@ -136,9 +136,9 @@ export const reviewCadences = ["Monthly", "Quarterly", "Semi-annual", "Annual"] 
 
 /** The three outcomes a reviewer can record, per DocumentReviewDisposition. */
 export const reviewDispositions = [
-  { title: "Approve without changes", detail: "The revision is current and suitable as written." },
-  { title: "Approve with changes", detail: "Approve now and send non-blocking findings to the owner." },
-  { title: "Request revision", detail: "Return required findings and wait for a revised version." },
+  { title: "Approve without changes", detail: "It is current and ready as written." },
+  { title: "Approve with changes", detail: "Approve it and send minor findings to the owner." },
+  { title: "Request revision", detail: "Send it back with the changes that must be made." },
 ] as const;
 
 export const reviewReasons = [
@@ -179,24 +179,24 @@ export const spcCapabilities = [
     icon: LineChart,
     title: "Control charts",
     description:
-      "Every quality-metric field you track gets a chart with a mean and calculated control limits.",
+      "Turn any quality metric into a chart with its mean and calculated control limits.",
   },
   {
     icon: ShieldCheck,
     title: "Rule detection",
     description:
-      "Nelson and Western Electric rule violations are flagged on the points that triggered them.",
+      "See Nelson and Western Electric rule violations on the exact points that triggered them.",
   },
   {
     icon: BarChart3,
     title: "Capability",
-    description: "Cp and Cpk alongside mean and standard deviation, recalculated as records arrive.",
+    description: "Follow Cp, Cpk, mean, and standard deviation as new records come in.",
   },
   {
     icon: Sparkles,
-    title: "Plain-language insights",
+    title: "Clear explanations",
     description:
-      "Stability, trend, and capability findings written out with a recommended next step.",
+      "Get a plain-language read on stability, trends, and capability, plus a useful next step.",
   },
 ] as const;
 
@@ -207,19 +207,19 @@ export const accessFacts = [
     icon: Users,
     title: "Only editors need a seat",
     description:
-      "Admins who author and approve documents use a seat. Everyone who fills forms, raises suggestions, and reads the current version is free — with no cap.",
+      "Pay for the people who write and approve documents. Everyone who reads documents, fills forms, or suggests a change is free, with no limit.",
   },
   {
     icon: ShieldCheck,
-    title: "Permissions by role",
+    title: "Give people the right access",
     description:
-      "Document, manual, team, department, and settings access is granted per role, so the front line sees what it needs and nothing else.",
+      "Set access by role across documents, manuals, teams, departments, and settings. People see what they need without wading through what they do not.",
   },
   {
     icon: Table2,
     title: "Departments and job roles",
     description:
-      "Group documents, manuals, and form schedules by department and job role so the right standard reaches the right people.",
+      "Organize manuals, documents, and form schedules by department and job role so each person gets the standards that apply to them.",
   },
 ] as const;
 
@@ -230,25 +230,25 @@ export const steps = [
     icon: Sparkles,
     title: "Draft",
     description:
-      "Import what you already have, or describe the document you need. The assistant returns a structured draft with the sections your quality program expects.",
+      "Import an existing file or describe what you need. Contourna gives you a structured draft to work from.",
   },
   {
     icon: ClipboardCheck,
     title: "Review",
     description:
-      "Anyone doing the work can flag a document as out of date. Reviewers see the suggestion against the exact section it affects, then apply, edit, or reject it.",
+      "Let the people doing the work flag anything that is out of date. Reviewers can apply, edit, or reject each suggestion in context.",
   },
   {
     icon: History,
     title: "Publish",
     description:
-      "Approve to publish. Employees always open the current version, and the revision that replaced it stays in the history with its reason attached.",
+      "Approve the document and make it live. Employees always see the current version, while older revisions and the reason for each change stay on record.",
   },
   {
     icon: ListChecks,
-    title: "Prove",
+    title: "Record",
     description:
-      "Assign the matching form on a schedule. Submissions land against the document that governs them and feed the metrics you track.",
+      "Assign the matching form on a schedule. Each submission stays tied to the document and feeds the metrics you track.",
   },
 ] as const;
 
@@ -269,14 +269,14 @@ export const plans = [
     name: "Generate",
     monthly: 199,
     annualMonthly: 159,
-    description: "Author and control the whole document side of your quality system.",
+    description: "For teams that need one place to write, organize, review, and control their documents.",
     features: [
       "Policies, procedures, work instructions, training",
-      "Manuals with an ordered document hierarchy",
-      "AI drafting, rewriting, and voice dictation",
-      "File, Notion, and Google Drive import",
-      "Suggestions, review cycles, and revision history",
-      `${INCLUDED_EDITOR_SEATS} editor seats · unlimited free viewers`,
+      "Manuals that keep every document in the right order",
+      "AI drafting, rewriting, and dictation",
+      "Import from files, Notion, and Google Drive",
+      "Suggestions, scheduled reviews, and revision history",
+      `${INCLUDED_EDITOR_SEATS} editor seats and unlimited free readers`,
     ],
     highlight: false,
   },
@@ -284,14 +284,14 @@ export const plans = [
     name: "Control",
     monthly: 399,
     annualMonthly: 319,
-    description: "Everything in Generate, plus the records and quality data that prove it.",
+    description: "For teams that also need forms, records, and quality data to show the process is working.",
     features: [
       "Everything in Generate",
-      "Form builder with an AI assistant",
-      "Scheduled and assigned form submissions",
-      "Records tied to the document they prove",
-      "Control charts with Nelson and Western Electric rules",
-      "Cp / Cpk capability and written SPC insights",
+      "AI-assisted form builder",
+      "Form assignments and schedules",
+      "Records kept with the document they support",
+      "SPC charts with Nelson and Western Electric rules",
+      "Cp, Cpk, and clear SPC insights",
     ],
     highlight: true,
   },
@@ -303,42 +303,42 @@ export const faqs = [
   {
     question: "Does Contourna certify us to ISO 9001?",
     answer:
-      "No — certification comes from your auditor. Contourna gives you the structure auditors look for: controlled documents with owners, revision history with a recorded reason, scheduled review cycles, and records tied to the procedure they prove.",
+      "No. Certification comes from your auditor. Contourna helps you put the pieces auditors look for in place: controlled documents with owners, scheduled reviews, a complete revision history, and records tied to the right procedure.",
   },
   {
     question: "Who needs a paid seat?",
     answer:
-      `Only the people who author and approve documents. Every plan includes ${INCLUDED_EDITOR_SEATS} editor seats, and extra seats are $${EXTRA_SEAT_MONTHLY} CAD per month. Employees who fill forms, raise suggestions, and read published documents are free, with no limit on how many you add.`,
+      `Only the people who write and approve documents need a paid seat. Every plan includes ${INCLUDED_EDITOR_SEATS} editor seats, and extra seats are $${EXTRA_SEAT_MONTHLY} CAD per month. Everyone else can read published documents, fill forms, and suggest changes for free.`,
   },
   {
     question: "Can we bring the documents we already have?",
     answer:
-      "Yes. Upload Word or PDF files one at a time or in a batch, or connect Notion and Google Drive and import from there. After an import, Contourna suggests how to group what came in into manuals so you are not filing hundreds of files by hand.",
+      "Yes. Upload Word or PDF files individually or in a batch, or import from Notion and Google Drive. Contourna can then suggest a manual structure for everything you brought in, saving you from sorting each file by hand.",
   },
   {
     question: "Does the AI publish anything on its own?",
     answer:
-      "No. AI output arrives as a draft or a tracked suggestion against a specific section. A person applies or discards each change, and a person approves the document before it publishes.",
+      "No. AI output starts as a draft or a tracked suggestion on a specific section. A person decides what to keep and approves the document before it is published.",
   },
   {
     question: "How does the free trial work?",
     answer:
-      `You pick a plan and start a ${TRIAL_DAYS}-day trial at checkout. A card is collected up front, nothing is charged until the trial ends, and you can cancel from the billing portal at any point before then.`,
+      `Choose a plan to start your ${TRIAL_DAYS}-day trial. You will enter a card, but you will not be charged until the trial ends. You can cancel from the billing portal at any time before then.`,
   },
   {
     question: "Is the playground connected to my account?",
     answer:
-      "No. The playground generates a real document with the same assistant the product uses, but the draft lives in your browser tab and is never saved to a Contourna account. Do not put confidential information into it.",
+      "No. The playground uses the same document assistant as Contourna, but your draft only lives in the current browser tab. It is never saved to a Contourna account, so please do not enter confidential information.",
   },
 ] as const;
 
 /* ------------------------------------------------------------ misc exports */
 
 export const editorHighlights = [
-  { icon: Bot, label: "Highlight text and ask for a rewrite" },
-  { icon: Mic, label: "Dictate straight into a section" },
+  { icon: Bot, label: "Highlight a passage and ask for a rewrite" },
+  { icon: Mic, label: "Dictate directly into any section" },
   { icon: Table2, label: "Tables, images, and diagrams" },
   { icon: Repeat, label: "Reusable document templates" },
   { icon: CalendarClock, label: "Section-by-section navigation" },
-  { icon: CheckCircle2, label: "Every AI edit shown as a diff" },
+  { icon: CheckCircle2, label: "See every AI edit before accepting it" },
 ] as const;

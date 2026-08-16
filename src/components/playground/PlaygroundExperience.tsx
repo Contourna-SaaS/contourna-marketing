@@ -181,7 +181,7 @@ export function PlaygroundExperience() {
     (step === 0 && Boolean(form.documentType)) || (step === 1 && isPlaygroundFormValid(form));
 
   return (
-    <div className="relative">
+    <div className="relative [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty">
       {isGenerating ? <PlaygroundGeneratingView /> : null}
 
       <PlaygroundStepper currentStep={step} />
@@ -193,7 +193,7 @@ export function PlaygroundExperience() {
               What would you like to create?
             </h3>
             <p className="mt-2 text-sm leading-6 text-c-grey-light">
-              Choose a document type to load a realistic example you can customize.
+              Pick a document type and we will load an example you can make your own.
             </p>
             <div role="radiogroup" aria-label="Document type" className="mt-6 grid gap-4 md:grid-cols-3">
               {PLAYGROUND_DOCUMENT_TYPES.map((item) => {
@@ -231,7 +231,7 @@ export function PlaygroundExperience() {
             <div className="flex flex-wrap items-start justify-between gap-3 border-b border-c-brown/10 pb-5">
               <div>
                 <h3 id="details-heading" className="text-xl font-bold text-c-ink sm:text-2xl">Customize the example</h3>
-                <p className="mt-1 text-sm text-c-grey-light">Change any detail before generating your document.</p>
+                <p className="mt-1 text-sm text-c-grey-light">Change as much or as little as you like.</p>
               </div>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-c-yellow-light px-3 py-1 text-xs font-semibold text-c-brown">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> AI · {documentType.title}
@@ -270,7 +270,7 @@ export function PlaygroundExperience() {
         {step === 2 && documentType ? (
           <section aria-labelledby="review-heading">
             <h3 id="review-heading" className="text-xl font-bold text-c-ink sm:text-2xl">Review and generate</h3>
-            <p className="mt-2 text-sm leading-6 text-c-grey-light">Confirm the details below, complete verification, and create an editable draft.</p>
+            <p className="mt-2 text-sm leading-6 text-c-grey-light">Check the details, complete verification, and create your editable draft.</p>
             <dl className="mt-6 grid gap-px overflow-hidden border border-c-brown/10 bg-c-brown/10 sm:grid-cols-2">
               <ReviewItem label="Type" value={documentType.title} />
               <ReviewItem label="Department" value={form.department === "Other" ? form.otherDepartment : form.department} />

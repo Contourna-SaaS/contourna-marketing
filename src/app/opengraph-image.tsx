@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Contourna — business manuals, done automatically";
+export const alt = "Contourna business manuals and document control";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -37,11 +37,11 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 76, lineHeight: 1.1 }}>
-            <div>All your business manuals.</div>
-            <div style={{ color: "#fdb913" }}>Done automatically.</div>
+            <div>Write manuals faster.</div>
+            <div style={{ color: "#fdb913" }}>Keep them current.</div>
           </div>
           <div style={{ fontSize: 30, color: "rgba(250, 247, 239, 0.72)", maxWidth: 880 }}>
-            AI-assisted document control: draft, review, publish, and prove it with records.
+            Write better documents, keep them current, and collect the records that show the work was done.
           </div>
         </div>
         <div style={{ display: "flex", gap: 40, fontSize: 26, color: "rgba(250, 247, 239, 0.6)" }}>

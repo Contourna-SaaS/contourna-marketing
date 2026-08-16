@@ -67,15 +67,15 @@ function Hero() {
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-c-yellow/40 bg-c-yellow-light px-3.5 py-1.5 text-xs font-semibold text-c-brown">
             <Sparkles className="h-3.5 w-3.5 text-c-brown" aria-hidden="true" />
-            AI-assisted document control
+            AI-powered document control
           </span>
           <h1
             id="hero-heading"
             className="mt-6 text-[2.3rem] font-bold leading-[1.05] tracking-tight text-c-ink sm:text-[3.4rem] lg:text-[3.7rem] xl:text-[4rem]"
           >
-            All your business manuals.{" "}
+            Write business manuals faster.{" "}
             <span className="relative inline-block text-c-brown">
-              Done automatically.
+              Keep them current
               <svg
                 className="absolute -bottom-2 left-0 w-full text-c-yellow"
                 viewBox="0 0 300 12"
@@ -88,9 +88,9 @@ function Hero() {
             </span>
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-8 text-c-grey-light">
-            Contourna drafts your policies, procedures, and work instructions with
-            AI, routes them through review and approval, then proves they are
-            followed with forms and records.
+            Draft policies, procedures, and work instructions with AI. Manage
+            reviews and approvals in the same place, then collect the records that
+            show the work was done.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href={signupUrl} className={primaryLinkClass}>
@@ -105,7 +105,7 @@ function Hero() {
           <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-c-grey-light">
             {[
               `${TRIAL_DAYS} days free, cancel anytime`,
-              "Unlimited free viewers",
+              "Unlimited readers and form users",
               "Bring your existing documents",
             ].map((item) => (
               <li key={item} className="flex items-center gap-2">
@@ -167,8 +167,13 @@ function Pillars() {
     <Section id="features" className="bg-white">
       <SectionHeading
         eyebrow="Why Contourna"
-        title="Write the standard, control the standard, prove the standard"
-        description="Most quality systems fall apart between those three jobs. Contourna keeps them in one place, so documentation stays part of the work instead of a separate admin project."
+        title={
+          <>
+            <span className="block">From first draft to audit trail</span>{" "}
+            <span className="block">all in one place</span>
+          </>
+        }
+        description="Contourna brings your documents, approvals, forms, and records together. Your team spends less time chasing paperwork and more time improving the work itself."
       />
       <div className="mt-14 grid gap-5 md:grid-cols-3">
         {pillars.map((pillar, index) => {
@@ -236,13 +241,12 @@ function ImportBand() {
         <div>
           <Eyebrow>Start where you are</Eyebrow>
           <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
-            You already wrote half of this. Bring it with you.
+            Don&apos;t start from scratch. Bring what already works
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-8 text-c-grey-light">
-            Import the files and pages your process already lives in — from your
-            drive, from Notion, or from Google Drive. Everything arrives as a
-            draft, and Contourna suggests how to group it into manuals so you are
-            not filing hundreds of files by hand.
+            Import files from your computer, Notion, or Google Drive. They arrive
+            as drafts, ready to update. Contourna can also suggest how they fit
+            together, so you do not have to sort a pile of files by hand.
           </p>
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
             {importModes.map((mode) => (
@@ -260,8 +264,8 @@ function ImportBand() {
           <div className="mt-6 flex items-start gap-3 rounded-2xl bg-c-yellow-light p-4">
             <Layers className="mt-0.5 h-5 w-5 shrink-0 text-c-brown" aria-hidden="true" />
             <p className="text-sm leading-6 text-c-brown">
-              After an import, Contourna proposes a manual structure for everything
-              that came in — grouped by the work it describes.
+              Once the import is done, Contourna suggests a practical manual
+              structure based on what each document covers.
             </p>
           </div>
           <div className="mt-6">
@@ -299,8 +303,8 @@ function ManualStructure() {
     <Section className="bg-white">
       <SectionHeading
         eyebrow="Manuals"
-        title="A manual, not a folder of files"
-        description="Every manual stacks in four tiers, so a policy, the procedures that carry it out, the instructions that do the work, and the records that prove it all sit in one place — in the order an auditor reads them."
+        title="Give every document a place and a purpose"
+        description="Organize each manual in four clear levels: the policy, the procedures that support it, the instructions people follow, and the forms that capture the work. It is easy for employees to navigate and easy for auditors to understand."
       />
       <div className="mt-14">
         <Screenshot
@@ -341,7 +345,7 @@ function ManualStructure() {
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </a>
         <p className="text-sm text-c-grey-light">
-          Generate the parent policy with AI, or link one you already have.
+          Write the parent policy with AI, or link one you already have.
         </p>
       </div>
     </Section>
@@ -350,7 +354,7 @@ function ManualStructure() {
 
 interface MediaFeatureProps {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   description: string;
   bullets?: readonly string[];
   image: string;
@@ -359,6 +363,7 @@ interface MediaFeatureProps {
   imageHeight: number;
   reverse?: boolean;
   className?: string;
+  titleClassName?: string;
   children?: ReactNode;
   /** Caps and centres tall captures so a portrait panel does not tower over the copy. */
   portrait?: boolean;
@@ -377,6 +382,7 @@ function MediaFeature({
   imageHeight,
   reverse = false,
   className,
+  titleClassName,
   children,
   portrait = false,
   framed = false,
@@ -386,7 +392,12 @@ function MediaFeature({
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
         <div className={reverse ? "lg:order-2" : ""}>
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
+          <h2
+            className={cn(
+              "mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]",
+              titleClassName,
+            )}
+          >
             {title}
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-8 text-c-grey-light">{description}</p>
@@ -444,20 +455,21 @@ function ReviewCycles() {
         <div>
           <Eyebrow>Review cycles</Eyebrow>
           <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
-            Documents come back for review on their own.
+            <span className="block">Know what&apos;s due for review</span>{" "}
+            <span className="block">before it becomes overdue</span>
           </h2>
           <p className="mt-5 text-lg leading-8 text-c-grey-light">
-            Set a cadence per document and Contourna queues the next review for
-            you. The reviewer opens the revision under review, records findings
-            against the section they affect, and closes the cycle with a
-            disposition.
+            Choose how often each document should be reviewed and Contourna puts
+            it in the queue at the right time. Reviewers can record findings on
+            the exact section they affect and close the review with a clear
+            decision.
           </p>
           <ul className="mt-7 space-y-4">
             {[
-              "Overdue and upcoming reviews collect in one queue.",
-              "Reviews can be started early when the process changes.",
-              "Findings and rounds are recorded against the cycle.",
-              "Each published revision keeps the reason it was made.",
+              "See upcoming and overdue reviews in one queue.",
+              "Start a review early when a process changes.",
+              "Keep every finding and review round on record.",
+              "Record why each published revision was made.",
             ].map((bullet) => (
               <li key={bullet} className="flex gap-3 text-[15px] leading-7 text-c-brown/80">
                 <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-c-yellow" aria-hidden="true" />
@@ -529,12 +541,11 @@ function ReviewCycles() {
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
             <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
           </span>
-          <h3 className="mt-5 text-lg font-semibold text-c-ink">Anyone can raise it. Reviewers decide.</h3>
+          <h3 className="mt-5 text-lg font-semibold text-c-ink">Suggestions from anyone, decisions from reviewers</h3>
           <p className="mt-2 text-[15px] leading-7 text-c-grey-light">
-            A worker who spots a step that no longer matches reality flags the
-            section from the document itself. It lands in the review queue as a
-            suggestion with the section attached — not as a message someone has to
-            remember to act on.
+            When someone spots an outdated step, they can flag it from the
+            document itself. The suggestion lands in the review queue with the
+            right section attached, ready for a reviewer to act on.
           </p>
         </div>
       </div>
@@ -551,19 +562,20 @@ function FormsBand() {
         <div>
           <Eyebrow tone="dark">Forms &amp; records</Eyebrow>
           <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-[2.75rem]">
-            Describe the record you need. Get a form ready to publish.
+            <span className="block">Tell Contourna what you need to record.</span>{" "}
+            <span className="block">It builds the form</span>
           </h2>
           <p className="mt-5 text-lg leading-8 text-white/70">
-            Contourna builds the fields, sections, and tracked quality metrics for
-            you. Adjust anything, publish it, then assign it on a schedule so the
-            work leaves evidence behind.
+            Start with a short description and get a form with the right fields,
+            sections, and quality metrics. Make any changes, publish it, and assign
+            it on a schedule so completed work always leaves a record.
           </p>
           <ul className="mt-7 space-y-4 text-[15px] leading-7 text-white/75">
             {[
-              "Ask the assistant to add, edit, or reorder fields — you approve each change.",
-              "Assign to people or whole departments, once each or once for the group.",
-              "Missed submissions are flagged instead of disappearing.",
-              "Records stay attached to the procedure they prove.",
+              "Ask the assistant to add, edit, or reorder fields. You approve every change.",
+              "Assign a form to individuals or entire departments.",
+              "See missed submissions before they slip through the cracks.",
+              "Keep each record attached to the procedure it supports.",
             ].map((item) => (
               <li key={item} className="flex gap-3">
                 <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-c-yellow" aria-hidden="true" />
@@ -622,12 +634,12 @@ function QualityData() {
         <div>
           <Eyebrow>Quality data</Eyebrow>
           <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
-            Records are not the point. Knowing is the point.
+            See when a process starts to drift
           </h2>
           <p className="mt-5 text-lg leading-8 text-c-grey-light">
-            Mark a form field as a quality metric and every submission feeds a
-            control chart. Contourna calculates the limits, checks the standard
-            SPC rule sets, and tells you in plain language what the pattern means.
+            Mark any form field as a quality metric and each submission updates
+            its control chart. Contourna calculates the limits, checks standard
+            SPC rules, and explains what the pattern means in plain language.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {spcCapabilities.map(({ icon: Icon, title, description }) => (
@@ -668,7 +680,7 @@ function AccessBand() {
       <SectionHeading
         eyebrow="Team & access"
         title="Roll it out to everyone without paying for everyone"
-        description="A quality system only works if the whole team can open it. Contourna charges for the people who write and approve documents, not for the people who follow them."
+        description="A quality system only works when people can use it. You pay for the people who write and approve documents. Everyone else can read, submit forms, and suggest changes for free."
       />
       <div className="mt-14 grid gap-5 md:grid-cols-3">
         {accessFacts.map(({ icon: Icon, title, description }, index) => (
@@ -709,8 +721,8 @@ function HowItWorks() {
     <Section id="how-it-works" className="bg-c-yellow">
       <SectionHeading
         eyebrow="How it works"
-        title="Draft it, approve it, publish it, prove it"
-        description="One loop, from a blank page to a published standard with records behind it."
+        title="A simpler way to keep standards current"
+        description="Go from a rough idea to a published standard, then keep the records that show it is being followed."
         tone="yellow"
       />
       <div className="relative mt-14">
@@ -770,8 +782,8 @@ function Pricing() {
     <Section id="pricing" className="bg-c-off-white">
       <SectionHeading
         eyebrow="Pricing"
-        title="Two plans. One decides how far you take it."
-        description={`Prices in CAD. Every plan includes ${INCLUDED_EDITOR_SEATS} editor seats and unlimited free viewers, and starts with a ${TRIAL_DAYS}-day free trial.`}
+        title="Choose the right fit for your quality system"
+        description={`All prices are in CAD. Both plans include ${INCLUDED_EDITOR_SEATS} editor seats, unlimited readers and form users, and a ${TRIAL_DAYS}-day free trial.`}
       />
       <div className="mt-14 grid gap-6 lg:grid-cols-2">
         {plans.map((plan) => (
@@ -786,7 +798,7 @@ function Pricing() {
           >
             {plan.highlight ? (
               <span className="absolute right-8 top-8 rounded-full bg-c-yellow px-3 py-1 text-xs font-semibold text-c-brown">
-                Most complete
+                Forms + quality data
               </span>
             ) : null}
             <h3 className={cn("text-2xl font-bold", plan.highlight ? "text-white" : "text-c-ink")}>
@@ -804,7 +816,7 @@ function Pricing() {
               </span>
             </p>
             <p className={cn("mt-2 text-sm font-semibold", plan.highlight ? "text-c-yellow" : "text-c-brown")}>
-              ${plan.annualMonthly}/month billed annually — save {ANNUAL_DISCOUNT_PERCENT}%
+              ${plan.annualMonthly}/month billed annually. Save {ANNUAL_DISCOUNT_PERCENT}%
             </p>
             <ul className="mt-8 space-y-3.5">
               {plan.features.map((feature) => (
@@ -843,19 +855,19 @@ function PlaygroundCta() {
         <div className="bg-brown-glow absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-c-yellow/40 bg-c-yellow/10 px-3.5 py-1.5 text-xs font-semibold text-c-yellow">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Live demo — no account required
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Live demo. No account required.
           </span>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Judge the writing before you sign up
+            Try the document writer for yourself
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">
-            Pick a policy, procedure, or work instruction, adjust a realistic
-            example, and generate a real draft in the same editor the product uses.
-            It stays in your browser tab.
+            Choose a policy, procedure, or work instruction. Adjust the example
+            and create a real draft with the same assistant Contourna customers
+            use. Your work stays in the current browser tab.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/playground" className={primaryOnColorLinkClass}>
-              Open the playground
+              Create a free document
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <a href={signupUrl} className={ghostOnColorLinkClass}>
@@ -875,7 +887,7 @@ function Faq() {
         <div>
           <Eyebrow>Questions</Eyebrow>
           <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-c-ink sm:text-[2.75rem]">
-            The things people ask first
+            Questions before you try it?
           </h2>
           <p className="mt-5 max-w-md text-lg leading-8 text-c-grey-light">
             Still unsure?{" "}
@@ -911,15 +923,15 @@ function FinalCta() {
       <div className="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-5 sm:px-8 lg:flex-row lg:items-center">
         <div>
           <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-tight sm:text-[2.75rem]">
-            Build a system your employees can actually follow.
+            Build a quality system people can actually follow
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-white/70">
-            Replace scattered files and manual follow-up with controlled documents
-            that stay current — and records that show they were used.
+            Replace scattered files and manual follow-up with documents that stay
+            current and records that are ready when you need them.
           </p>
         </div>
         <a href={signupUrl} className={cn(primaryOnColorLinkClass, "shrink-0")}>
-          Get started
+          Start free trial
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </a>
       </div>
@@ -941,7 +953,7 @@ function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 px-5 py-12 sm:px-8 md:flex-row">
         <div>
           <BrandLogo variant="light" />
-          <p className="mt-4 max-w-sm text-sm leading-6 text-white/65">Business manuals, done automatically.</p>
+          <p className="mt-4 max-w-sm text-sm leading-6 text-white/65">Business manuals without the admin headache.</p>
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-4 text-sm text-white/75">
           {footerLinks.map((link) => (
@@ -966,7 +978,7 @@ function Footer() {
 
 export function MarketingHome() {
   return (
-    <div className="min-h-screen bg-c-off-white">
+    <div className="min-h-screen bg-c-off-white [&_h1]:text-balance [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty">
       <SiteHeader />
       <main>
         <Hero />
@@ -977,12 +989,12 @@ export function MarketingHome() {
         <MediaFeature
           className="bg-c-off-white"
           eyebrow="Write with AI"
-          title="Draft and refine documents without starting from a blank page."
-          description="Highlight a passage, tell the assistant what you want, and review the change as a tracked suggestion before it touches the document."
+          title="Turn your know-how into a solid first draft"
+          description="Describe what you need or start with an existing document. When the wording needs work, highlight the passage, ask for a change, and review the result before it touches your document."
           bullets={[
-            "Rewrite selected passages with the surrounding context included.",
-            "Review every AI edit as a diff you can apply or discard.",
-            "Keep policies, procedures, and instructions consistent in tone and structure.",
+            "Rewrite a selected passage without losing the surrounding context.",
+            "See every change before you accept or discard it.",
+            "Keep policies, procedures, and instructions consistent.",
           ]}
           image="/images/ai-assistant-panel.png"
           imageAlt="Contourna AI Assistant panel showing a rewrite returned as an editor suggestion, with the changed words marked in green and red and Accept and Reject buttons"
@@ -996,12 +1008,18 @@ export function MarketingHome() {
         <MediaFeature
           className="bg-white"
           eyebrow="Review & approve"
-          title="Consistent employee standards. Consistent customer service."
-          description="Anyone doing the work can flag a document as out of date. Reviewers see the suggestion against the exact section it affects, then approve, edit, or publish."
+          titleClassName="lg:text-[2.25rem]"
+          title={
+            <>
+              <span className="block">Let people keep doing the work</span>{" "}
+              <span className="block">Keep documents honest</span>
+            </>
+          }
+          description="Anyone can flag a step that no longer matches the work. Reviewers see the suggestion beside the exact section it affects, with the context they need to decide what changes."
           bullets={[
-            "Suggestions are tied to a section, not a comment thread.",
-            "Reviewers see what changed and why before publishing.",
-            "Section navigation keeps long work instructions manageable.",
+            "Keep suggestions attached to the section they affect.",
+            "See what changed and why before publishing.",
+            "Move through long documents one section at a time.",
           ]}
           image="/images/suggestion.png"
           imageAlt="Contourna document view of a maple latte recipe work instruction with a Suggestions panel open, where a reader files a Missing suggestion against the Tools section and can mark it as required before submitting"

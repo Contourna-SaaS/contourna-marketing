@@ -7,7 +7,7 @@ import { PlaygroundExperience } from "@/components/playground/PlaygroundExperien
 
 export const metadata: Metadata = {
   title: "AI Document Playground",
-  description: "Create and edit an AI-generated policy, procedure, or work instruction without an account.",
+  description: "Create and edit a policy, procedure, or work instruction with Contourna's AI document writer. No account required.",
   alternates: { canonical: "/playground" },
 };
 
@@ -16,13 +16,13 @@ export default function PlaygroundPage() {
     <div className="min-h-screen bg-c-off-white">
       <SiteHeader />
       <main className="relative mx-auto max-w-7xl px-5 pb-16 pt-10 sm:px-8 sm:pt-14">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center [&_h1]:text-balance [&_p]:text-pretty">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-c-yellow/40 bg-c-yellow-light px-3.5 py-1.5 text-xs font-semibold text-c-brown">
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Interactive demo
           </span>
-          <h1 className="mt-4 text-3xl font-bold text-c-ink sm:text-5xl">Create a polished document in minutes</h1>
+          <h1 className="mt-4 text-3xl font-bold text-c-ink sm:text-5xl">See what Contourna can write for you</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-c-grey-light">
-            Choose a document type, customize a ready-to-use example, and refine your AI-generated draft. No account required.
+            Pick a document, make the example your own, and get an editable first draft. No account required.
           </p>
         </div>
         <div className="mx-auto mt-8 flex max-w-5xl items-start gap-3 rounded-xl border-l-4 border-c-yellow bg-c-yellow-light p-4 text-sm leading-6">

@@ -48,7 +48,7 @@ export function DocumentEditor({
       <div className="flex flex-col gap-4 border-b border-c-brown/10 bg-c-yellow-light px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase text-c-brown">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Your AI-generated draft
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Your first draft
           </p>
           <p className="mt-1 text-sm text-c-grey-light">
             Your edits stay in this browser tab. {remaining} generation{remaining === 1 ? "" : "s"} left.

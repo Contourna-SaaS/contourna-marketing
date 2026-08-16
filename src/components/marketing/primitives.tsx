@@ -85,7 +85,7 @@ export function SectionHeading({
   tone = "light",
 }: {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   tone?: "light" | "dark" | "yellow";
 }) {
