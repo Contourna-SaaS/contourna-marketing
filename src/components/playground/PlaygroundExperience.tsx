@@ -46,6 +46,7 @@ const primaryButtonClass =
 const developmentBypassEnabled =
   process.env.NODE_ENV === "development" &&
   process.env.NEXT_PUBLIC_PLAYGROUND_BYPASS_TURNSTILE === "true";
+const privacyUrl = `${(process.env.NEXT_PUBLIC_APP_URL || "https://app.contourna.com").replace(/\/$/, "")}/privacy`;
 
 const PLAYGROUND_STEPS = ["choose", "customize", "review"] as const;
 
@@ -70,6 +71,7 @@ export function PlaygroundExperience() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [form, setForm] = useState<PlaygroundForm>(EMPTY_PLAYGROUND_FORM);
+  const [email, setEmail] = useState("");
   const [draft, setDraft] = useState<StoredPlaygroundDraft | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -129,6 +131,7 @@ export function PlaygroundExperience() {
 
   const reset = () => {
     setForm(EMPTY_PLAYGROUND_FORM);
+    setEmail("");
     setError(null);
     setTurnstileToken(null);
     persistDraft(null);
@@ -141,7 +144,11 @@ export function PlaygroundExperience() {
     setIsGenerating(true);
     setError(null);
     try {
-      const result = await generatePlaygroundDocument(form, verificationToken);
+      const result = await generatePlaygroundDocument(
+        form,
+        email.trim().toLowerCase(),
+        verificationToken,
+      );
       persistDraft({ version: 1, form, document: result.document, quota: result.quota });
     } catch (generationError) {
       setError(
@@ -181,7 +188,13 @@ export function PlaygroundExperience() {
     (step === 0 && Boolean(form.documentType)) || (step === 1 && isPlaygroundFormValid(form));
 
   return (
-    <div className="relative [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty">
+    <form
+      className="relative [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty"
+      onSubmit={(event) => {
+        event.preventDefault();
+        void handleGenerate();
+      }}
+    >
       {isGenerating ? <PlaygroundGeneratingView /> : null}
 
       <PlaygroundStepper currentStep={step} />
@@ -271,6 +284,24 @@ export function PlaygroundExperience() {
           <section aria-labelledby="review-heading">
             <h3 id="review-heading" className="text-xl font-bold text-c-ink sm:text-2xl">Review and generate</h3>
             <p className="mt-2 text-sm leading-6 text-c-grey-light">Check the details, complete verification, and create your editable draft.</p>
+            <div className="mt-6">
+              <Field label="Email" id="playground-email" required>
+                <input
+                  id="playground-email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  maxLength={254}
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  className={fieldClass}
+                />
+              </Field>
+              <p className="mt-2 text-xs leading-5 text-c-grey-light">
+                We use your email only to provide and protect the playground, including its two-document limit every 24 hours. We will not use it for marketing. See our{" "}
+                <a href={privacyUrl} className="underline hover:text-c-brown">Privacy Policy</a>.
+              </p>
+            </div>
             <dl className="mt-6 grid gap-px overflow-hidden border border-c-brown/10 bg-c-brown/10 sm:grid-cols-2">
               <ReviewItem label="Type" value={documentType.title} />
               <ReviewItem label="Department" value={form.department === "Other" ? form.otherDepartment : form.department} />
@@ -317,13 +348,13 @@ export function PlaygroundExperience() {
               Continue <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </button>
           ) : (
-            <button type="button" disabled={isGenerating || (!developmentBypassEnabled && !turnstileToken)} onClick={() => void handleGenerate()} className={primaryButtonClass}>
+            <button type="submit" disabled={isGenerating || (!developmentBypassEnabled && !turnstileToken)} className={primaryButtonClass}>
               <Sparkles className="h-4 w-4" aria-hidden="true" /> Generate document
             </button>
           )}
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 

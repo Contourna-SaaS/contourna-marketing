@@ -35,7 +35,11 @@ export function DocumentEditor({
     () => extractPlaygroundSections(document.documentContent),
     [document.documentContent],
   );
-  const remaining = Math.min(quota.remainingBrowser, quota.remainingIp);
+  const remaining = Math.min(
+    quota.remainingBrowser,
+    quota.remainingEmail,
+    quota.remainingIp,
+  );
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://app.contourna.com";
 
   const scrollToSection = (index: number) => {
