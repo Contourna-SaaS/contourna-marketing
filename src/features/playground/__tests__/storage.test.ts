@@ -21,7 +21,7 @@ const draft: StoredPlaygroundDraft = {
     department: "Human Resources",
     documentContent: '{"root":{"children":[]}}',
   },
-  quota: { remainingBrowser: 2, remainingIp: 3, resetAt: "2026-07-14T00:00:00.000Z" },
+  quota: { remainingBrowser: 1, remainingEmail: 1, remainingIp: 3, resetAt: "2026-07-14T00:00:00.000Z" },
 };
 
 describe("playground draft storage", () => {

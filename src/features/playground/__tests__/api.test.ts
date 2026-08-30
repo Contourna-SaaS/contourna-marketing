@@ -35,12 +35,12 @@ describe("playground API", () => {
         department: "Safety",
         documentContent: '{"root":{"children":[]}}',
       },
-      quota: { remainingBrowser: 2, remainingIp: 4, resetAt: "2026-07-14T00:00:00.000Z" },
+      quota: { remainingBrowser: 1, remainingEmail: 1, remainingIp: 4, resetAt: "2026-07-14T00:00:00.000Z" },
     };
     const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => payload });
     vi.stubGlobal("fetch", fetchMock);
 
-    await expect(generatePlaygroundDocument(form, "token")).resolves.toEqual(payload);
+    await expect(generatePlaygroundDocument(form, "person@example.com", "token")).resolves.toEqual(payload);
     expect(fetchMock).toHaveBeenCalledWith(
       "https://backend.example/api/playground/generate-document",
       expect.objectContaining({ method: "POST", credentials: "include" }),
@@ -48,6 +48,7 @@ describe("playground API", () => {
     const request = fetchMock.mock.calls[0][1] as RequestInit;
     expect(JSON.parse(request.body as string)).toEqual({
       turnstileToken: "token",
+      email: "person@example.com",
       documentType: "Policy",
       name: "Safety Policy",
       description: "Keep everyone safe.",
@@ -72,7 +73,7 @@ describe("playground API", () => {
       }),
     );
 
-    await expect(generatePlaygroundDocument(form, "token")).rejects.toEqual(
+    await expect(generatePlaygroundDocument(form, "person@example.com", "token")).rejects.toEqual(
       expect.objectContaining<Partial<PlaygroundApiError>>({
         code: "QUOTA_EXCEEDED",
         message: "Daily limit reached.",

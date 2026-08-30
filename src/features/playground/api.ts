@@ -40,12 +40,14 @@ function isSuccessResponse(value: unknown): value is PlaygroundSuccessResponse {
     typeof response.document?.name === "string" &&
     typeof response.document?.documentContent === "string" &&
     typeof response.quota?.remainingBrowser === "number" &&
+    typeof response.quota?.remainingEmail === "number" &&
     typeof response.quota?.remainingIp === "number"
   );
 }
 
 export async function generatePlaygroundDocument(
   form: PlaygroundForm,
+  email: string,
   turnstileToken: string,
 ): Promise<PlaygroundSuccessResponse> {
   const response = await fetch(`${getPlaygroundApiBaseUrl()}/playground/generate-document`, {
@@ -54,6 +56,7 @@ export async function generatePlaygroundDocument(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       turnstileToken,
+      email,
       documentType: form.documentType,
       name: form.name,
       description: form.description,

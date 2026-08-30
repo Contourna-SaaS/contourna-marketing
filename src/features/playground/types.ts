@@ -28,6 +28,7 @@ export interface PlaygroundDocumentTypeOption {
 
 export interface PlaygroundQuota {
   remainingBrowser: number;
+  remainingEmail: number;
   remainingIp: number;
   resetAt: string;
 }

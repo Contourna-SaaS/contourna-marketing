@@ -12,6 +12,7 @@ export function isStoredPlaygroundDraft(value: unknown): value is StoredPlaygrou
     typeof draft.document?.documentContent === "string" &&
     draft.document.documentContent.length > 0 &&
     typeof draft.quota?.remainingBrowser === "number" &&
+    typeof draft.quota?.remainingEmail === "number" &&
     typeof draft.quota?.remainingIp === "number"
   );
 }
