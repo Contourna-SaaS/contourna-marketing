@@ -4,13 +4,15 @@ import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import {
   ArrowLeft,
   ArrowRight,
+  Check,
   ClipboardList,
+  FileText,
   RotateCcw,
   Shield,
   Sparkles,
   Wrench,
 } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
@@ -40,9 +42,9 @@ const typeIcons = {
 };
 
 const fieldClass =
-  "mt-2 w-full rounded-lg border border-c-brown/15 bg-c-off-white px-3.5 py-2.5 text-sm text-c-ink outline-none placeholder:text-c-grey-light/70 focus:border-c-yellow focus:bg-white focus:ring-2 focus:ring-c-yellow/25";
+  "mt-2 w-full rounded-lg border border-c-brown/15 bg-c-off-white px-3.5 py-2.5 text-sm text-c-ink outline-none placeholder:text-c-brown/65 focus:border-c-yellow focus:bg-white focus:ring-2 focus:ring-c-yellow/25";
 const primaryButtonClass =
-  "inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-c-yellow px-5 text-sm font-semibold text-white transition-colors hover:bg-c-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow disabled:cursor-not-allowed disabled:opacity-40";
+  "inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-c-yellow px-5 text-sm font-semibold text-c-brown transition-colors hover:bg-c-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow disabled:cursor-not-allowed disabled:opacity-40";
 const developmentBypassEnabled =
   process.env.NODE_ENV === "development" &&
   process.env.NEXT_PUBLIC_PLAYGROUND_BYPASS_TURNSTILE === "true";
@@ -67,7 +69,6 @@ export function isPlaygroundFormValid(form: PlaygroundForm): boolean {
 }
 
 export function PlaygroundExperience() {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [form, setForm] = useState<PlaygroundForm>(EMPTY_PLAYGROUND_FORM);
@@ -77,6 +78,8 @@ export function PlaygroundExperience() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const previousStep = useRef<string | null>(null);
   const turnstileRef = useRef<TurnstileInstance>(null);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const documentType = getPlaygroundDocumentType(form.documentType);
@@ -85,13 +88,28 @@ export function PlaygroundExperience() {
   const currentStep = documentType ? requestedStep : "choose";
   const step = PLAYGROUND_STEPS.indexOf(currentStep);
 
+  useEffect(() => {
+    const didChange = previousStep.current !== null && previousStep.current !== currentStep;
+    previousStep.current = currentStep;
+    if (!didChange) return;
+    const heading = formRef.current?.querySelector<HTMLElement>("h2");
+    heading?.focus({ preventScroll: true });
+    if (formRef.current && formRef.current.getBoundingClientRect().top < 88) {
+      formRef.current.scrollIntoView({ block: "start", behavior: "instant" });
+    }
+  }, [currentStep]);
+
   const navigateToStep = useCallback(
     (nextStep: PlaygroundStep, method: "push" | "replace" = "push") => {
       const params = new URLSearchParams(searchParams.toString());
       params.set("step", nextStep);
-      router[method](`${pathname}?${params.toString()}`, { scroll: false });
+      // Wizard steps are client state. Route navigation can restore cached search
+      // params in a static production build and send Continue back to "choose".
+      window.history[method === "push" ? "pushState" : "replaceState"](
+        null, "", `${pathname}?${params.toString()}`,
+      );
     },
-    [pathname, router, searchParams],
+    [pathname, searchParams],
   );
 
   useEffect(() => {
@@ -140,7 +158,7 @@ export function PlaygroundExperience() {
 
   const handleGenerate = async () => {
     const verificationToken = developmentBypassEnabled ? "development-bypass" : turnstileToken;
-    if (!verificationToken) return;
+    if (!verificationToken || isGenerating || currentStep !== "review" || !isPlaygroundFormValid(form)) return;
     setIsGenerating(true);
     setError(null);
     try {
@@ -189,7 +207,8 @@ export function PlaygroundExperience() {
 
   return (
     <form
-      className="relative [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty"
+      ref={formRef}
+      className="relative scroll-mt-24 [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty"
       onSubmit={(event) => {
         event.preventDefault();
         void handleGenerate();
@@ -202,13 +221,13 @@ export function PlaygroundExperience() {
       <div className="mt-7">
         {step === 0 ? (
           <section aria-labelledby="document-type-heading">
-            <h3 id="document-type-heading" className="text-xl font-bold text-c-ink sm:text-2xl">
+            <h2 tabIndex={-1} id="document-type-heading" className="text-xl font-semibold tracking-tight text-c-ink sm:text-2xl">
               What would you like to create?
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-c-grey-light">
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-c-brown/75">
               Pick a document type and we will load an example you can make your own.
             </p>
-            <div role="radiogroup" aria-label="Document type" className="mt-6 grid gap-4 md:grid-cols-3">
+            <div role="radiogroup" aria-label="Document type" className="mt-6 grid gap-3 md:grid-cols-3">
               {PLAYGROUND_DOCUMENT_TYPES.map((item) => {
                 const Icon = typeIcons[item.type];
                 const isSelected = form.documentType === item.type;
@@ -217,21 +236,33 @@ export function PlaygroundExperience() {
                     key={item.type}
                     type="button"
                     role="radio"
+                    aria-label={`${item.title} ${item.description}`}
                     aria-checked={isSelected}
+                    aria-describedby={`${item.type}-example`}
                     onClick={() => selectDocumentType(item.type)}
                     className={cn(
-                      "min-h-[180px] rounded-lg border bg-white p-5 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow",
-                      isSelected ? "border-c-yellow shadow-md" : "border-c-brown/15 hover:border-c-yellow",
+                      "relative grid h-full grid-cols-[2.5rem_1fr] gap-x-3 rounded-xl md:flex md:flex-col border-2 p-5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-brown focus-visible:ring-offset-2",
+                      isSelected ? "border-c-brown bg-c-yellow-light" : "border-c-line bg-white hover:border-c-brown/40 hover:bg-c-off-white/50",
                     )}
                   >
+                    <span aria-hidden="true" className={cn(
+                      "absolute right-5 top-5 flex h-5 w-5 items-center justify-center rounded-full border",
+                      isSelected ? "border-c-brown bg-c-brown text-white" : "border-c-brown/20",
+                    )}>
+                      {isSelected ? <Check className="h-3 w-3" /> : null}
+                    </span>
                     <span className={cn(
-                      "flex h-10 w-10 items-center justify-center rounded-lg",
+                      "row-span-2 flex h-10 w-10 items-center justify-center rounded-lg",
                       isSelected ? "bg-c-yellow text-c-brown" : "bg-c-yellow-light text-c-brown",
                     )}>
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
-                    <span className="mt-4 block font-semibold text-c-ink">{item.title}</span>
-                    <span className="mt-2 block text-sm leading-6 text-c-grey-light">{item.description}</span>
+                    <span className="block pr-5 font-semibold text-c-ink md:mt-4 md:pr-0">{item.title}</span>
+                    <span className="col-start-2 mt-2 block flex-1 text-sm leading-6 text-c-brown/75">{item.description}</span>
+                    <span id={`${item.type}-example`} className="col-span-2 mt-4 flex items-start gap-2 border-t border-c-brown/10 pt-3 md:mt-5 md:pt-4 text-xs leading-5 text-c-brown/75">
+                      <FileText className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                      <span><span className="block font-medium text-c-brown">Try an example</span>{item.sample.name}</span>
+                    </span>
                   </button>
                 );
               })}
@@ -243,8 +274,8 @@ export function PlaygroundExperience() {
           <section aria-labelledby="details-heading">
             <div className="flex flex-wrap items-start justify-between gap-3 border-b border-c-brown/10 pb-5">
               <div>
-                <h3 id="details-heading" className="text-xl font-bold text-c-ink sm:text-2xl">Customize the example</h3>
-                <p className="mt-1 text-sm text-c-grey-light">Change as much or as little as you like.</p>
+                <h2 tabIndex={-1} id="details-heading" className="text-xl font-semibold tracking-tight text-c-ink sm:text-2xl">Customize the example</h2>
+                <p className="mt-1 text-sm text-c-brown/75">Change as much or as little as you like.</p>
               </div>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-c-yellow-light px-3 py-1 text-xs font-semibold text-c-brown">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> AI · {documentType.title}
@@ -282,8 +313,8 @@ export function PlaygroundExperience() {
 
         {step === 2 && documentType ? (
           <section aria-labelledby="review-heading">
-            <h3 id="review-heading" className="text-xl font-bold text-c-ink sm:text-2xl">Review and generate</h3>
-            <p className="mt-2 text-sm leading-6 text-c-grey-light">Check the details, complete verification, and create your editable draft.</p>
+            <h2 tabIndex={-1} id="review-heading" className="text-xl font-semibold tracking-tight text-c-ink sm:text-2xl">Review and generate</h2>
+            <p className="mt-2 text-sm leading-6 text-c-brown/75">Check the details, complete verification, and create your editable draft.</p>
             <div className="mt-6">
               <Field label="Email" id="playground-email" required>
                 <input
@@ -297,12 +328,12 @@ export function PlaygroundExperience() {
                   className={fieldClass}
                 />
               </Field>
-              <p className="mt-2 text-xs leading-5 text-c-grey-light">
+              <p className="mt-2 text-xs leading-5 text-c-brown/75">
                 We use your email only to provide and protect the playground, including its two-document limit every 24 hours. We will not use it for marketing. See our{" "}
                 <a href={privacyUrl} className="underline hover:text-c-brown">Privacy Policy</a>.
               </p>
             </div>
-            <dl className="mt-6 grid gap-px overflow-hidden border border-c-brown/10 bg-c-brown/10 sm:grid-cols-2">
+            <dl className="mt-6 grid gap-px overflow-hidden rounded-xl border border-c-brown/10 bg-c-brown/10 sm:grid-cols-2">
               <ReviewItem label="Type" value={documentType.title} />
               <ReviewItem label="Department" value={form.department === "Other" ? form.otherDepartment : form.department} />
               <ReviewItem label="Title" value={form.name} className="sm:col-span-2" />
@@ -321,10 +352,10 @@ export function PlaygroundExperience() {
                   onSuccess={setTurnstileToken}
                   onExpire={() => setTurnstileToken(null)}
                   onError={() => setTurnstileToken(null)}
-                  options={{ action: "playground_generate", theme: "light", size: "flexible" }}
+                  options={{ action: "playground_generate", theme: "light", size: "compact" }}
                 />
               ) : (
-                <p role="alert" className="text-sm font-medium text-c-red">Verification is unavailable. Configure the Turnstile site key to enable generation.</p>
+                <p role="alert" className="text-sm font-medium text-c-red">Verification is temporarily unavailable. Refresh the page to try again.</p>
               )}
             </div>
           </section>
@@ -334,13 +365,13 @@ export function PlaygroundExperience() {
       {error ? <p role="alert" className="mt-5 border-l-4 border-c-red bg-red-50 p-4 text-sm text-c-red">{error}</p> : null}
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-c-brown/10 pt-5">
-        <button type="button" onClick={reset} className="inline-flex h-10 items-center gap-2 px-2 text-sm font-medium text-c-grey-light hover:text-c-brown">
-          <RotateCcw className="h-4 w-4" aria-hidden="true" /> Start over
+        <button type="button" onClick={reset} className="inline-flex h-10 w-9 items-center justify-center gap-2 text-sm font-medium text-c-brown/75 hover:text-c-brown sm:w-auto sm:px-2">
+          <RotateCcw className="h-4 w-4" aria-hidden="true" /> <span className="sr-only sm:not-sr-only">Start over</span>
         </button>
         <div className="flex gap-2">
           {step > 0 ? (
-            <button type="button" onClick={() => navigateToStep(PLAYGROUND_STEPS[step - 1])} className="inline-flex h-11 items-center gap-2 rounded-lg border border-c-brown/15 bg-white px-5 text-sm font-semibold text-c-brown hover:border-c-yellow hover:text-c-yellow">
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back
+            <button type="button" onClick={() => navigateToStep(PLAYGROUND_STEPS[step - 1])} className="inline-flex h-11 w-11 items-center justify-center gap-2 rounded-lg border border-c-brown/15 bg-white sm:w-auto sm:px-5 text-sm font-semibold text-c-brown hover:border-c-yellow hover:text-c-yellow">
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" /> <span className="sr-only sm:not-sr-only">Back</span>
             </button>
           ) : null}
           {step < 2 ? (
@@ -348,8 +379,8 @@ export function PlaygroundExperience() {
               Continue <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </button>
           ) : (
-            <button type="submit" disabled={isGenerating || (!developmentBypassEnabled && !turnstileToken)} className={primaryButtonClass}>
-              <Sparkles className="h-4 w-4" aria-hidden="true" /> Generate document
+            <button type="submit" aria-label="Generate document" disabled={isGenerating || !isPlaygroundFormValid(form) || (!developmentBypassEnabled && !turnstileToken)} className={primaryButtonClass}>
+              <Sparkles className="h-4 w-4 shrink-0" aria-hidden="true" /> <span>Generate<span className="sr-only sm:not-sr-only"> document</span></span>
             </button>
           )}
         </div>
@@ -380,7 +411,7 @@ function Field({ id, label, children, required, className }: FieldProps) {
 function ReviewItem({ label, value, className }: { label: string; value: string; className?: string }) {
   return (
     <div className={cn("bg-white p-4", className)}>
-      <dt className="text-xs font-semibold uppercase text-c-grey-light">{label}</dt>
+      <dt className="text-xs font-semibold uppercase text-c-brown/75">{label}</dt>
       <dd className="mt-1 text-sm leading-6 text-c-brown">{value}</dd>
     </div>
   );
