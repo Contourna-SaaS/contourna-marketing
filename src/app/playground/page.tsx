@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Info, Sparkles } from "lucide-react";
+import { Info } from "lucide-react";
 
 import { SiteHeader } from "@/components/marketing/SiteHeader";
 import { PlaygroundExperience } from "@/components/playground/PlaygroundExperience";
@@ -15,33 +15,34 @@ export default function PlaygroundPage() {
   return (
     <div className="min-h-screen bg-c-off-white">
       <SiteHeader />
-      <main className="relative mx-auto max-w-7xl px-5 pb-16 pt-10 sm:px-8 sm:pt-14">
-        <div className="mx-auto max-w-3xl text-center [&_h1]:text-balance [&_p]:text-pretty">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-c-yellow/40 bg-c-yellow-light px-3.5 py-1.5 text-xs font-semibold text-c-brown">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Interactive demo
-          </span>
-          <h1 className="mt-4 text-3xl font-bold text-c-ink sm:text-5xl">See what Contourna can write for you</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-c-grey-light">
-            Pick a document, make the example your own, and get an editable first draft. No account required.
-          </p>
-        </div>
-        <div className="mx-auto mt-8 flex max-w-5xl items-start gap-3 rounded-xl border-l-4 border-c-yellow bg-c-yellow-light p-4 text-sm leading-6">
-          <Info className="mt-0.5 h-5 w-5 shrink-0 text-c-yellow" aria-hidden="true" />
-          <p>
-            <strong>Your work here is temporary.</strong> The draft stays in this browser tab until you close it.
-            Do not enter personal, confidential, or sensitive information.
-          </p>
+      <main className="mx-auto max-w-6xl px-5 pb-12 pt-8 sm:px-8 sm:pt-12">
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-5 [&_h1]:text-balance [&_p]:text-pretty">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-c-brown/70">Contourna playground</p>
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-c-ink sm:text-4xl">Your next document starts here.</h1>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-c-brown/75 sm:text-base sm:leading-7">
+              Pick an example, make it your own, and turn it into an editable first draft.
+            </p>
+          </div>
+          <p className="text-sm font-medium text-c-brown">No account required.</p>
         </div>
         <section
           aria-label="Document generator"
-          className="mx-auto mt-8 max-w-6xl rounded-2xl border border-c-brown/15 bg-white p-4 shadow-[0_24px_60px_-44px_rgba(55,48,18,0.6)] sm:p-8"
+          className="rounded-2xl border border-c-brown/15 bg-white p-5 shadow-card sm:p-8"
         >
           <Suspense
-            fallback={<div className="h-96 animate-pulse bg-c-yellow-light" aria-label="Loading playground" />}
+            fallback={<div className="h-96 animate-pulse rounded-xl bg-c-off-white motion-reduce:animate-none" aria-label="Loading playground" />}
           >
             <PlaygroundExperience />
           </Suspense>
         </section>
+        <div className="mx-auto mt-5 flex max-w-3xl items-start gap-2.5 text-xs leading-5 text-c-brown/75">
+          <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          <p>
+            Your draft stays in this browser tab until you close it. Use example details;
+            do not enter personal, confidential, or sensitive information.
+          </p>
+        </div>
       </main>
     </div>
   );
