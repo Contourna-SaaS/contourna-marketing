@@ -23,10 +23,10 @@
     "clsx": "^2.1.1",
     "lexical": "^0.47.0",
     "lucide-react": "^1.24.0",
-    "next": "16.2.12",
+    "next": "16.3.5",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "sharp": "0.35.3",
+    "sharp": "0.35.4",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.2.12",
+    "eslint-config-next": "16.3.5",
     "jsdom": "^29.1.1",
     "tailwindcss": "^4",
     "typescript": "^5",
