@@ -49,7 +49,7 @@ const editorTheme = {
     nested: { listitem: "list-none" },
   },
   table: "my-5 w-full border-collapse",
-  tableCell: "border border-c-brown/20 p-2.5 align-top font-normal outline-none",
+  tableCell: "border border-c-brown/20 p-2.5 align-top font-normal outline-none [&>:first-child]:mt-0 [&>:last-child]:mb-0",
   tableCellHeader: "border border-c-brown/20 bg-c-yellow-light p-2.5 font-semibold",
   tableRow: "",
 };
