@@ -15,7 +15,7 @@ export default function PlaygroundPage() {
   return (
     <div className="min-h-screen bg-c-off-white">
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-5 pb-12 pt-8 sm:px-8 sm:pt-12">
+      <main className="mx-auto max-w-6xl px-5 pb-12 pt-28 sm:px-8 sm:pt-32">
         <div className="mb-7 flex flex-wrap items-end justify-between gap-5 [&_h1]:text-balance [&_p]:text-pretty">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-c-brown/70">Contourna playground</p>

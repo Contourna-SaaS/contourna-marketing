@@ -154,18 +154,12 @@ export const operationsFacts = [
     icon: Gauge,
     title: "Equipment",
     description: "Give each machine its forms, a history of every check, its files, and the manuals that cover it.",
-    image: "/images/illustrations/illo-ops-equipment.png",
-    imageAlt:
-      "Illustration of a keg washer's equipment page with its scheduled checks, a linked packaging manual, and a service note",
   },
   {
     icon: Package,
     title: "Products & batches",
     description:
       "Keep a register of what you make and the checks each product needs, with a required batch or lot number on every product record.",
-    image: "/images/illustrations/illo-ops-products.png",
-    imageAlt:
-      "Illustration of a stout's product page listing the checks due at each location, from a daily gravity reading to packaging QC",
   },
 ] as const;
 
