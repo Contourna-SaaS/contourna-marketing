@@ -116,7 +116,10 @@ export function SectionHeading({
   );
 }
 
-/** Screenshot in a soft product frame. Used for bare captures with no chrome. */
+/**
+ * Product illustration. Each one ships its own backdrop and shadows; the hairline
+ * ring keeps its edge visible on sections that share the backdrop colour.
+ */
 export function Screenshot({
   src,
   alt,
@@ -124,7 +127,6 @@ export function Screenshot({
   height,
   sizes,
   preload = false,
-  bare = false,
   className,
 }: {
   src: string;
@@ -133,8 +135,6 @@ export function Screenshot({
   height: number;
   sizes: string;
   preload?: boolean;
-  /** Set for mockups that already ship their own padding, shadow, and backdrop. */
-  bare?: boolean;
   className?: string;
 }) {
   return (
@@ -146,11 +146,7 @@ export function Screenshot({
       sizes={sizes}
       quality={82}
       preload={preload}
-      className={cn(
-        "h-auto w-full",
-        bare ? "rounded-2xl" : "rounded-2xl border border-c-brown/10 bg-white shadow-panel",
-        className,
-      )}
+      className={cn("h-auto w-full rounded-2xl ring-1 ring-c-brown/10", className)}
     />
   );
 }

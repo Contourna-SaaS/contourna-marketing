@@ -1,23 +1,20 @@
 import {
   BarChart3,
-  BookOpen,
   Bot,
   CalendarClock,
   CheckCircle2,
   ClipboardCheck,
-  ClipboardList,
-  FileText,
-  GraduationCap,
+  Gauge,
   History,
   LineChart,
   ListChecks,
   Mic,
+  Package,
   Repeat,
   ShieldCheck,
   Sparkles,
   Table2,
   Users,
-  Wrench,
 } from "lucide-react";
 
 /**
@@ -25,56 +22,6 @@ import {
  * changes in `contourna-frontend` / `contourna-backend`, change it here too —
  * the marketing copy is the contract we show prospects before they sign up.
  */
-
-/* ---------------------------------------------------------------- pillars */
-
-export const pillars = [
-  {
-    icon: Bot,
-    title: "Get to a first draft faster",
-    description:
-      "Give Contourna a short brief and get a structured policy, procedure, work instruction, or training document. You can also highlight any passage and ask for a rewrite that fits the rest of the document.",
-    tags: ["Guided drafting", "Inline rewrites", "Dictation"],
-    className: "bg-c-brown",
-    iconClassName: "bg-c-yellow text-c-brown",
-    titleClassName: "text-white",
-    bodyClassName: "text-white/70",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Keep every document current",
-    description:
-      "Move work from draft to review to published, with a clear owner and approval trail. Scheduled reviews and a reason for every revision give you the history an auditor will ask for.",
-    tags: ["Approvals", "Version history", "Review cycles"],
-    className: "bg-c-yellow",
-    iconClassName: "bg-c-brown text-c-yellow",
-    titleClassName: "text-c-brown",
-    bodyClassName: "text-c-brown/80",
-  },
-  {
-    icon: LineChart,
-    title: "Show the work was done",
-    description:
-      "Add forms to a procedure, assign them on a schedule, and keep every submission with the document it supports. Track key measurements so you can catch process drift early.",
-    tags: ["Form schedules", "Linked records", "SPC charts"],
-    className: "bg-c-yellow-light",
-    iconClassName: "bg-c-yellow text-c-brown",
-    titleClassName: "text-c-ink",
-    bodyClassName: "text-c-brown/75",
-  },
-] as const;
-
-/* ------------------------------------------------------------- doc marquee */
-
-export const documentTypes = [
-  { icon: ShieldCheck, label: "Policies" },
-  { icon: ClipboardList, label: "Procedures" },
-  { icon: Wrench, label: "Work instructions" },
-  { icon: GraduationCap, label: "Training documents" },
-  { icon: BookOpen, label: "Manuals" },
-  { icon: FileText, label: "Forms" },
-  { icon: ListChecks, label: "Records" },
-] as const;
 
 /* ---------------------------------------------------------------- manuals */
 
@@ -200,6 +147,28 @@ export const spcCapabilities = [
   },
 ] as const;
 
+/* ------------------------------------------------------------- operations */
+
+export const operationsFacts = [
+  {
+    icon: Gauge,
+    title: "Equipment",
+    description: "Give each machine its forms, a history of every check, its files, and the manuals that cover it.",
+    image: "/images/illustrations/illo-ops-equipment.png",
+    imageAlt:
+      "Illustration of a keg washer's equipment page with its scheduled checks, a linked packaging manual, and a service note",
+  },
+  {
+    icon: Package,
+    title: "Products & batches",
+    description:
+      "Keep a register of what you make and the checks each product needs, with a required batch or lot number on every product record.",
+    image: "/images/illustrations/illo-ops-products.png",
+    imageAlt:
+      "Illustration of a stout's product page listing the checks due at each location, from a daily gravity reading to packaging QC",
+  },
+] as const;
+
 /* -------------------------------------------------------------- team facts */
 
 export const accessFacts = [
@@ -289,6 +258,7 @@ export const plans = [
       "Everything in Generate",
       "AI-assisted form builder",
       "Form assignments and schedules",
+      "Operations: locations, equipment, and products",
       "Records kept with the document they support",
       "SPC charts with Nelson and Western Electric rules",
       "Cp, Cpk, and clear SPC insights",
