@@ -21,14 +21,13 @@ import {
   INCLUDED_EDITOR_SEATS,
   TRIAL_DAYS,
   accessFacts,
-  documentTypes,
   editorHighlights,
   faqs,
   formFieldTypes,
   importFormats,
   importModes,
   manualTiers,
-  pillars,
+  operationsFacts,
   plans,
   reviewCadences,
   reviewDispositions,
@@ -115,17 +114,17 @@ function Hero() {
             ))}
           </ul>
         </div>
-        <div className="relative lg:-mr-24 xl:-mr-40">
+        <div className="relative">
           <div
             className="absolute -bottom-10 -left-10 h-48 w-48 rounded-full bg-c-yellow/30 blur-3xl"
             aria-hidden="true"
           />
           <Image
-            src="/images/dashboard-home.png"
-            alt="Contourna dashboard showing open review counts, quick actions for a new manual, document, or form, and a Needs your attention task list of overdue reviews"
-            width={3000}
-            height={1763}
-            className="relative h-auto w-full rounded-2xl"
+            src="/images/illustrations/illo-hero-dashboard.png"
+            alt="Illustration of the Contourna dashboard with open review counts, quick actions for a new manual, document, or form, a Needs your attention list, and a Review approved notice"
+            width={1440}
+            height={900}
+            className="relative h-auto w-full rounded-2xl ring-1 ring-c-brown/10"
             quality={82}
             preload
             sizes="(max-width: 1024px) 100vw, 58vw"
@@ -136,107 +135,9 @@ function Hero() {
   );
 }
 
-function DocumentMarquee() {
-  return (
-    <section className="overflow-hidden bg-c-brown py-5" aria-label="Document types Contourna manages">
-      <div className="animate-marquee flex w-max items-center gap-14 pr-14">
-        {/* Two identical halves; -50% keyframe lands the second exactly where the
-            first started. Each half repeats the list so it always exceeds the
-            viewport width — otherwise wide screens see a blank gap at the seam. */}
-        {[0, 1].map((half) => (
-          <div
-            key={half}
-            aria-hidden={half === 1}
-            className="flex shrink-0 items-center gap-14 text-base font-semibold text-white"
-          >
-            {[...documentTypes, ...documentTypes].map(({ icon: Icon, label }, index) => (
-              <span key={`${label}-${index}`} className="inline-flex items-center gap-3 whitespace-nowrap">
-                <Icon className="h-5 w-5 text-c-yellow" aria-hidden="true" />
-                {label}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Pillars() {
-  return (
-    <Section id="features" className="bg-white">
-      <SectionHeading
-        eyebrow="Why Contourna"
-        title={
-          <>
-            <span className="block">From first draft to audit trail</span>{" "}
-            <span className="block">all in one place</span>
-          </>
-        }
-        description="Contourna brings your documents, approvals, forms, and records together. Your team spends less time chasing paperwork and more time improving the work itself."
-      />
-      <div className="mt-14 grid gap-5 md:grid-cols-3">
-        {pillars.map((pillar, index) => {
-          const Icon = pillar.icon;
-          const isDark = pillar.className === "bg-c-brown";
-          return (
-            <article
-              key={pillar.title}
-              className={cn(
-                "group relative flex flex-col overflow-hidden rounded-[1.75rem] p-8 pt-10 transition duration-300 hover:-translate-y-1.5",
-                pillar.className,
-              )}
-            >
-              {/* Oversized index sits behind the content as texture, not a label —
-                  it is decorative, so it stays out of the accessibility tree. */}
-              <span
-                aria-hidden="true"
-                className={cn(
-                  "pointer-events-none absolute right-6 top-5 text-[5.5rem] font-bold leading-[0.75] tracking-tighter transition-opacity duration-300",
-                  isDark ? "text-white/10 group-hover:text-white/[0.16]" : "text-c-brown/10 group-hover:text-c-brown/20",
-                )}
-              >
-                {index + 1}
-              </span>
-              <span
-                className={cn(
-                  "relative flex h-14 w-14 -rotate-6 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:rotate-0",
-                  pillar.iconClassName,
-                )}
-              >
-                <Icon className="h-7 w-7" aria-hidden="true" />
-              </span>
-              <h3 className={cn("relative mt-7 text-[1.35rem] font-bold leading-snug", pillar.titleClassName)}>
-                {pillar.title}
-              </h3>
-              <p className={cn("relative mt-3 text-[15px] leading-7", pillar.bodyClassName)}>{pillar.description}</p>
-              <ul
-                className={cn(
-                  "relative mt-7 flex flex-wrap gap-x-4 gap-y-2 border-t pt-5 text-xs font-semibold uppercase tracking-[0.1em]",
-                  isDark ? "border-white/15 text-white/55" : "border-c-brown/15 text-c-brown/65",
-                )}
-              >
-                {pillar.tags.map((tag) => (
-                  <li key={tag} className="flex items-center gap-1.5">
-                    <span
-                      className={cn("h-1 w-1 rounded-full", isDark ? "bg-c-yellow" : "bg-c-brown/50")}
-                      aria-hidden="true"
-                    />
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          );
-        })}
-      </div>
-    </Section>
-  );
-}
-
 function ImportBand() {
   return (
-    <Section className="bg-c-off-white">
+    <Section id="documents" className="bg-white">
       <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
         <div>
           <Eyebrow>Start where you are</Eyebrow>
@@ -250,7 +151,7 @@ function ImportBand() {
           </p>
           <div className="mt-7 grid gap-3 sm:grid-cols-2">
             {importModes.map((mode) => (
-              <div key={mode.title} className="rounded-2xl border border-c-brown/10 bg-white p-5">
+              <div key={mode.title} className="rounded-2xl border border-c-brown/10 bg-c-off-white p-5">
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-c-yellow text-c-brown">
                     <FileUp className="h-4 w-4" aria-hidden="true" />
@@ -274,7 +175,7 @@ function ImportBand() {
               {importFormats.map((format) => (
                 <li
                   key={format}
-                  className="rounded-full border border-c-brown/15 bg-white px-3 py-1 text-xs font-semibold text-c-brown"
+                  className="rounded-full border border-c-brown/15 bg-c-off-white px-3 py-1 text-xs font-semibold text-c-brown"
                 >
                   {format}
                 </li>
@@ -287,10 +188,10 @@ function ImportBand() {
           </a>
         </div>
         <Screenshot
-          src="/images/document-import.png"
-          alt="Contourna Import Documents screen with tabs for Files, Notion, and Google Drive, a choice between converting a file to an editable document or uploading the original, and a drag-and-drop area listing the supported file formats"
-          width={1610}
-          height={958}
+          src="/images/illustrations/illo-import.png"
+          alt="Illustration of the Contourna Import Documents screen with tabs for Files, Notion, and Google Drive, a drop zone for PDF, DOCX, MD, and PNG files, and imported documents arriving as drafts"
+          width={1200}
+          height={720}
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </div>
@@ -300,7 +201,7 @@ function ImportBand() {
 
 function ManualStructure() {
   return (
-    <Section className="bg-white">
+    <Section className="bg-c-off-white">
       <SectionHeading
         eyebrow="Manuals"
         title="Give every document a place and a purpose"
@@ -308,22 +209,19 @@ function ManualStructure() {
       />
       <div className="mt-14">
         <Screenshot
-          src="/images/manual-spotlight-clean.png"
-          alt="Contourna manual contents view for an Events and Catering manual, showing the cover image, document and form counts, the four tiers Policy, Procedures, Work Instructions, and Forms and Proofs, and a Create Manual panel offering to generate the policy with AI or link an existing one"
-          width={2400}
-          height={1118}
+          src="/images/illustrations/illo-manual-structure.png"
+          alt="Illustration of an Events and Catering manual beside its contents, stepping down from Policy to Procedures, Work instructions, and Forms and proofs"
+          width={1440}
+          height={680}
           sizes="(max-width: 1280px) 100vw, 1152px"
-          // Shadow via filter, not a box: the capture is L-shaped, with the
-          // Create Manual card overhanging the window it belongs to.
-          className="mx-auto max-w-6xl drop-shadow-[0_30px_60px_rgba(55,48,18,0.22)]"
-          bare
+          className="mx-auto max-w-6xl"
         />
       </div>
       <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {manualTiers.map((tier, index) => (
           <li
             key={tier.title}
-            className="group relative rounded-2xl border border-c-brown/10 bg-c-off-white p-6 transition duration-300 hover:border-c-yellow/70 hover:shadow-card"
+            className="group relative rounded-2xl border border-c-brown/10 bg-white p-6 transition duration-300 hover:border-c-yellow/70 hover:shadow-card"
           >
             {/* Bar length steps up per tier, so the row reads as a stack even
                 before anyone reads the labels. */}
@@ -353,6 +251,7 @@ function ManualStructure() {
 }
 
 interface MediaFeatureProps {
+  id?: string;
   eyebrow: string;
   title: ReactNode;
   description: string;
@@ -367,11 +266,10 @@ interface MediaFeatureProps {
   children?: ReactNode;
   /** Caps and centres tall captures so a portrait panel does not tower over the copy. */
   portrait?: boolean;
-  /** Adds the site's panel frame around captures that ship without their own. */
-  framed?: boolean;
 }
 
 function MediaFeature({
+  id,
   eyebrow,
   title,
   description,
@@ -385,10 +283,9 @@ function MediaFeature({
   titleClassName,
   children,
   portrait = false,
-  framed = false,
 }: MediaFeatureProps) {
   return (
-    <section className={cn("py-18 sm:py-24", className)}>
+    <section id={id} className={cn("py-18 sm:py-24", className)}>
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
         <div className={reverse ? "lg:order-2" : ""}>
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -424,7 +321,6 @@ function MediaFeature({
             width={imageWidth}
             height={imageHeight}
             sizes={portrait ? "(max-width: 1024px) 100vw, 30rem" : "(max-width: 1024px) 100vw, 50vw"}
-            bare={!framed}
           />
         </div>
       </div>
@@ -438,7 +334,7 @@ function EditorHighlights() {
       {editorHighlights.map(({ icon: Icon, label }) => (
         <li
           key={label}
-          className="flex items-center gap-3 rounded-2xl border border-c-brown/10 bg-white px-4 py-3 text-sm font-medium text-c-brown"
+          className="flex items-center gap-3 rounded-2xl border border-c-brown/10 bg-c-off-white px-4 py-3 text-sm font-medium text-c-brown"
         >
           <Icon className="h-4 w-4 shrink-0 text-c-brown/70" aria-hidden="true" />
           {label}
@@ -450,7 +346,7 @@ function EditorHighlights() {
 
 function ReviewCycles() {
   return (
-    <Section className="bg-c-off-white">
+    <Section className="bg-white">
       <div className="grid gap-12">
         <div>
           <Eyebrow>Review cycles</Eyebrow>
@@ -479,20 +375,16 @@ function ReviewCycles() {
           </ul>
         </div>
         <Screenshot
-          src="/images/review-workspace.png"
-          alt="Contourna controlled review workspace for a work instruction, showing the revision under review, reviewer, owner and due date, alongside a panel to choose a disposition and record findings"
-          width={2400}
-          height={1556}
+          src="/images/illustrations/illo-review-cycle.png"
+          alt="Illustration of a quarterly review cadence timeline with the next review due in five days, above a work instruction in review showing its reviewer, owner, due date, and findings"
+          width={1440}
+          height={900}
           sizes="100vw"
-          // Filter, not a box: the disposition panel overhangs the window below
-          // and to the right, so the capture is L-shaped.
-          className="drop-shadow-[0_30px_60px_rgba(55,48,18,0.22)]"
-          bare
         />
       </div>
 
       <div className="mt-14 grid gap-5 lg:grid-cols-3">
-        <div className="rounded-3xl border border-c-brown/10 bg-white p-7">
+        <div className="rounded-3xl border border-c-brown/10 bg-c-off-white p-7">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
             <ClipboardCheck className="h-5 w-5" aria-hidden="true" />
           </span>
@@ -507,7 +399,7 @@ function ReviewCycles() {
           </ul>
         </div>
 
-        <div className="rounded-3xl border border-c-brown/10 bg-white p-7">
+        <div className="rounded-3xl border border-c-brown/10 bg-c-off-white p-7">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
             <CalendarClock className="h-5 w-5" aria-hidden="true" />
           </span>
@@ -517,7 +409,7 @@ function ReviewCycles() {
             {reviewCadences.map((cadence) => (
               <li
                 key={cadence}
-                className="rounded-full border border-c-brown/15 bg-c-off-white px-3 py-1 text-xs font-semibold text-c-brown"
+                className="rounded-full border border-c-brown/15 bg-white px-3 py-1 text-xs font-semibold text-c-brown"
               >
                 {cadence}
               </li>
@@ -537,7 +429,7 @@ function ReviewCycles() {
           </ul>
         </div>
 
-        <div className="rounded-3xl border border-c-brown/10 bg-white p-7">
+        <div className="rounded-3xl border border-c-brown/10 bg-c-off-white p-7">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
             <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
           </span>
@@ -555,7 +447,7 @@ function ReviewCycles() {
 
 function FormsBand() {
   return (
-    <section className="relative overflow-hidden bg-c-brown py-20 sm:py-28">
+    <section id="forms" className="relative overflow-hidden bg-c-brown py-20 sm:py-28">
       <div className="bg-dot-grid-light absolute inset-0" aria-hidden="true" />
       <div className="bg-brown-glow absolute inset-0" aria-hidden="true" />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-5 sm:px-8">
@@ -615,12 +507,12 @@ function FormsBand() {
           </a>
         </div>
         <Screenshot
-          src="/images/form-builder-mock.png"
-          alt="Contourna form builder generating a production stock adjustment request form, with a field properties panel and a Form Generated confirmation"
-          width={4500}
-          height={2595}
+          src="/images/illustrations/illo-form-builder.png"
+          className="ring-white/10"
+          alt="Illustration of the Contourna form builder turning a one-line description into a walk-in cooler temperature log with a quality metric field, scheduled twice daily for the kitchen team"
+          width={1440}
+          height={830}
           sizes="100vw"
-          bare
         />
       </div>
     </section>
@@ -662,13 +554,53 @@ function QualityData() {
           <p className="mt-6 text-sm text-c-grey-light">Included in the Control plan.</p>
         </div>
         <Screenshot
-          src="/images/form-analytics.png"
-          alt="Contourna process control view: tracked measurements across forms, calculated mean, upper and lower control limits, an out-of-control counter, and a roast duration control chart with the out-of-limit point marked in red"
-          width={1800}
-          height={1045}
+          src="/images/illustrations/illo-spc-chart.png"
+          alt="Illustration of a roast duration control chart with its calculated mean and control limits, a reading above the upper limit, and AI insights explaining the rule violation with a next step"
+          width={1440}
+          height={836}
           sizes="100vw"
-          bare
         />
+      </div>
+    </Section>
+  );
+}
+
+function OperationsBand() {
+  return (
+    <Section className="bg-white">
+      <SectionHeading
+        eyebrow="Operations"
+        title="Attach the checks to the things you run"
+        description="Add your locations, equipment, and products, then assign the forms each one needs. Checks are organized by site, and each one goes to the team or person who does it."
+      />
+      <div className="mt-14">
+        <Screenshot
+          src="/images/illustrations/illo-ops-locations.png"
+          alt="Illustration of a brewery location page listing its equipment and products, each with its forms and when the next check is due"
+          width={1440}
+          height={860}
+          sizes="100vw"
+        />
+      </div>
+      <div className="mt-5 grid gap-5 md:grid-cols-2">
+        {operationsFacts.map(({ icon: Icon, title, description, image, imageAlt }) => (
+          <article key={title} className="rounded-3xl border border-c-brown/10 bg-c-off-white p-7">
+            <Screenshot
+              src={image}
+              alt={imageAlt}
+              width={1200}
+              height={800}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              // The card already frames it, and shares its backdrop colour.
+              className="ring-0"
+            />
+            <span className="mt-7 flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow-light text-c-brown">
+              <Icon className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <h3 className="mt-5 text-lg font-semibold text-c-ink">{title}</h3>
+            <p className="mt-2 text-[15px] leading-7 text-c-grey-light">{description}</p>
+          </article>
+        ))}
       </div>
     </Section>
   );
@@ -940,8 +872,9 @@ function FinalCta() {
 }
 
 const footerLinks = [
-  { label: "Features", href: "/#features" },
-  { label: "How it works", href: "/#how-it-works" },
+  { label: "Documents", href: "/#documents" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Forms", href: "/#forms" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Playground", href: "/playground" },
   { label: "FAQ", href: "/#faq" },
@@ -982,12 +915,10 @@ export function MarketingHome() {
       <SiteHeader />
       <main>
         <Hero />
-        <DocumentMarquee />
-        <Pillars />
         <ImportBand />
         <ManualStructure />
         <MediaFeature
-          className="bg-c-off-white"
+          className="bg-white"
           eyebrow="Write with AI"
           title="Turn your know-how into a solid first draft"
           description="Describe what you need or start with an existing document. When the wording needs work, highlight the passage, ask for a change, and review the result before it touches your document."
@@ -996,17 +927,17 @@ export function MarketingHome() {
             "See every change before you accept or discard it.",
             "Keep policies, procedures, and instructions consistent.",
           ]}
-          image="/images/ai-assistant-panel.png"
-          imageAlt="Contourna AI Assistant panel showing a rewrite returned as an editor suggestion, with the changed words marked in green and red and Accept and Reject buttons"
-          imageWidth={1782}
-          imageHeight={3180}
+          image="/images/illustrations/illo-ai-rewrite.png"
+          imageAlt="Illustration of a highlighted step in an espresso bar SOP and the AI Assistant rewriting it for new staff, with the change marked in red and green and Accept and Reject buttons"
+          imageWidth={900}
+          imageHeight={1100}
           portrait
-          framed
         >
           <EditorHighlights />
         </MediaFeature>
         <MediaFeature
-          className="bg-white"
+          id="reviews"
+          className="bg-c-off-white"
           eyebrow="Review & approve"
           titleClassName="lg:text-[2.25rem]"
           title={
@@ -1021,14 +952,15 @@ export function MarketingHome() {
             "See what changed and why before publishing.",
             "Move through long documents one section at a time.",
           ]}
-          image="/images/suggestion.png"
-          imageAlt="Contourna document view of a maple latte recipe work instruction with a Suggestions panel open, where a reader files a Missing suggestion against the Tools section and can mark it as required before submitting"
-          imageWidth={3000}
-          imageHeight={2220}
+          image="/images/illustrations/illo-suggestion.png"
+          imageAlt="Illustration of a maple latte work instruction where a barista files a Missing suggestion against the Tools section, marks it as required, and sends it to the review queue"
+          imageWidth={1200}
+          imageHeight={888}
           reverse
         />
         <ReviewCycles />
         <FormsBand />
+        <OperationsBand />
         <QualityData />
         <AccessBand />
         <HowItWorks />

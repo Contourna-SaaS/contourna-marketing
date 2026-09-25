@@ -7,8 +7,9 @@ import { useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 
 const navigation = [
-  { href: "/#features", label: "Features" },
-  { href: "/#how-it-works", label: "How it works" },
+  { href: "/#documents", label: "Documents" },
+  { href: "/#reviews", label: "Reviews" },
+  { href: "/#forms", label: "Forms" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/playground", label: "Playground" },
 ];
