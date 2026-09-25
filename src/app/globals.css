@@ -9,6 +9,8 @@
   --c-red: #c93c32;
   --c-ink: #161616;
   --c-line: #e8e3d5;
+  /* Lets <details> animate to `height: auto` where supported. */
+  interpolate-size: allow-keywords;
 }
 
 @theme inline {
@@ -23,19 +25,24 @@
   --font-sans: var(--font-poppins), sans-serif;
 
   /* One shadow scale for every raised surface on the site: cards lift with
-     --shadow-card, product screenshots float with --shadow-panel. */
+     --shadow-card, product illustrations float with --shadow-panel. */
   --shadow-card: 0 18px 40px -28px rgba(55, 48, 18, 0.45);
   --shadow-panel: 0 40px 90px -45px rgba(55, 48, 18, 0.55);
+  --shadow-glow: 0 0 0 1px rgba(253, 185, 19, 0.25), 0 30px 80px -30px rgba(253, 185, 19, 0.45);
 }
 
-* {
-  border-color: var(--c-line);
+/* In the base layer so border-color utilities can override it; unlayered, it
+   would beat every `border-*` color class on the page. */
+@layer base {
+  * {
+    border-color: var(--c-line);
+  }
 }
 
 html {
   background: var(--c-off-white);
-  /* Anchor jumps land below the sticky header (h-18). */
-  scroll-padding-top: 4.5rem;
+  /* Anchor jumps land below the floating header. */
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -58,38 +65,298 @@ select {
   color: var(--c-brown);
 }
 
-@keyframes document-pulse {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.animate-document-pulse {
-  animation: document-pulse 1.5s ease-in-out infinite;
-}
-
 .bg-dot-grid {
-  background-image: radial-gradient(circle, rgba(55, 48, 18, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(55, 48, 18, 0.12) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
-/* Fades the dot grid out toward the bottom so the hero blends into the next
-   section instead of ending on a hard edge. */
-.bg-dot-grid-fade {
-  mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 100%);
+/* Hairline grid for dark bands. */
+.bg-line-grid {
+  background-image:
+    linear-gradient(rgba(253, 185, 19, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(253, 185, 19, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-/* Neutral top-light for brown bands. A yellow-tinted glow here mixes with the
-   brown into a muddy gold-red, so the highlight is plain white at low alpha. */
-.bg-brown-glow {
-  background-image: radial-gradient(120% 90% at 50% -20%, rgba(255, 255, 255, 0.08), transparent 60%);
+.mask-fade-y {
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
 }
 
-.bg-dot-grid-light {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-  background-size: 22px 22px;
+/* ------------------------------------------------------------ spotlight */
+
+/* Cards with .spotlight get a soft yellow light that follows the pointer.
+   MarketingEffects writes --mx / --my; without JS the card is just a card. */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, -200%),
+    rgba(253, 185, 19, 0.16),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 300ms;
+  pointer-events: none;
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------- glowing border */
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+/* A 1px border that a comet of yellow light travels around. */
+.glow-border {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--glow-fill, var(--c-brown)), var(--glow-fill, var(--c-brown))) padding-box,
+    conic-gradient(
+        from var(--border-angle),
+        rgba(253, 185, 19, 0.15) 0%,
+        rgba(253, 185, 19, 0.15) 60%,
+        var(--c-yellow) 80%,
+        rgba(253, 185, 19, 0.15) 100%
+      )
+      border-box;
+  animation: border-spin 6s linear infinite;
+}
+
+/* -------------------------------------------------------------- motion */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes ping-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+.caret {
+  animation: caret 1s steps(1) infinite;
+}
+
+/* Marching dashes on the selected connector line. */
+.animate-dash {
+  animation: dash 900ms linear infinite;
+}
+
+.animate-ping-ring {
+  animation: ping-ring 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-pop-in {
+  animation: pop-in 450ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Hero copy rises in on load, staggered with --delay. */
+.animate-rise {
+  animation: rise 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Only drawn where it can track the scroll; a static full bar would lie. */
+.scroll-progress {
+  display: none;
+}
+
+/* Scroll-driven motion. Browsers without view timelines skip the whole block
+   and show everything in its final state. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    .scroll-progress {
+      display: block;
+      transform-origin: left;
+      animation: grow-x linear both;
+      animation-timeline: scroll(root);
+    }
+
+    /* A rail that fills as its list scrolls past. The fill reads the rail's
+       own timeline, so its scale transform cannot skew the measurement. */
+    .rail {
+      view-timeline: --rail block;
+    }
+
+    .rail-fill {
+      transform-origin: top;
+      animation: grow-y linear both;
+      animation-timeline: --rail;
+      animation-range: cover 15% cover 65%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-pop-in,
+  .animate-ping-ring,
+  .glow-border,
+  .animate-dash,
+  .caret {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------- rolling number */
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+/* Set --num inline; the digits roll to each new value. Pair with an sr-only
+   copy of the number, since generated content is not reliably announced. */
+.count {
+  transition: --num 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  counter-reset: num var(--num);
+}
+
+.count::after {
+  content: counter(num);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .count {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------- faq */
+
+details.faq::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    content-visibility 350ms allow-discrete;
+}
+
+details.faq[open]::details-content {
+  block-size: auto;
+}
+
+/* ----------------------------------------------------------- range input */
+
+.range {
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--c-yellow) 0 var(--fill, 0%),
+    rgba(55, 48, 18, 0.12) var(--fill, 0%) 100%
+  );
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--c-yellow);
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 1.5px var(--c-ink);
+  transition: transform 150ms;
+}
+
+.range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--c-yellow);
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 1.5px var(--c-ink);
+}
+
+.range:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.range:focus-visible {
+  outline: 2px solid var(--c-yellow);
+  outline-offset: 6px;
 }

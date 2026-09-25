@@ -37,8 +37,8 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 76, lineHeight: 1.1 }}>
-            <div>Write manuals faster.</div>
-            <div style={{ color: "#fdb913" }}>Keep them current.</div>
+            <div>Write the standard. Run the checks.</div>
+            <div style={{ color: "#fdb913" }}>Prove the work.</div>
           </div>
           <div style={{ fontSize: 30, color: "rgba(250, 247, 239, 0.72)", maxWidth: 880 }}>
             Write better documents, keep them current, and collect the records that show the work was done.

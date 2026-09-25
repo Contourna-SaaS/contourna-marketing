@@ -11,12 +11,12 @@ export function BrandLogo({ variant = "dark" }: BrandLogoProps) {
       <Image
         src="/images/contourna-mark.svg"
         alt=""
-        width={32}
-        height={32}
+        width={26}
+        height={26}
         preload
       />
       <span
-        className={`text-lg font-semibold ${variant === "light" ? "text-white" : "text-c-brown"}`}
+        className={`text-base font-semibold tracking-[0.02em] ${variant === "light" ? "text-white" : "text-c-ink"}`}
       >
         CONTOURNA
       </span>
