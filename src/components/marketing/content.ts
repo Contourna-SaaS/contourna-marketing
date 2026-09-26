@@ -14,7 +14,6 @@ import {
   ShieldCheck,
   Sparkles,
   Table2,
-  Users,
 } from "lucide-react";
 
 /**
@@ -160,29 +159,6 @@ export const operationsFacts = [
     title: "Products & batches",
     description:
       "Keep a register of what you make and the checks each product needs, with a required batch or lot number on every product record.",
-  },
-] as const;
-
-/* -------------------------------------------------------------- team facts */
-
-export const accessFacts = [
-  {
-    icon: Users,
-    title: "Only editors need a seat",
-    description:
-      "Pay for the people who write and approve documents. Everyone who reads documents, fills forms, or suggests a change is free, with no limit.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Give people the right access",
-    description:
-      "Set access by role across documents, manuals, teams, departments, and settings. People see what they need without wading through what they do not.",
-  },
-  {
-    icon: Table2,
-    title: "Departments and job roles",
-    description:
-      "Organize manuals, documents, and form schedules by department and job role so each person gets the standards that apply to them.",
   },
 ] as const;
 

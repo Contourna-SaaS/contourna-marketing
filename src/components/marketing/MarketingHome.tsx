@@ -21,7 +21,6 @@ import {
   EXTRA_SEAT_MONTHLY,
   INCLUDED_EDITOR_SEATS,
   TRIAL_DAYS,
-  accessFacts,
   editorHighlights,
   faqs,
   formFieldTypes,
@@ -56,7 +55,6 @@ import {
   signupUrl,
 } from "./primitives";
 import { PricingPlans } from "./PricingPlans";
-import { SeatCalculator } from "./SeatCalculator";
 import { SiteHeader } from "./SiteHeader";
 import { SpcChartDemo } from "./SpcChartDemo";
 import { SpotlightTracker } from "./SpotlightTracker";
@@ -489,44 +487,11 @@ function QualityData() {
   );
 }
 
-/* ----------------------------------------------------------------- access */
-
-function Access() {
-  return (
-    <Section className="bg-c-off-white">
-      <div className="reveal mx-auto max-w-3xl text-center">
-        <div className="flex justify-center">
-          <Eyebrow>Team &amp; access</Eyebrow>
-        </div>
-        <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Roll it out to everyone without paying for everyone</h2>
-        <p className="mt-6 text-lg leading-8 text-c-grey-light">
-          A quality system only works when people can use it. You pay for the people who write and approve
-          documents. Everyone else can read, submit forms, and suggest changes for free.
-        </p>
-      </div>
-      <div className="reveal mt-14">
-        <SeatCalculator />
-      </div>
-      <div className="mt-5 grid gap-5 md:grid-cols-3">
-        {accessFacts.map(({ icon: Icon, title, description }) => (
-          <article key={title} className="spotlight reveal rounded-3xl border border-c-brown/10 bg-white p-7">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-c-brown ring-1 ring-c-brown/10">
-              <Icon className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <h3 className="mt-5 text-lg font-semibold text-c-ink">{title}</h3>
-            <p className="mt-2 text-[15px] leading-7 text-c-grey-light">{description}</p>
-          </article>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
 /* ----------------------------------------------------------- how it works */
 
 function HowItWorks() {
   return (
-    <Section id="how-it-works" className="bg-white">
+    <Section id="how-it-works" className="bg-c-off-white">
       <div className="grid items-start gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div className="lg:sticky lg:top-28">
           <Eyebrow>How it works</Eyebrow>
@@ -538,7 +503,7 @@ function HowItWorks() {
             href={signupUrl}
             className={cn(
               buttonBase,
-              "mt-10 bg-c-brown text-white hover:bg-c-yellow hover:text-c-brown focus-visible:ring-c-brown focus-visible:ring-offset-white",
+              "mt-10 bg-c-brown text-white hover:bg-c-yellow hover:text-c-brown focus-visible:ring-c-brown focus-visible:ring-offset-c-off-white",
             )}
           >
             Start free trial
@@ -556,12 +521,12 @@ function HowItWorks() {
               return (
                 <li key={step.title} className="reveal relative">
                   <span
-                    className="absolute -left-12 top-7 flex h-9 w-9 items-center justify-center rounded-full bg-c-brown text-c-yellow ring-4 ring-white sm:-left-16 sm:h-[3.25rem] sm:w-[3.25rem]"
+                    className="absolute -left-12 top-7 flex h-9 w-9 items-center justify-center rounded-full bg-c-brown text-c-yellow ring-4 ring-c-off-white sm:-left-16 sm:h-[3.25rem] sm:w-[3.25rem]"
                     aria-hidden="true"
                   >
                     <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                   </span>
-                  <div className="rounded-[1.75rem] border border-c-brown/10 bg-c-off-white p-7 text-c-ink sm:p-9">
+                  <div className="rounded-[1.75rem] bg-white p-7 text-c-ink shadow-card sm:p-9">
                     <div className="flex items-baseline justify-between gap-4">
                       <h3 className="text-3xl font-bold tracking-tight sm:text-4xl">{step.title}</h3>
                       <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-c-brown/50">Step {index + 1}</span>
@@ -582,7 +547,7 @@ function HowItWorks() {
 
 function Pricing() {
   return (
-    <Section id="pricing" className="bg-c-off-white">
+    <Section id="pricing" className="bg-white">
       <div className="reveal mx-auto max-w-3xl text-center">
         <div className="flex justify-center">
           <Eyebrow>Pricing</Eyebrow>
@@ -608,7 +573,7 @@ function Pricing() {
 
 function PlaygroundCta() {
   return (
-    <Section id="playground" className="bg-white">
+    <Section id="playground" className="bg-c-off-white">
       <div className="reveal rounded-[2.5rem] bg-c-brown px-6 py-16 text-center text-white sm:px-12 sm:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="inline-flex items-center gap-2 rounded-full border border-c-yellow/40 bg-c-yellow/10 px-3.5 py-1.5 text-xs font-semibold text-c-yellow">
@@ -652,7 +617,7 @@ function PlaygroundCta() {
 
 function Faq() {
   return (
-    <Section id="faq" className="bg-c-off-white">
+    <Section id="faq" className="bg-white">
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Eyebrow>Questions</Eyebrow>
@@ -802,7 +767,6 @@ export function MarketingHome() {
         <FormsBand />
         <Operations />
         <QualityData />
-        <Access />
         <HowItWorks />
         <Pricing />
         <PlaygroundCta />
