@@ -250,7 +250,7 @@ export function OperationsDemo() {
               </button>
             ))}
           </div>
-          <p className="text-sm text-c-brown/55">Pick anything on the map to see its checks.</p>
+          <p className="text-sm text-c-brown/55">Select a location, machine, or product to see its checks.</p>
         </div>
 
         <div className="bg-dot-grid relative mt-4 rounded-3xl bg-c-off-white p-3 sm:aspect-[16/10] sm:p-0">

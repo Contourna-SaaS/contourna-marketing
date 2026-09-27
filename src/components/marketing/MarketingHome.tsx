@@ -89,14 +89,15 @@ function Hero() {
             id="hero-heading"
             className="animate-rise text-[clamp(2.75rem,6vw,4.75rem)] font-extrabold leading-[0.98] tracking-[-0.045em] text-c-ink"
           >
-            Write the standard. Run the checks.{" "}
+            Manuals, forms and operations{" "}
             <span className="box-decoration-clone bg-[linear-gradient(transparent_62%,#fbcb5c_62%,#fbcb5c_92%,transparent_92%)]">
-              Prove the work.
+              in one place.
             </span>
           </h1>
           <p className="animate-rise max-w-[520px] text-[17px] leading-[1.7] text-[#6b6450]" style={delay(160)}>
             Write policies, procedures, and work instructions with AI. Build the forms your team fills in, schedule
-            checks for every location, machine, and product, and keep every record in one place.
+            checks for your locations, equipment, and products, and keep the completed records with the documents
+            they belong to.
           </p>
           <div className="animate-rise flex flex-col gap-3 sm:flex-row" style={delay(240)}>
             <a href={signupUrl} className={primaryLinkClass}>
@@ -125,10 +126,10 @@ function ImportBand() {
         <div className="reveal">
           <SpotIllustration name="documents" className="-ml-3 mb-6" />
           <Eyebrow>Start where you are</Eyebrow>
-          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Don&apos;t start from scratch. Bring what already works</h2>
+          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Bring the documents you already have</h2>
           <p className="mt-6 max-w-xl text-lg leading-8 text-c-grey-light">
             Import files from your computer, Notion, or Google Drive. They arrive as drafts, ready to update.
-            Contourna can also suggest how they fit together, so you do not have to sort a pile of files by hand.
+            Contourna can also suggest how they fit together, so you don&apos;t have to organize them yourself.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {importModes.map((mode) => (
@@ -179,11 +180,11 @@ function Manuals() {
     <Section className="overflow-x-clip bg-c-off-white">
       <div className="reveal max-w-3xl">
         <Eyebrow>Manuals</Eyebrow>
-        <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Give every document a place and a purpose</h2>
+        <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Organize your documents into manuals</h2>
         <p className="mt-6 text-lg leading-8 text-c-grey-light">
           Organize each manual in four clear levels: the policy, the procedures that support it, the instructions
-          people follow, and the forms that capture the work. It is easy for employees to navigate and easy for
-          auditors to understand.
+          people follow, and the forms that capture the work. Employees can find what they need, and auditors
+          can see how everything connects.
         </p>
       </div>
       <div className="mt-14">
@@ -201,7 +202,7 @@ function Writing() {
       <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <div className="reveal">
           <Eyebrow>Write with AI</Eyebrow>
-          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Turn your know-how into a solid first draft</h2>
+          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Write a first draft with AI</h2>
           <p className="mt-6 max-w-xl text-lg leading-8 text-c-grey-light">
             Describe what you need or start with an existing document. When the wording needs work, highlight the
             passage, ask for a change, and review the result before it touches your document.
@@ -228,7 +229,7 @@ function Writing() {
         <div className="reveal">
           <p className="mb-4 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-c-brown/50">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-c-yellow" aria-hidden="true" />
-            Try it: pick a request
+            Try it
           </p>
           <AiRewriteDemo />
         </div>
@@ -282,7 +283,7 @@ function Reviews() {
             <SpotIllustration name="reviews" className="-ml-3 mb-6" />
             <Eyebrow>Review &amp; approve</Eyebrow>
             <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>
-              Let people keep doing the work. Keep documents honest
+              Collect suggestions from the people doing the work
             </h2>
             <p className="mt-6 text-lg leading-8 text-c-grey-light">
               Anyone can flag a step that no longer matches the work. Reviewers see the suggestion beside the exact
@@ -315,7 +316,7 @@ function Reviews() {
             <>
               <Eyebrow>Review cycles</Eyebrow>
               <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>
-                Know what&apos;s due for review before it becomes overdue
+                Schedule reviews so documents stay up to date
               </h2>
               <p className="mt-6 text-lg leading-8 text-c-grey-light">
                 Choose how often each document should be reviewed and Contourna puts it in the queue at the right
@@ -381,11 +382,11 @@ function FormsBand() {
         <SpotIllustration name="forms" className="-ml-3 mb-6" />
         <Eyebrow>Forms &amp; records</Eyebrow>
         <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>
-          Tell Contourna what you need to record. It builds the form
+          Describe the form you need and Contourna builds it
         </h2>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-c-brown/75">
           Start with a short description and get a form with the right fields, sections, and quality metrics. Make any
-          changes, publish it, and assign it on a schedule so completed work always leaves a record.
+          changes, publish it, and assign it on a schedule so every completed check is recorded.
         </p>
       </div>
 
@@ -398,7 +399,7 @@ function FormsBand() {
           items={[
             "Ask the assistant to add, edit, or reorder fields. You approve every change.",
             "Assign a form to individuals or entire departments.",
-            "See missed submissions before they slip through the cracks.",
+            "See which scheduled submissions were missed.",
             "Keep each record attached to the procedure it supports.",
           ]}
         />
@@ -426,7 +427,7 @@ function Operations() {
         <div>
           <SpotIllustration name="operations" className="-ml-3 mb-6" />
           <Eyebrow>Operations</Eyebrow>
-          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Attach the checks to the things you run</h2>
+          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Assign checks to your locations, equipment, and products</h2>
         </div>
         <p className="text-lg leading-8 text-c-grey-light lg:pb-2">
           Add your locations, equipment, and products, then assign the forms each one needs. Checks are organized by
@@ -461,7 +462,7 @@ function QualityData() {
       <div className="reveal grid gap-6 lg:grid-cols-2 lg:items-end">
         <div>
           <Eyebrow>Quality data</Eyebrow>
-          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>See when a process starts to drift</h2>
+          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Spot when a process starts to drift</h2>
         </div>
         <p className="text-lg leading-8 text-c-grey-light lg:pb-2">
           Mark any form field as a quality metric and each submission updates its control chart. Contourna calculates
@@ -495,9 +496,9 @@ function HowItWorks() {
       <div className="grid items-start gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div className="lg:sticky lg:top-28">
           <Eyebrow>How it works</Eyebrow>
-          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>A simpler way to keep standards current</h2>
+          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>From first draft to completed record</h2>
           <p className="mt-6 text-lg leading-8 text-c-brown/80">
-            Go from a rough idea to a published standard, then keep the records that show it is being followed.
+            Draft a document, review it, publish it, then collect the records that show it&apos;s being followed.
           </p>
           <a
             href={signupUrl}
@@ -552,7 +553,7 @@ function Pricing() {
         <div className="flex justify-center">
           <Eyebrow>Pricing</Eyebrow>
         </div>
-        <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Choose the right fit for your quality system</h2>
+        <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Two plans, both with a {TRIAL_DAYS}-day free trial</h2>
         <p className="mt-6 text-lg leading-8 text-c-grey-light">
           All prices are in CAD. Both plans include {INCLUDED_EDITOR_SEATS} editor seats, unlimited readers and form
           users, and a {TRIAL_DAYS}-day free trial.
@@ -579,7 +580,7 @@ function PlaygroundCta() {
           <p className="inline-flex items-center gap-2 rounded-full border border-c-yellow/40 bg-c-yellow/10 px-3.5 py-1.5 text-xs font-semibold text-c-yellow">
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Live demo. No account required.
           </p>
-          <h2 className={cn(displayHeadingClass, "mt-6")}>Try the document writer for yourself</h2>
+          <h2 className={cn(displayHeadingClass, "mt-6")}>Try the document writer without an account</h2>
           <div className="mx-auto mt-10 flex max-w-2xl items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.06] px-5 py-4 text-left">
             <Sparkles className="h-5 w-5 shrink-0 text-c-yellow" aria-hidden="true" />
             <p className="min-w-0 truncate text-lg text-white">
@@ -621,16 +622,16 @@ function Faq() {
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Eyebrow>Questions</Eyebrow>
-          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Questions before you try it?</h2>
+          <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Frequently asked questions</h2>
           <p className="mt-6 max-w-md text-lg leading-8 text-c-grey-light">
-            Still unsure?{" "}
+            Have another question?{" "}
             <a
               href="mailto:hello@contourna.com"
               className="font-semibold text-c-brown underline decoration-c-yellow decoration-2 underline-offset-4 hover:text-c-yellow"
             >
               Email us
             </a>{" "}
-            and a human will answer.
+            and we&apos;ll get back to you.
           </p>
         </div>
         <div className="border-t border-c-brown/15">
@@ -689,11 +690,11 @@ function Footer() {
         <div className="grid items-center gap-10 border-b border-white/10 pb-14 lg:grid-cols-[1fr_auto]">
           <div className="max-w-xl">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Build a quality system people can <span className="text-c-yellow">actually follow</span>
+              Try Contourna free for {TRIAL_DAYS} days
             </h2>
             <p className="mt-3 text-[15px] leading-7 text-white/60">
-              Replace scattered files and manual follow-up with documents that stay current and records that are ready
-              when you need them.
+              Import your existing documents, set up your first manual, and invite your team. You won&apos;t be charged
+              until the trial ends.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a href={signupUrl} className={primaryOnColorLinkClass}>
@@ -718,7 +719,7 @@ function Footer() {
           <div>
             <BrandLogo variant="light" />
             <p className="mt-4 max-w-xs text-sm leading-6 text-white/55">
-              Write the standard, run the checks, and keep the records that prove the work was done.
+              Manuals, forms, and operations in one place.
             </p>
           </div>
           {footerColumns.map((column) => (
