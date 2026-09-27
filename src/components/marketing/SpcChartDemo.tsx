@@ -250,7 +250,7 @@ export function SpcChartDemo() {
             <RotateCcw className="h-4 w-4" aria-hidden="true" />
           </button>
           <span className="ml-auto text-sm text-c-brown/55">
-            Log readings or simulate drift and watch the rules react.
+            Log a reading or simulate drift to see how the rules respond.
           </span>
         </div>
         <div className="mt-6 grid gap-3 border-t border-c-line pt-6 lg:grid-cols-[1.4fr_1fr]" aria-live="polite">
