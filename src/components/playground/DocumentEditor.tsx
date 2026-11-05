@@ -2,7 +2,7 @@
 
 import { FileText, RotateCcw, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useMemo, useRef } from "react";
+import { Component, useMemo, useRef, type ReactNode } from "react";
 
 import { extractPlaygroundSections } from "@/features/playground/editorContent";
 import type { GeneratedPlaygroundDocument, PlaygroundQuota } from "@/features/playground/types";
@@ -14,6 +14,31 @@ const PublicLexicalEditor = dynamic(
     loading: () => <div className="min-h-[530px] animate-pulse bg-c-yellow-light" />,
   },
 );
+
+class EditorPreviewBoundary extends Component<{ children: ReactNode; content: string }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (!this.state.failed) return this.props.children;
+    return (
+      <div role="alert" className="p-6 text-sm leading-6 text-c-brown">
+        <p className="font-semibold">We could not open this draft in the editor.</p>
+        <p className="mt-2">Your draft is still saved in this tab. Download it before starting over.</p>
+        <a
+          href={`data:application/json;charset=utf-8,${encodeURIComponent(this.props.content)}`}
+          download="contourna-draft.json"
+          className="mt-4 inline-block underline underline-offset-4"
+        >
+          Download draft
+        </a>
+      </div>
+    );
+  }
+}
 
 interface DocumentEditorProps {
   document: GeneratedPlaygroundDocument;
@@ -116,7 +141,9 @@ export function DocumentEditor({
               </p>
             </div>
             <div ref={editorRootRef} className="min-h-[530px] overflow-hidden border border-c-brown/10 bg-white [&_h1]:scroll-mt-28">
-              <PublicLexicalEditor initialContent={document.documentContent} onChange={onContentChange} />
+              <EditorPreviewBoundary content={document.documentContent}>
+                <PublicLexicalEditor initialContent={document.documentContent} onChange={onContentChange} />
+              </EditorPreviewBoundary>
             </div>
           </div>
         </div>

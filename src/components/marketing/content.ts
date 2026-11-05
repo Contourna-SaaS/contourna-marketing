@@ -68,7 +68,7 @@ export const importModes = [
   {
     title: "Convert to editable",
     description:
-      "Turn the file into a Contourna document you can update. Choose whether you want AI to clean up the writing too.",
+      "Convert PDF, DOCX, or Markdown into an editable document while keeping your original wording. The layout may change.",
   },
   {
     title: "Upload original",
@@ -158,7 +158,7 @@ export const operationsFacts = [
     icon: Package,
     title: "Products & batches",
     description:
-      "Keep a register of what you make and the checks each product needs, with a required batch or lot number on every product record.",
+      "Keep a register of what you make and the checks each product needs, with batch or lot fields you can make required on your forms.",
   },
 ] as const;
 
@@ -201,13 +201,14 @@ export const steps = [
 export const TRIAL_DAYS = 14;
 export const INCLUDED_EDITOR_SEATS = 3;
 export const EXTRA_SEAT_MONTHLY = 39;
+export const EXTRA_SEAT_ANNUAL = 374;
 export const ANNUAL_DISCOUNT_PERCENT = 20;
 
 export const plans = [
   {
     name: "Generate",
     monthly: 199,
-    annualMonthly: 159,
+    annualTotal: 1910,
     description: "For teams that need one place to write, organize, review, and control their documents.",
     features: [
       "Policies, procedures, work instructions, training",
@@ -222,7 +223,7 @@ export const plans = [
   {
     name: "Control",
     monthly: 399,
-    annualMonthly: 319,
+    annualTotal: 3830,
     description: "For teams that also need forms, records, and quality data to show the process is working.",
     features: [
       "Everything in Generate",
@@ -248,7 +249,7 @@ export const faqs = [
   {
     question: "Who needs a paid seat?",
     answer:
-      `Only the people who write and approve documents need a paid seat. Every plan includes ${INCLUDED_EDITOR_SEATS} editor seats, and extra seats are $${EXTRA_SEAT_MONTHLY} CAD per month. Everyone else can read published documents, fill forms, and suggest changes for free.`,
+      `Only the people who write and approve documents need a paid seat. Every plan includes ${INCLUDED_EDITOR_SEATS} editor seats, and extra seats are $${EXTRA_SEAT_MONTHLY} CAD billed monthly or $${EXTRA_SEAT_ANNUAL} CAD billed annually. Everyone else can read published documents, fill forms, and suggest changes for free.`,
   },
   {
     question: "Can we bring the documents we already have?",

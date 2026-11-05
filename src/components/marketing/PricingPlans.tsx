@@ -1,7 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 
 import { cn } from "@/lib/cn";
 
@@ -52,7 +52,7 @@ export function PricingPlans() {
 
       <div className="mt-12 grid gap-6 lg:grid-cols-2">
         {plans.map((plan) => {
-          const price = billing === "annual" ? plan.annualMonthly : plan.monthly;
+          const price = billing === "annual" ? (plan.annualTotal / 12).toFixed(2) : plan.monthly;
           const dark = plan.highlight;
           return (
             <article
@@ -73,8 +73,7 @@ export function PricingPlans() {
               </p>
               <p className="mt-8 flex items-end gap-2">
                 <span className={cn("text-6xl font-extrabold tracking-[-0.04em] tabular-nums", dark ? "text-white" : "text-c-ink")}>
-                  $<span className="count" style={{ "--num": price } as CSSProperties} aria-hidden="true" />
-                  <span className="sr-only">{price}</span>
+                  ${price}
                 </span>
                 <span className={cn("pb-2 text-sm font-medium", dark ? "text-white/55" : "text-c-grey-light")}>CAD / month</span>
                 {billing === "annual" ? (
@@ -83,8 +82,8 @@ export function PricingPlans() {
               </p>
               <p className={cn("mt-2 text-sm font-semibold", dark ? "text-c-yellow" : "text-c-brown")}>
                 {billing === "annual"
-                  ? `Billed annually. You save ${ANNUAL_DISCOUNT_PERCENT}%`
-                  : `Or $${plan.annualMonthly}/month billed annually. Save ${ANNUAL_DISCOUNT_PERCENT}%`}
+                  ? `$${plan.annualTotal.toLocaleString("en-CA")} CAD billed annually. Save about ${ANNUAL_DISCOUNT_PERCENT}%`
+                  : `Or $${plan.annualTotal.toLocaleString("en-CA")} CAD billed annually. Save about ${ANNUAL_DISCOUNT_PERCENT}%`}
               </p>
               <ul className={cn("mt-8 space-y-3 border-t pt-8", dark ? "border-white/10" : "border-c-brown/10")}>
                 {plan.features.map((feature) => (
