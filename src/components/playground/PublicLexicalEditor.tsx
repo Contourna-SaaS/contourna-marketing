@@ -18,7 +18,9 @@ import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import type { EditorState } from "lexical";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
+
+import { preparePlaygroundEditorContent } from "@/features/playground/editorContent";
 
 import { EditorToolbar } from "./EditorToolbar";
 
@@ -60,6 +62,7 @@ interface PublicLexicalEditorProps {
 }
 
 export function PublicLexicalEditor({ initialContent, onChange }: PublicLexicalEditorProps) {
+  const editorContent = useMemo(() => preparePlaygroundEditorContent(initialContent), [initialContent]);
   const handleChange = useCallback(
     (editorState: EditorState) => onChange(JSON.stringify(editorState.toJSON())),
     [onChange],
@@ -70,7 +73,7 @@ export function PublicLexicalEditor({ initialContent, onChange }: PublicLexicalE
       initialConfig={{
         namespace: "ContournaPublicEditor",
         theme: editorTheme,
-        editorState: initialContent,
+        editorState: editorContent,
         nodes: [
           HeadingNode,
           QuoteNode,

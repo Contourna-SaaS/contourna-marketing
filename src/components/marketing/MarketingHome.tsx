@@ -19,6 +19,7 @@ import { cn } from "@/lib/cn";
 import { AiRewriteDemo } from "./AiRewriteDemo";
 import {
   EXTRA_SEAT_MONTHLY,
+  EXTRA_SEAT_ANNUAL,
   INCLUDED_EDITOR_SEATS,
   TRIAL_DAYS,
   editorHighlights,
@@ -465,7 +466,7 @@ function QualityData() {
           <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Spot when a process starts to drift</h2>
         </div>
         <p className="text-lg leading-8 text-c-grey-light lg:pb-2">
-          Mark any form field as a quality metric and each submission updates its control chart. Contourna calculates
+          Mark a number or duration field as a quality metric and each submission updates its control chart. Contourna calculates
           the limits, checks standard SPC rules, and explains what the pattern means in plain language.
         </p>
       </div>
@@ -563,8 +564,8 @@ function Pricing() {
         <PricingPlans />
       </div>
       <p className="mt-8 text-center text-sm leading-7 text-c-grey-light">
-        Extra editor seats are ${EXTRA_SEAT_MONTHLY} CAD per month each. Cancel or switch plans yourself from the
-        billing portal.
+        Extra editor seats are ${EXTRA_SEAT_MONTHLY} CAD billed monthly or ${EXTRA_SEAT_ANNUAL} CAD billed annually each.
+        Manage plans and seats in Billing settings; cancel through the billing portal.
       </p>
     </Section>
   );
