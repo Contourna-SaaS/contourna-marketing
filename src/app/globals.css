@@ -22,7 +22,7 @@
   --color-c-red: var(--c-red);
   --color-c-ink: var(--c-ink);
   --color-c-line: var(--c-line);
-  --font-sans: var(--font-poppins), sans-serif;
+  --font-sans: "tt-commons-pro", "Helvetica Neue", Arial, sans-serif;
 
   /* One shadow scale for every raised surface on the site: cards lift with
      --shadow-card, product illustrations float with --shadow-panel. */
@@ -49,7 +49,7 @@ body {
   min-width: 320px;
   background: var(--c-off-white);
   color: var(--c-brown);
-  font-family: var(--font-poppins), sans-serif;
+  font-family: var(--font-sans);
 }
 
 button,

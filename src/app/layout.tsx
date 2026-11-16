@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 
 import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://contourna.com"),
@@ -42,7 +34,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${poppins.variable} scroll-smooth`}>
+    <html lang="en" className="scroll-smooth">
+      <head>
+        {/* Adobe Fonts kit for tt-commons-pro, shared with the product app. */}
+        <link rel="stylesheet" href="https://use.typekit.net/nnj4ggc.css" />
+      </head>
       <body>{children}</body>
     </html>
   );
