@@ -22,7 +22,7 @@
   --color-c-red: var(--c-red);
   --color-c-ink: var(--c-ink);
   --color-c-line: var(--c-line);
-  --font-sans: "tt-commons-pro", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-roboto), "Roboto", "Helvetica Neue", Arial, sans-serif;
 
   /* One shadow scale for every raised surface on the site: cards lift with
      --shadow-card, product illustrations float with --shadow-panel. */

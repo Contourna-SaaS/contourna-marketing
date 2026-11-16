@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
 
 import "./globals.css";
+
+// Same family as the product app and mobile. Variable font, so every weight is real.
+const roboto = Roboto({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://contourna.com"),
@@ -34,11 +43,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        {/* Adobe Fonts kit for tt-commons-pro, shared with the product app. */}
-        <link rel="stylesheet" href="https://use.typekit.net/nnj4ggc.css" />
-      </head>
+    <html lang="en" className={`${roboto.variable} scroll-smooth`}>
       <body>{children}</body>
     </html>
   );
