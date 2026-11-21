@@ -1,11 +1,12 @@
 # Contourna Marketing
 
-Standalone Next.js marketing site for `contourna.com` and `www.contourna.com`,
-including the public `/playground` acquisition flow. The authenticated product
+Standalone Next.js marketing site for `contourna.com` and `www.contourna.com`.
+The `/playground` route is hidden for now: its page is removed, but the code in
+`src/components/playground` and `src/features/playground` is kept. The authenticated product
 at `app.contourna.com` is deployed from `contourna-frontend`.
 
 Follow [SETUP.md](SETUP.md) for environment files, installation, local startup,
-checks and the playground browser smoke test. Local marketing uses
+and checks. Local marketing uses
 `http://localhost:3000`; the local product uses :3001.
 
 Read [AGENTS.md](AGENTS.md) before editing. Keep product Clerk keys, Apollo and

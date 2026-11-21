@@ -5,7 +5,8 @@
   --c-brown: #373012;
   --c-off-white: #faf7ef;
   --c-yellow-light: #fffae0;
-  --c-grey-light: #787979;
+  /* Darkened from the app's #787979, which fails 4.5:1 on the off-white sections. */
+  --c-grey-light: #6b6c6c;
   --c-red: #c93c32;
   --c-ink: #161616;
   --c-line: #e8e3d5;
@@ -28,7 +29,6 @@
      --shadow-card, product illustrations float with --shadow-panel. */
   --shadow-card: 0 18px 40px -28px rgba(55, 48, 18, 0.45);
   --shadow-panel: 0 40px 90px -45px rgba(55, 48, 18, 0.55);
-  --shadow-glow: 0 0 0 1px rgba(253, 185, 19, 0.25), 0 30px 80px -30px rgba(253, 185, 19, 0.45);
 }
 
 /* In the base layer so border-color utilities can override it; unlayered, it
@@ -82,77 +82,14 @@ select {
   mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
 }
 
-/* ------------------------------------------------------------ spotlight */
-
-/* Cards with .spotlight get a soft yellow light that follows the pointer.
-   MarketingEffects writes --mx / --my; without JS the card is just a card. */
-.spotlight {
-  position: relative;
-  isolation: isolate;
-}
-
-.spotlight::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: radial-gradient(
-    420px circle at var(--mx, 50%) var(--my, -200%),
-    rgba(253, 185, 19, 0.16),
-    transparent 45%
-  );
-  opacity: 0;
-  transition: opacity 300ms;
-  pointer-events: none;
-}
-
-.spotlight:hover::before {
-  opacity: 1;
-}
-
-/* ------------------------------------------------------- glowing border */
-
-@property --border-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes border-spin {
-  to {
-    --border-angle: 360deg;
-  }
-}
-
-/* A 1px border that a comet of yellow light travels around. */
-.glow-border {
-  border: 1px solid transparent;
-  background:
-    linear-gradient(var(--glow-fill, var(--c-brown)), var(--glow-fill, var(--c-brown))) padding-box,
-    conic-gradient(
-        from var(--border-angle),
-        rgba(253, 185, 19, 0.15) 0%,
-        rgba(253, 185, 19, 0.15) 60%,
-        var(--c-yellow) 80%,
-        rgba(253, 185, 19, 0.15) 100%
-      )
-      border-box;
-  animation: border-spin 6s linear infinite;
-}
-
-/* -------------------------------------------------------------- motion */
-
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(28px);
-    filter: blur(8px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
 
@@ -181,15 +118,6 @@ select {
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-@keyframes grow-x {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
   }
 }
 
@@ -231,11 +159,6 @@ select {
   animation-delay: var(--delay, 0ms);
 }
 
-/* Only drawn where it can track the scroll; a static full bar would lie. */
-.scroll-progress {
-  display: none;
-}
-
 /* Scroll-driven motion. Browsers without view timelines skip the whole block
    and show everything in its final state. */
 @supports (animation-timeline: view()) {
@@ -244,13 +167,6 @@ select {
       animation: rise linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 55%;
-    }
-
-    .scroll-progress {
-      display: block;
-      transform-origin: left;
-      animation: grow-x linear both;
-      animation-timeline: scroll(root);
     }
 
     /* A rail that fills as its list scrolls past. The fill reads the rail's
@@ -272,14 +188,11 @@ select {
   .animate-rise,
   .animate-pop-in,
   .animate-ping-ring,
-  .glow-border,
   .animate-dash,
   .caret {
     animation: none;
   }
 }
-
-/* ------------------------------------------------------- rolling number */
 
 @property --num {
   syntax: "<integer>";
@@ -303,8 +216,6 @@ select {
     transition: none;
   }
 }
-
-/* ---------------------------------------------------------------- faq */
 
 details.faq::details-content {
   block-size: 0;

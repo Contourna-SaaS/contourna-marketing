@@ -13,19 +13,16 @@ const navigation = [
   { href: "/#reviews", label: "Reviews" },
   { href: "/#forms", label: "Forms" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/playground", label: "Playground" },
 ];
 
 /**
- * Floating light pill. It sits over the dark hero and the light sections alike,
- * so pages using it leave ~6rem of top padding for it.
+ * Fixed over the page, so pages using it leave ~6rem of top padding for it.
  */
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
-      <div className="scroll-progress fixed inset-x-0 top-0 h-0.5 bg-c-yellow" aria-hidden="true" />
       <div className={`mx-auto max-w-6xl border border-c-line bg-white ${isOpen ? "rounded-[1.75rem]" : "rounded-full"}`}>
         <div className="flex h-14 items-center justify-between pl-[18px] pr-3">
           <BrandLogo />
@@ -49,7 +46,7 @@ export function SiteHeader() {
             </a>
             <a
               href={signupUrl}
-              className="inline-flex h-10 items-center justify-center rounded-full bg-c-yellow px-[18px] text-sm font-bold text-white transition-colors hover:bg-c-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2"
+              className="inline-flex h-10 items-center justify-center rounded-full bg-c-yellow px-[18px] text-sm font-bold text-c-brown transition-colors hover:bg-c-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2"
             >
               Start free trial
             </a>
@@ -81,7 +78,7 @@ export function SiteHeader() {
             </a>
             <a
               href={signupUrl}
-              className="mt-2 inline-flex h-11 items-center justify-center rounded-full bg-c-yellow px-5 font-semibold text-white"
+              className="mt-2 inline-flex h-11 items-center justify-center rounded-full bg-c-yellow px-5 font-semibold text-c-brown"
             >
               Start free trial
             </a>
