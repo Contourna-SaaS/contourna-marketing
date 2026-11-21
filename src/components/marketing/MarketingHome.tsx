@@ -4,13 +4,10 @@ import {
   ClipboardCheck,
   FileUp,
   Layers,
-  MessageSquarePlus,
   Plus,
-  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
 import { BrandLogo } from "@/components/BrandLogo";
@@ -49,7 +46,6 @@ import {
   buttonBase,
   displayHeadingClass,
   loginUrl,
-  ghostOnColorLinkClass,
   primaryLinkClass,
   primaryOnColorLinkClass,
   secondaryLinkClass,
@@ -58,8 +54,6 @@ import {
 import { PricingPlans } from "./PricingPlans";
 import { SiteHeader } from "./SiteHeader";
 import { SpcChartDemo } from "./SpcChartDemo";
-import { SpotlightTracker } from "./SpotlightTracker";
-import { Typewriter } from "./Typewriter";
 
 const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
 
@@ -79,7 +73,6 @@ function CheckList({ items, tone = "light" }: { items: readonly string[]; tone?:
   );
 }
 
-/* ------------------------------------------------------------------- hero */
 
 function Hero() {
   return (
@@ -105,9 +98,9 @@ function Hero() {
               Start free trial
               <ButtonArrow />
             </a>
-            <Link href="/playground" className={secondaryLinkClass}>
-              Try it without an account
-            </Link>
+            <a href="#pricing" className={secondaryLinkClass}>
+              See pricing
+            </a>
           </div>
         </div>
         <div className="animate-rise mx-auto w-full max-w-xl lg:max-w-none" style={delay(200)}>
@@ -118,7 +111,6 @@ function Hero() {
   );
 }
 
-/* ---------------------------------------------------------------- import */
 
 function ImportBand() {
   return (
@@ -130,11 +122,10 @@ function ImportBand() {
           <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Bring the documents you already have</h2>
           <p className="mt-6 max-w-xl text-lg leading-8 text-c-grey-light">
             Import files from your computer, Notion, or Google Drive. They arrive as drafts, ready to update.
-            Contourna can also suggest how they fit together, so you don&apos;t have to organize them yourself.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {importModes.map((mode) => (
-              <div key={mode.title} className="spotlight rounded-2xl border border-c-brown/10 bg-c-off-white p-5">
+              <div key={mode.title} className="rounded-2xl border border-c-brown/10 bg-c-off-white p-5">
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-c-yellow text-c-brown">
                     <FileUp className="h-4 w-4" aria-hidden="true" />
@@ -148,8 +139,7 @@ function ImportBand() {
           <div className="mt-4 flex items-start gap-3 rounded-2xl bg-c-yellow-light p-4">
             <Layers className="mt-0.5 h-5 w-5 shrink-0 text-c-brown" aria-hidden="true" />
             <p className="text-sm leading-6 text-c-brown">
-              Once the import is done, Contourna suggests a practical manual structure based on what each document
-              covers.
+              Once the import is done, Contourna suggests a manual structure based on what each document covers.
             </p>
           </div>
           <div className="mt-8">
@@ -157,7 +147,6 @@ function ImportBand() {
           </div>
           <a href={signupUrl} className={cn(primaryLinkClass, "mt-10")}>
             Import your documents
-            <ButtonArrow />
           </a>
         </div>
         <div className="reveal lg:sticky lg:top-28">
@@ -174,7 +163,6 @@ function ImportBand() {
   );
 }
 
-/* ---------------------------------------------------------------- manuals */
 
 function Manuals() {
   return (
@@ -183,7 +171,7 @@ function Manuals() {
         <Eyebrow>Manuals</Eyebrow>
         <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Organize your documents into manuals</h2>
         <p className="mt-6 text-lg leading-8 text-c-grey-light">
-          Organize each manual in four clear levels: the policy, the procedures that support it, the instructions
+          Each manual has four levels: the policy, the procedures that support it, the instructions
           people follow, and the forms that capture the work. Employees can find what they need, and auditors
           can see how everything connects.
         </p>
@@ -195,14 +183,13 @@ function Manuals() {
   );
 }
 
-/* ---------------------------------------------------------------- writing */
 
 function Writing() {
   return (
     <Section className="bg-white">
       <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <div className="reveal">
-          <Eyebrow>Write with AI</Eyebrow>
+          <Eyebrow>Writing</Eyebrow>
           <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Write a first draft with AI</h2>
           <p className="mt-6 max-w-xl text-lg leading-8 text-c-grey-light">
             Describe what you need or start with an existing document. When the wording needs work, highlight the
@@ -228,10 +215,7 @@ function Writing() {
           </ul>
         </div>
         <div className="reveal">
-          <p className="mb-4 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-c-brown/50">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-c-yellow" aria-hidden="true" />
-            Try it
-          </p>
+          <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.14em] text-c-brown/50">Try it</p>
           <AiRewriteDemo />
         </div>
       </div>
@@ -239,7 +223,6 @@ function Writing() {
   );
 }
 
-/* ---------------------------------------------------------------- reviews */
 
 function StickyRow({
   copy,
@@ -265,7 +248,7 @@ function StickyRow({
 
 function ReviewCard({ icon: Icon, title, children }: { icon: LucideIcon; title: string; children: ReactNode }) {
   return (
-    <article className="spotlight rounded-3xl border border-c-brown/10 bg-white p-7">
+    <article className="rounded-3xl border border-c-brown/10 bg-white p-7">
       <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-c-yellow text-c-brown">
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>
@@ -322,7 +305,7 @@ function Reviews() {
               <p className="mt-6 text-lg leading-8 text-c-grey-light">
                 Choose how often each document should be reviewed and Contourna puts it in the queue at the right
                 time. Reviewers can record findings on the exact section they affect and close the review with a
-                clear decision.
+                decision.
               </p>
               <CheckList
                 items={[
@@ -346,7 +329,7 @@ function Reviews() {
         />
       </div>
 
-      <div className="mt-20 grid gap-5 lg:grid-cols-3">
+      <div className="mt-20 grid gap-5 lg:grid-cols-2">
         <ReviewCard icon={ClipboardCheck} title="Three ways to close a review">
           <ul className="space-y-3">
             {reviewDispositions.map((disposition) => (
@@ -363,18 +346,11 @@ function Reviews() {
             <TagList label="Reason on the record" items={reviewReasons} />
           </div>
         </ReviewCard>
-        <ReviewCard icon={MessageSquarePlus} title="Suggestions from anyone, decisions from reviewers">
-          <p className="text-[15px] leading-7 text-c-grey-light">
-            When someone spots an outdated step, they can flag it from the document itself. The suggestion lands in
-            the review queue with the right section attached, ready for a reviewer to act on.
-          </p>
-        </ReviewCard>
       </div>
     </Section>
   );
 }
 
-/* ------------------------------------------------------------------ forms */
 
 function FormsBand() {
   return (
@@ -413,13 +389,11 @@ function FormsBand() {
       </div>
       <a href={signupUrl} className={cn(primaryLinkClass, "mt-12")}>
         Start free trial
-        <ButtonArrow />
       </a>
     </Section>
   );
 }
 
-/* ------------------------------------------------------------- operations */
 
 function Operations() {
   return (
@@ -440,7 +414,7 @@ function Operations() {
       </div>
       <div className="mt-5 grid gap-5 md:grid-cols-2">
         {operationsFacts.map(({ icon: Icon, title, description }) => (
-          <article key={title} className="spotlight reveal flex gap-4 rounded-3xl border border-c-brown/10 bg-white p-6">
+          <article key={title} className="reveal flex gap-4 rounded-3xl border border-c-brown/10 bg-white p-6">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-c-yellow text-c-brown">
               <Icon className="h-5 w-5" aria-hidden="true" />
             </span>
@@ -455,7 +429,6 @@ function Operations() {
   );
 }
 
-/* ---------------------------------------------------------------- quality */
 
 function QualityData() {
   return (
@@ -475,7 +448,7 @@ function QualityData() {
       </div>
       <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {spcCapabilities.map(({ icon: Icon, title, description }) => (
-          <div key={title} className="spotlight reveal rounded-3xl border border-c-brown/10 bg-c-off-white p-6">
+          <div key={title} className="reveal rounded-3xl border border-c-brown/10 bg-c-off-white p-6">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-c-yellow text-c-brown">
               <Icon className="h-5 w-5" aria-hidden="true" />
             </span>
@@ -489,7 +462,6 @@ function QualityData() {
   );
 }
 
-/* ----------------------------------------------------------- how it works */
 
 function HowItWorks() {
   return (
@@ -509,7 +481,6 @@ function HowItWorks() {
             )}
           >
             Start free trial
-            <ButtonArrow />
           </a>
         </div>
 
@@ -545,7 +516,6 @@ function HowItWorks() {
   );
 }
 
-/* ---------------------------------------------------------------- pricing */
 
 function Pricing() {
   return (
@@ -556,66 +526,22 @@ function Pricing() {
         </div>
         <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Two plans, both with a {TRIAL_DAYS}-day free trial</h2>
         <p className="mt-6 text-lg leading-8 text-c-grey-light">
-          All prices are in CAD. Both plans include {INCLUDED_EDITOR_SEATS} editor seats, unlimited readers and form
-          users, and a {TRIAL_DAYS}-day free trial.
+          All prices are in CAD. Both plans include {INCLUDED_EDITOR_SEATS} editor seats and unlimited readers and form
+          users.
         </p>
       </div>
       <div className="mt-12">
         <PricingPlans />
       </div>
       <p className="mt-8 text-center text-sm leading-7 text-c-grey-light">
-        Extra editor seats are ${EXTRA_SEAT_MONTHLY} CAD billed monthly or ${EXTRA_SEAT_ANNUAL} CAD billed annually each.
+        Extra editor seats are ${EXTRA_SEAT_MONTHLY} CAD billed monthly or ${EXTRA_SEAT_ANNUAL} CAD billed annually.
         Manage plans and seats in Billing settings; cancel through the billing portal.
       </p>
     </Section>
   );
 }
 
-/* ------------------------------------------------------------- playground */
 
-function PlaygroundCta() {
-  return (
-    <Section id="playground" className="bg-c-off-white">
-      <div className="reveal rounded-[2.5rem] bg-c-brown px-6 py-16 text-center text-white sm:px-12 sm:py-20">
-        <div className="mx-auto max-w-3xl">
-          <p className="inline-flex items-center gap-2 rounded-full border border-c-yellow/40 bg-c-yellow/10 px-3.5 py-1.5 text-xs font-semibold text-c-yellow">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Live demo. No account required.
-          </p>
-          <h2 className={cn(displayHeadingClass, "mt-6")}>Try the document writer without an account</h2>
-          <div className="mx-auto mt-10 flex max-w-2xl items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.06] px-5 py-4 text-left">
-            <Sparkles className="h-5 w-5 shrink-0 text-c-yellow" aria-hidden="true" />
-            <p className="min-w-0 truncate text-lg text-white">
-              <span className="text-white/45">Write a </span>
-              <Typewriter
-                phrases={[
-                  "policy for allergen handling",
-                  "procedure for receiving deliveries",
-                  "work instruction for opening the espresso bar",
-                  "procedure for cold room temperature checks",
-                ]}
-              />
-            </p>
-          </div>
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-white/65">
-            Choose a policy, procedure, or work instruction. Adjust the example and create a real draft with the same
-            assistant Contourna customers use. Your work stays in the current browser tab.
-          </p>
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/playground" className={primaryOnColorLinkClass}>
-              Create a free document
-              <ButtonArrow />
-            </Link>
-            <a href={signupUrl} className={ghostOnColorLinkClass}>
-              Start free trial
-            </a>
-          </div>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-/* -------------------------------------------------------------------- faq */
 
 function Faq() {
   return (
@@ -653,7 +579,6 @@ function Faq() {
   );
 }
 
-/* ----------------------------------------------------------------- footer */
 
 const footerColumns = [
   {
@@ -670,7 +595,6 @@ const footerColumns = [
     title: "Get started",
     links: [
       { label: "Pricing", href: "/#pricing" },
-      { label: "Playground", href: "/playground" },
       { label: "FAQ", href: "/#faq" },
     ],
   },
@@ -697,15 +621,9 @@ function Footer() {
               Import your existing documents, set up your first manual, and invite your team. You won&apos;t be charged
               until the trial ends.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a href={signupUrl} className={primaryOnColorLinkClass}>
-                Start free trial
-                <ButtonArrow />
-              </a>
-              <Link href="/playground" className={ghostOnColorLinkClass}>
-                Try the playground
-              </Link>
-            </div>
+            <a href={signupUrl} className={cn(primaryOnColorLinkClass, "mt-7")}>
+              Start free trial
+            </a>
           </div>
           <Image
             src="/images/illustrations/footer-illustration.svg"
@@ -758,7 +676,6 @@ function Footer() {
 export function MarketingHome() {
   return (
     <div className="min-h-screen bg-c-off-white [&_h1]:text-balance [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty">
-      <SpotlightTracker />
       <SiteHeader />
       <main>
         <Hero />
@@ -771,7 +688,6 @@ export function MarketingHome() {
         <QualityData />
         <HowItWorks />
         <Pricing />
-        <PlaygroundCta />
         <Faq />
       </main>
       <Footer />

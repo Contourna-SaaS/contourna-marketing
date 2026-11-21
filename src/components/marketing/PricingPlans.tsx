@@ -6,7 +6,7 @@ import { useState } from "react";
 import { cn } from "@/lib/cn";
 
 import { ANNUAL_DISCOUNT_PERCENT, TRIAL_DAYS, plans } from "./content";
-import { ButtonArrow, primaryLinkClass, primaryOnColorLinkClass, signupUrl } from "./primitives";
+import { primaryLinkClass, primaryOnColorLinkClass, signupUrl } from "./primitives";
 
 type Billing = "monthly" | "annual";
 
@@ -58,8 +58,8 @@ export function PricingPlans() {
             <article
               key={plan.name}
               className={cn(
-                "spotlight relative flex flex-col rounded-[2rem] p-8 sm:p-10",
-                dark ? "glow-border text-white shadow-panel [--glow-fill:var(--c-brown)]" : "border border-c-brown/10 bg-white",
+                "relative flex flex-col rounded-[2rem] p-8 sm:p-10",
+                dark ? "bg-c-brown text-white shadow-panel" : "border border-c-brown/10 bg-white",
               )}
             >
               <div className="flex items-start justify-between gap-4">
@@ -103,7 +103,6 @@ export function PricingPlans() {
               <div className="mt-auto pt-10">
                 <a href={signupUrl} className={cn(dark ? primaryOnColorLinkClass : primaryLinkClass, "w-full")}>
                   Start {TRIAL_DAYS}-day free trial
-                  <ButtonArrow />
                 </a>
               </div>
             </article>

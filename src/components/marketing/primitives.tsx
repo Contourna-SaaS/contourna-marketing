@@ -15,14 +15,14 @@ export const buttonBase =
 
 export const primaryLinkClass = cn(
   buttonBase,
-  "bg-c-yellow text-white hover:bg-c-brown focus-visible:ring-c-yellow focus-visible:ring-offset-c-off-white",
+  "bg-c-yellow text-c-brown hover:bg-c-brown hover:text-white focus-visible:ring-c-yellow focus-visible:ring-offset-c-off-white",
 );
 
 // On brown/yellow sections the default hover would blend into the background,
 // so buttons there hover to white instead.
 export const primaryOnColorLinkClass = cn(
   buttonBase,
-  "bg-c-yellow text-white hover:bg-white hover:text-c-brown focus-visible:ring-white focus-visible:ring-offset-c-brown",
+  "bg-c-yellow text-c-brown hover:bg-white focus-visible:ring-white focus-visible:ring-offset-c-brown",
 );
 
 export const secondaryLinkClass = cn(

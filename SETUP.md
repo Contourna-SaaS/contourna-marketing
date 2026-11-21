@@ -10,13 +10,9 @@ It is the shared file linked by con. Personal overrides belong in
 `.env.development.local`. If using the team dev vault, run `az login` and
 `con secrets pull`; it fills matching existing keys only.
 
-The template points the playground API at staging. To use a configured local
-backend, set `NEXT_PUBLIC_API_URL=http://localhost:4000/api`. Set
-`NEXT_PUBLIC_APP_URL=http://localhost:3001` for local product links.
-The public Turnstile site key must match the selected backend's secret/allowed
-hostnames. Leave playground generation untested until its backend is configured;
-ordinary page rendering does not need an AI call. Do not enable bypasses or
-consume quota as a routine setup check.
+Set `NEXT_PUBLIC_APP_URL=http://localhost:3001` for local product links. The
+playground API and Turnstile values are only needed if the hidden `/playground`
+route is restored.
 
 ## Install and run
 
@@ -37,24 +33,12 @@ npm run build
 ```
 
 Also run `npm audit --omit=dev --audit-level=high` for CI parity. Inspect the rendered
-home page and navigation. The playground navigation regression check requires a
-production build; it does not submit generation or consume quota:
-
-```sh
-npm run build
-npm start -- --port 3101
-# In another terminal:
-node scripts/check-playground-navigation.mjs http://localhost:3101
-```
-
-The check uses `agent-browser`, downloaded by npx on first use, and needs its real
-browser runtime. It covers wizard navigation, values, Back/Forward, reset and direct
-links. Missing browser tooling means that check is unverified.
+home page and navigation. `scripts/check-playground-navigation.mjs` only applies
+while the `/playground` route exists.
 
 ## Troubleshooting and boundaries
 
 - Port occupied: inspect the process owner or choose another port.
-- Playground API failure: check the selected backend, Turnstile hostname and API URL.
 - Product sign-in belongs to the separate frontend at :3001 / `app.contourna.com`.
 - All `NEXT_PUBLIC_*` values ship to the browser. Never add server secrets here.
 

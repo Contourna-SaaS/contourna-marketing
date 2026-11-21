@@ -41,7 +41,7 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        // Static, hand-authored object — no user input reaches this string.
+        // Static, hand-authored object; no user input reaches this string.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <MarketingHome />

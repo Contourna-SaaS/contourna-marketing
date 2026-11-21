@@ -12,17 +12,17 @@ import {
   Package,
   Repeat,
   ShieldCheck,
-  Sparkles,
+  FilePen,
+  MessageSquareText,
   Table2,
 } from "lucide-react";
 
 /**
  * Every claim on this page maps to shipped product behaviour. When a feature
- * changes in `contourna-frontend` / `contourna-backend`, change it here too —
+ * changes in `contourna-frontend` / `contourna-backend`, change it here too:
  * the marketing copy is the contract we show prospects before they sign up.
  */
 
-/* ---------------------------------------------------------------- manuals */
 
 /**
  * The four tiers a manual is built from, worded as the product words them in
@@ -55,7 +55,6 @@ export const manualTiers = [
   },
 ] as const;
 
-/* ---------------------------------------------------------------- imports */
 
 /**
  * Wording follows the Import Documents screen: files, Notion, or Drive; each
@@ -76,7 +75,6 @@ export const importModes = [
   },
 ] as const;
 
-/* --------------------------------------------------------- review cadence */
 
 export const reviewCadences = ["Monthly", "Quarterly", "Semi-annual", "Annual"] as const;
 
@@ -94,7 +92,6 @@ export const reviewReasons = [
   "Regulatory change",
 ] as const;
 
-/* -------------------------------------------------------------- form types */
 
 export const formFieldTypes = [
   "Text",
@@ -118,7 +115,6 @@ export const scheduleCadences = [
   "As needed",
 ] as const;
 
-/* --------------------------------------------------------------- spc facts */
 
 export const spcCapabilities = [
   {
@@ -139,14 +135,13 @@ export const spcCapabilities = [
     description: "Follow Cp, Cpk, mean, and standard deviation as new records come in.",
   },
   {
-    icon: Sparkles,
-    title: "Clear explanations",
+    icon: MessageSquareText,
+    title: "Plain-language explanations",
     description:
-      "Get a plain-language read on stability, trends, and capability, plus a useful next step.",
+      "Read what the chart says about stability, trends, and capability, and what to check next.",
   },
 ] as const;
 
-/* ------------------------------------------------------------- operations */
 
 export const operationsFacts = [
   {
@@ -162,11 +157,10 @@ export const operationsFacts = [
   },
 ] as const;
 
-/* ------------------------------------------------------------------- steps */
 
 export const steps = [
   {
-    icon: Sparkles,
+    icon: FilePen,
     title: "Draft",
     description:
       "Import an existing file or describe what you need. Contourna gives you a structured draft to work from.",
@@ -191,7 +185,6 @@ export const steps = [
   },
 ] as const;
 
-/* ----------------------------------------------------------------- pricing */
 
 /**
  * Mirrors the Stripe CAD catalog v1 in `contourna-backend`
@@ -232,13 +225,12 @@ export const plans = [
       "Operations: locations, equipment, and products",
       "Records kept with the document they support",
       "SPC charts with Nelson and Western Electric rules",
-      "Cp, Cpk, and clear SPC insights",
+      "Cp, Cpk, and plain-language SPC explanations",
     ],
     highlight: true,
   },
 ] as const;
 
-/* --------------------------------------------------------------------- faq */
 
 export const faqs = [
   {
@@ -266,14 +258,8 @@ export const faqs = [
     answer:
       `Choose a plan to start your ${TRIAL_DAYS}-day trial. You will enter a card, but you will not be charged until the trial ends. You can cancel from the billing portal at any time before then.`,
   },
-  {
-    question: "Is the playground connected to my account?",
-    answer:
-      "No. The playground uses the same document assistant as Contourna, but your draft only lives in the current browser tab. It is never saved to a Contourna account, so please do not enter confidential information.",
-  },
 ] as const;
 
-/* ------------------------------------------------------------ misc exports */
 
 export const editorHighlights = [
   { icon: Bot, label: "Highlight a passage and ask for a rewrite" },
