@@ -21,7 +21,6 @@ export const metadata: Metadata = {
   },
   description:
     "Write policies, procedures, and work instructions faster. Keep every document current and collect the records that show the work was done.",
-  icons: { icon: "/images/contourna-mark.svg" },
   alternates: { canonical: "/" },
   openGraph: {
     title: "Contourna | AI document control software",
