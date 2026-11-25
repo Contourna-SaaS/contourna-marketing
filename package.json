@@ -12,16 +12,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@lexical/code": "^0.47.0",
-    "@lexical/link": "^0.47.0",
-    "@lexical/list": "^0.47.0",
-    "@lexical/react": "^0.47.0",
-    "@lexical/rich-text": "^0.47.0",
-    "@lexical/selection": "^0.47.0",
-    "@lexical/table": "^0.47.0",
-    "@marsidev/react-turnstile": "^1.5.3",
     "clsx": "^2.1.1",
-    "lexical": "^0.47.0",
     "lucide-react": "^1.24.0",
     "next": "16.4.3",
     "react": "^19.2.7",
