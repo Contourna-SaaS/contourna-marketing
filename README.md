@@ -1,9 +1,7 @@
 # Contourna Marketing
 
 Standalone Next.js marketing site for `contourna.com` and `www.contourna.com`.
-The `/playground` route is hidden for now: its page is removed, but the code in
-`src/components/playground` and `src/features/playground` is kept. The authenticated product
-at `app.contourna.com` is deployed from `contourna-frontend`.
+The authenticated product at `app.contourna.com` is deployed from `contourna-frontend`.
 
 Follow [SETUP.md](SETUP.md) for environment files, installation, local startup,
 and checks. Local marketing uses

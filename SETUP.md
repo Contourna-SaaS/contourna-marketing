@@ -10,9 +10,7 @@ It is the shared file linked by con. Personal overrides belong in
 `.env.development.local`. If using the team dev vault, run `az login` and
 `con secrets pull`; it fills matching existing keys only.
 
-Set `NEXT_PUBLIC_APP_URL=http://localhost:3001` for local product links. The
-playground API and Turnstile values are only needed if the hidden `/playground`
-route is restored.
+Set `NEXT_PUBLIC_APP_URL=http://localhost:3001` for local product links.
 
 ## Install and run
 
@@ -33,8 +31,7 @@ npm run build
 ```
 
 Also run `npm audit --omit=dev --audit-level=high` for CI parity. Inspect the rendered
-home page and navigation. `scripts/check-playground-navigation.mjs` only applies
-while the `/playground` route exists.
+home page and navigation.
 
 ## Troubleshooting and boundaries
 
