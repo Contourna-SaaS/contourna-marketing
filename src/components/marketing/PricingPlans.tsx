@@ -6,7 +6,8 @@ import { useState } from "react";
 import { cn } from "@/lib/cn";
 
 import { ANNUAL_DISCOUNT_PERCENT, TRIAL_DAYS, plans } from "./content";
-import { primaryLinkClass, primaryOnColorLinkClass, signupUrl } from "./primitives";
+import { primaryLinkClass, primaryOnColorLinkClass } from "./primitives";
+import { SignupLink } from "./SignupLink";
 
 type Billing = "monthly" | "annual";
 
@@ -101,9 +102,12 @@ export function PricingPlans() {
                 ))}
               </ul>
               <div className="mt-auto pt-10">
-                <a href={signupUrl} className={cn(dark ? primaryOnColorLinkClass : primaryLinkClass, "w-full")}>
+                <SignupLink
+                  from={plan.signupFrom}
+                  className={cn(dark ? primaryOnColorLinkClass : primaryLinkClass, "w-full")}
+                >
                   Start {TRIAL_DAYS}-day free trial
-                </a>
+                </SignupLink>
               </div>
             </article>
           );

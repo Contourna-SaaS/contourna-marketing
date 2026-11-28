@@ -6,7 +6,8 @@ import { useState } from "react";
 
 import { BrandLogo } from "@/components/BrandLogo";
 
-import { loginUrl, signupUrl } from "./primitives";
+import { loginUrl } from "./primitives";
+import { SignupLink } from "./SignupLink";
 
 const navigation = [
   { href: "/#documents", label: "Documents" },
@@ -44,12 +45,12 @@ export function SiteHeader() {
             >
               Log in
             </a>
-            <a
-              href={signupUrl}
+            <SignupLink
+              from="header"
               className="inline-flex h-10 items-center justify-center rounded-full bg-c-yellow px-[18px] text-sm font-bold text-c-brown transition-colors hover:bg-c-brown hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-2"
             >
               Start free trial
-            </a>
+            </SignupLink>
           </div>
           <button
             type="button"
@@ -76,12 +77,12 @@ export function SiteHeader() {
             <a href={loginUrl} className="py-3 text-base font-medium text-c-brown hover:text-c-yellow">
               Log in
             </a>
-            <a
-              href={signupUrl}
+            <SignupLink
+              from="header"
               className="mt-2 inline-flex h-11 items-center justify-center rounded-full bg-c-yellow px-5 font-semibold text-c-brown"
             >
               Start free trial
-            </a>
+            </SignupLink>
           </nav>
         ) : null}
       </div>

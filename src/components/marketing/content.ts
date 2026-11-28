@@ -202,6 +202,7 @@ export const plans = [
     name: "Generate",
     monthly: 199,
     annualTotal: 1910,
+    signupFrom: "pricing-generate",
     description: "For teams that need one place to write, organize, review, and control their documents.",
     features: [
       "Policies, procedures, work instructions, training",
@@ -217,6 +218,7 @@ export const plans = [
     name: "Control",
     monthly: 399,
     annualTotal: 3830,
+    signupFrom: "pricing-control",
     description: "For teams that also need forms, records, and quality data to show the process is working.",
     features: [
       "Everything in Generate",
@@ -256,7 +258,7 @@ export const faqs = [
   {
     question: "How does the free trial work?",
     answer:
-      `Choose a plan to start your ${TRIAL_DAYS}-day trial. You will enter a card, but you will not be charged until the trial ends. You can cancel from the billing portal at any time before then.`,
+      `Start your ${TRIAL_DAYS}-day trial with no card. You get the full Control plan. Choose a plan any time before the trial ends, and your first charge is on the day it ends.`,
   },
 ] as const;
 
