@@ -7,7 +7,6 @@ import { cn } from "@/lib/cn";
 const rawAppUrl = process.env.NEXT_PUBLIC_APP_URL || "https://app.contourna.com";
 
 export const appUrl = rawAppUrl.replace(/\/$/, "");
-export const signupUrl = `${appUrl}/signup`;
 export const loginUrl = `${appUrl}/login`;
 
 export const buttonBase =

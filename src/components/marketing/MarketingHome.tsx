@@ -49,9 +49,10 @@ import {
   primaryLinkClass,
   primaryOnColorLinkClass,
   secondaryLinkClass,
-  signupUrl,
 } from "./primitives";
 import { PricingPlans } from "./PricingPlans";
+import { SignupLink } from "./SignupLink";
+import type { SignupSource } from "./signupLinks";
 import { SiteHeader } from "./SiteHeader";
 import { SpcChartDemo } from "./SpcChartDemo";
 
@@ -94,10 +95,10 @@ function Hero() {
             they belong to.
           </p>
           <div className="animate-rise flex flex-col gap-3 sm:flex-row" style={delay(240)}>
-            <a href={signupUrl} className={primaryLinkClass}>
+            <SignupLink from="hero" className={primaryLinkClass}>
               Start free trial
               <ButtonArrow />
-            </a>
+            </SignupLink>
             <a href="#pricing" className={secondaryLinkClass}>
               See pricing
             </a>
@@ -145,9 +146,9 @@ function ImportBand() {
           <div className="mt-8">
             <TagList label="Supported files" items={importFormats} />
           </div>
-          <a href={signupUrl} className={cn(primaryLinkClass, "mt-10")}>
+          <SignupLink from="import" className={cn(primaryLinkClass, "mt-10")}>
             Import your documents
-          </a>
+          </SignupLink>
         </div>
         <div className="reveal lg:sticky lg:top-28">
           <Illustration
@@ -387,9 +388,9 @@ function FormsBand() {
           <TagList label="Schedules" items={scheduleCadences} />
         </div>
       </div>
-      <a href={signupUrl} className={cn(primaryLinkClass, "mt-12")}>
+      <SignupLink from="forms" className={cn(primaryLinkClass, "mt-12")}>
         Start free trial
-      </a>
+      </SignupLink>
     </Section>
   );
 }
@@ -473,15 +474,15 @@ function HowItWorks() {
           <p className="mt-6 text-lg leading-8 text-c-brown/80">
             Draft a document, review it, publish it, then collect the records that show it&apos;s being followed.
           </p>
-          <a
-            href={signupUrl}
+          <SignupLink
+            from="how-it-works"
             className={cn(
               buttonBase,
               "mt-10 bg-c-brown text-white hover:bg-c-yellow hover:text-c-brown focus-visible:ring-c-brown focus-visible:ring-offset-c-off-white",
             )}
           >
             Start free trial
-          </a>
+          </SignupLink>
         </div>
 
         <div className="rail relative pl-12 sm:pl-16">
@@ -526,8 +527,8 @@ function Pricing() {
         </div>
         <h2 className={cn(displayHeadingClass, "mt-6 text-c-ink")}>Two plans, both with a {TRIAL_DAYS}-day free trial</h2>
         <p className="mt-6 text-lg leading-8 text-c-grey-light">
-          All prices are in CAD. Both plans include {INCLUDED_EDITOR_SEATS} editor seats and unlimited readers and form
-          users.
+          No card needed. All prices are in CAD. Both plans include {INCLUDED_EDITOR_SEATS} editor seats and unlimited
+          readers and form users.
         </p>
       </div>
       <div className="mt-12">
@@ -580,7 +581,12 @@ function Faq() {
 }
 
 
-const footerColumns = [
+const footerLinkClass = "text-white/70 transition-colors hover:text-c-yellow";
+
+const footerColumns: {
+  title: string;
+  links: ({ label: string; href: string } | { label: string; signupFrom: SignupSource })[];
+}[] = [
   {
     title: "Product",
     links: [
@@ -602,7 +608,7 @@ const footerColumns = [
     title: "Account",
     links: [
       { label: "Log in", href: loginUrl },
-      { label: "Start free trial", href: signupUrl },
+      { label: "Start free trial", signupFrom: "footer" },
       { label: "Contact", href: "mailto:hello@contourna.com" },
     ],
   },
@@ -618,12 +624,11 @@ function Footer() {
               Try Contourna free for {TRIAL_DAYS} days
             </h2>
             <p className="mt-3 text-[15px] leading-7 text-white/60">
-              Import your existing documents, set up your first manual, and invite your team. You won&apos;t be charged
-              until the trial ends.
+              Import your existing documents, set up your first manual, and invite your team. No card needed.
             </p>
-            <a href={signupUrl} className={cn(primaryOnColorLinkClass, "mt-7")}>
+            <SignupLink from="closing" className={cn(primaryOnColorLinkClass, "mt-7")}>
               Start free trial
-            </a>
+            </SignupLink>
           </div>
           <Image
             src="/images/illustrations/footer-illustration.svg"
@@ -647,9 +652,15 @@ function Footer() {
               <ul className="mt-4 space-y-2.5 text-sm">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-white/70 transition-colors hover:text-c-yellow">
-                      {link.label}
-                    </a>
+                    {"signupFrom" in link ? (
+                      <SignupLink from={link.signupFrom} className={footerLinkClass}>
+                        {link.label}
+                      </SignupLink>
+                    ) : (
+                      <a href={link.href} className={footerLinkClass}>
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
